@@ -5,7 +5,7 @@ import TopText from "../../(component)/topText";
 import style from '../../../../style/auth.module.css'
 import {useRouter } from "next/navigation";
 import Input from "../../(component)/input";
-export default function reset(params) {
+export default function Reset(params) {
     let router = useRouter()
     let [firstPassword, setFirstPassword] = useState('')
     let [secondPassword, setSecondPassword] = useState('')
