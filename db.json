@@ -1,0 +1,52 @@
+{
+    "posts": [
+        { 
+        "id": 1,
+        "title": "json-server 5",
+        "author": "typicode",
+        "body":"some comment"
+        },
+        { 
+        "id": 2,
+        "title": "json-server 5",
+        "author": "typicode",
+        "body":"some other comment"
+        },
+        { 
+        "id": 3,
+        "title": "json-server 3",
+        "author": "typicode",
+        "body":"some comment"
+        },
+        { 
+        "id": 4,
+        "title": "json-server 4",
+        "author": "typicode",
+        "body":"some comment"
+        }
+    ],
+    "docs": [
+      {
+        "id": 0,
+        "head": "Render2",
+        "body": "render some reader other comment" 
+    },{
+        "id": 1,
+        "head": "Render more",
+        "body": "render some other comment" 
+    },{
+        "id": 2,
+        "head": "Render extra",
+        "body": "render some other comment" 
+    },{
+        "id": 3,
+        "head": "Render ++",
+        "body": "render some other comment" 
+    },{
+        "id": 4,
+        "head": "Render +++",
+        "body": "render some other comment" 
+    }
+    ],
+    "profile": { "name": "typicode" }
+}
