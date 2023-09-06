@@ -4,7 +4,7 @@ import BottomComp from "../../(component)/bottomComp";
 import Input from "../../(component)/input";
 import { useState } from "react";
 
-export default function forgotPassword(params) {
+export default function ForgotPassword(params) {
     let [inputValue, setInputValue] = useState(``)
     return(
         <>
