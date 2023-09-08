@@ -1,6 +1,7 @@
 'use client'
 import AuthButton from "../../(component)/authButton";
 import BottomComp from "../../(component)/bottomComp";
+import DivOr from "../../(component)/divOr";
 import Input from "../../(component)/input";
 import TopText from "../../(component)/topText";
 import style from "../../../../style/auth.module.css"
@@ -11,11 +12,7 @@ export default function register(params) {
         <div className={style.form}>
             <AuthButton google={true} pText={`Register with Google`}/>
             <AuthButton google={false} pText={`Register with Apple`}/>
-            <div className={style.or}>
-                <div></div>
-                <san>or</san>
-                <div></div>
-            </div>
+            <DivOr/>
             <Input password={false} inputText={`Email address`} errorMsg={'not sure yet'} errorState={false} changeFunc={null}/>
             <Input password={true} inputText={`Password`} errorMsg={'not sure yet'} errorState={false} changeFunc={null}/>
             <Input password={true} inputText={`Confirm password`} errorMsg={'not sure yet'} errorState={false} changeFunc={null}/>
