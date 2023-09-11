@@ -1,0 +1,39 @@
+.topbar{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    align-self: stretch;
+}
+.header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1 0 0;
+}
+.header h1{
+    color: var(--black-100, #333);
+    /* title medium */
+    font-family: Nunito;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 2rem; /* 133.333% */
+}
+.header button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+.inputBody{
+    display: flex;
+    width: 15.875rem;
+    height: 3.5rem;
+    padding: 0.5rem 1rem;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--black-20, #D2D2D2);
+    background: var(--black-0, #FFF);
+}

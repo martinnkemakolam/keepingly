@@ -29,7 +29,7 @@
     padding: 40px 0;
     box-sizing: border-box;
     min-height: calc(100vh);
-    background-image: url('../../public/asset/background\ image/authBackgroundImage.png');
+    background-image: url('../../public/asset/background\ image/authBackgroundImage.webp');
     background-size: cover;
 }
 .colRed{
