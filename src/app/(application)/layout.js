@@ -3,9 +3,6 @@ import style from '../../style/layout.module.css'
 import '../../style/style.css'
 import LayoutLi from './(components)/layoutLi'
 import { useState } from 'react'
-export const metadata = {
-    title: 'Keepingly'
-}
 export default function layout({children}){
     let [layoutState, setLayoutState] = useState('Properties')
     let arrayIcon = [
