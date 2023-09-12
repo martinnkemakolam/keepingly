@@ -3,7 +3,7 @@ import style from '../../style/layout.module.css'
 import '../../style/style.css'
 import LayoutLi from './(components)/layoutLi'
 import { useState } from 'react'
-export default function layout({children}){
+export default function Layout({children}){
     let [layoutState, setLayoutState] = useState('Properties')
     let arrayIcon = [
         {
@@ -78,7 +78,7 @@ export default function layout({children}){
         <body>
             <section className={style.section}>
                 <nav className={style.sidebar}>
-                    <img src='/asset/logo/logo.png' width='116.25' height='40'/>
+                    <img alt='keepingly logo' src='/asset/logo/logo.png' width='116.25' height='40'/>
                     <ul>
                     {liMap}
                     </ul>
