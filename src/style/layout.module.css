@@ -1,14 +1,11 @@
-/* :root{
-    --white-0: #FFFFFF;
-    --black-100: #333333;
-    --black-60: #838383;
-    --primary-100: #A61D4A
-} */
+
 .sidebar{
-    width: 218px;
+    position: relative;
+    width: 255px;
     display: flex;
     padding: 2.5rem;
     flex-direction: column;
+    box-sizing: border-box;
     align-items: center;
     gap: 2.5rem;
     align-self: stretch;
@@ -16,7 +13,9 @@
     box-shadow: 4px 0px 32px 0px rgba(51, 51, 51, 0.08);
 }
 .main{
+    background-color: #f3f1f1;
     width: 100%;
+    box-sizing: border-box;
     display: flex;
     padding: 2.5rem;
     flex-direction: column;
@@ -33,6 +32,8 @@
 .layoutLi{
     display: flex;
     padding: 0.625rem 1rem;
+    width: 175px;
+    box-sizing: border-box;
     align-items: center;
     gap: 0.75rem;
     align-self: stretch;
@@ -52,4 +53,78 @@
     color: #A61D4A;
     background: #FFF;
     box-shadow: 0px 16px 16px -16px rgba(51, 51, 51, 0.24);
+}
+.cta{
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background: #FAFAFA;
+    align-self: stretch;
+}
+.text{
+    width: 100%;
+    color: #364A63;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25rem; /* 142.857% */
+    letter-spacing: 0.0175rem;
+}
+.textHolder{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: stretch;
+}
+.upload{
+    width: 100%;
+    height: 8px;
+    position: relative;
+    background-color:#E1B4C3;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.upload div{
+    border-radius: 8px;
+    position: absolute;
+    height: 100%;
+    width: 25%;
+    background-color: #A61D4A;
+    left: 0;
+}
+.cta button{
+    box-sizing: border-box;
+    color: var(--black-0, #FFF);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.25rem; /* 142.857% */
+    letter-spacing: 0.0175rem;
+    display: flex;
+    height: 3rem;
+    padding: 0.75rem 1rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+    background: #A61D4A;
+    gap: 0.5rem;
+    align-self: stretch;
+}
+.earn{
+    color: var(--primary-100, #A61D4A);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.25rem; /* 142.857% */
+    letter-spacing: 0.0175rem;
+}
+.underline{
+    text-decoration: underline;
+}
+.floatBtn{
+    position: absolute;
+    right: -1.25rem;
+    top: 2.5rem;
 }

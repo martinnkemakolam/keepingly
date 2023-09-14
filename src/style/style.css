@@ -7,6 +7,7 @@
     --black-10: #FAFAFA;
     --black-20: #D2D2D2;
     --black-60: #838383;
+    --primary-100: #A61D4A;
     
 }
 *{
@@ -16,6 +17,15 @@
 }
 body{
     font-family: 'Nunito Sans', sans-serif;
+}
+button{
+    font-family: 'Nunito Sans', sans-serif;
+    border: none;
+    cursor: pointer;
+}
+input{
+    border: none;
+    outline: none;
 }
 input::-ms-reveal,
 input::-ms-clear {
