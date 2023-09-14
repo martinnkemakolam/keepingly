@@ -1,84 +1,15 @@
+'use client'
+import { useState } from "react"
+import FormProperties from "../(hoc)/form"
 import style from "../../../style/properties.module.css"
-import InputApp from "../(components)/appInput";
-
 export default function Properties(params) {
-    let div1 = [
-        {
-            label: 'First name',
-            type:"text",
-            placeholder: "Enter first name"
-        },
-        {
-            label: 'Last name',
-            type:"text",
-            placeholder:"Enter last name"
-        },
-        {
-            label:'Email address',
-            type:"email",
-            placeholder:"Enter email address"
-        },
-        {
-            label: 'Phone number',
-            type: 'number',
-            placeholder: 'Enter phone number'
-        }
-    ]
-    let div2 = [
-        {
-            label: 'License',
-            type: 'select',
-            placeholder: 'Select license',
-            opt: [
-                'test1', 'test2', 'test3'
-            ]
-        },{
-            label: 'Issuing state',
-            type: 'select',
-            placeholder: 'Select state',
-            opt: [
-                'test1', 'test2', 'test3'
-            ]
-        }
-    ]
-    let div3 = [
-        {
-            label: 'Agency',
-            type: 'text',
-            placeholder: 'Enter agency'
-        },{
-            label: 'Agency address (line 1)',
-            type: 'text',
-            placeholder: 'Enter address'
-        },{
-            label: 'Agency address (line 2)',
-            type: 'text',
-            placeholder: 'Enter address'
-        }
-    ]
-    let div4 = [
-        {
-            label: 'City',
-            type: 'text',
-            placeholder: 'Enter city',
-        },{
-            label: 'State',
-            type: 'select',
-            placeholder: 'Select state',
-            opt: [
-                'test1', 'test2', 'test3'
-            ]
-        },{
-            label: 'City',
-            type: 'text',
-            placeholder: 'Enter city',
-        }
-    ]
+    // fetch user data on page mount, if none set formFiled to false
+    let [formFiled, setFormFiled] = useState(false)
     return (
         <>
         <header className={style.header}>
             <div className={style}>
-                <h1>Welcome to keepingly</h1>
+                <h1>Welcome to Keepingly</h1>
             </div>
             <div className={style.input}>
                 <input  placeholder="Enter search text" type="text"/>
@@ -103,30 +34,8 @@ export default function Properties(params) {
         <svg width="42" height="2" viewBox="0 0 42 2" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 1H41" stroke="#A61D4A" stroke-linecap="round"/>
         </svg>
-            <form className={style.flex}>
-                <div className={style.upload}>
-                    <img src="" alt="form image"/>
-                    <input type="file" name="file" accept="image/*" id="file"/>
-                    <label className={style.label} htmlFor="file">Upload image</label>
-                </div>
-                <div className={style.info}>
-                    <div>
-                        <h1>Complete your profile</h1>
-                        <h2>Fill in the required information</h2>
-                    </div>
-                    <div className={style.formInputs}>
-                        {div1.map(({label, type, placeholder},id)=><InputApp className={style.inputs} label={label} placeholder={placeholder} inputType={type} key={id}/> )}
-                        <div className={ style.flexdiv}>
-                            {div2.map(({label, type, placeholder, opt},id)=> <InputApp className={style.inputs} label={label} placeholder={placeholder} optionArray={opt} inputType={type} key={id}/> )}
-                        </div>
-                        {div3.map(({label, type, placeholder},id)=> <InputApp className={style.inputs} label={label} placeholder={placeholder} inputType={type} key={id}/> )}
-                        <div className={ style.flexdiv}>
-                            {div4.map(({label, type, placeholder, opt},id)=> <InputApp className={style.inputs} label={label} placeholder={placeholder} optionArray={opt} inputType={type} key={id}/> )}
-                        </div>
-                    </div>
-                    <button className={style.button}>Save profile</button>
-                </div>
-            </form>
+        { formFiled ? <div>Properties</div> : <FormProperties setFormFiled={setFormFiled}/> 
+        }
         </>
     )
 }

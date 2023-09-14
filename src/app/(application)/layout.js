@@ -1,11 +1,12 @@
 'use client'
-import Link from 'next/link'
 import { useSelectedLayoutSegment } from 'next/navigation'
 import style from '../../style/layout.module.css'
 import '../../style/style.css'
 import LayoutLi from './(components)/layoutLi'
+import { useState } from 'react'
 export default function Layout({children}){
     let currentParam = useSelectedLayoutSegment()
+    let [hideNav, setHideNav] = useState(false)
     let arrayIcon = [
         {
             name: 'Overview',
@@ -61,26 +62,26 @@ export default function Layout({children}){
     ]
     let liMap = arrayIcon.map(({name, svg}, id)=>{
         return(
-            <LayoutLi isActive={name === currentParam || (currentParam === null && name === 'Overview')} Text={name} icon={svg} linkHref={name === 'Overview' ? '/' : `/${name}`} key={id}/>
+            <LayoutLi hide={hideNav} isActive={name === currentParam || (currentParam === null && name === 'Overview')} Text={name} icon={svg} linkHref={name === 'Overview' ? '/' : `/${name}`} key={id}/>
         )
     })
     return(
     <html lang="en">
         <body>
             <section className={style.section}>
-                <nav className={style.sidebar}>
-                    <div className={style.floatBtn}>
-                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <nav className={`${style.sidebar} ${hideNav && style.left}`}>
+                    <div className={style.floatBtn} onClick={()=> setHideNav(!hideNav)}>
+                        <svg className={ hideNav ? style.rotate : ""} width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect width="40" height="40" rx="20" fill="white"/>
                             <path d="M20.0003 14.6667L14.667 20.0001L20.0003 25.3334" stroke="#AAAAAA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M24.0003 14.6667L18.667 20.0001L24.0003 25.3334" stroke="#AAAAAA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
-                    <img alt='keepingly logo' src='/asset/logo/logo.png' width='116.25' height='40'/>
+                    { hideNav ? <img src='/asset/logo/logoHide.png' alt='keepingly logo' /> : <img alt='keepingly logo' src='/asset/logo/logo.png' width='116.25' height='40'/>}
                     <ul>
                     {liMap}
                     </ul>
-                    <div className={style.cta}>
+                    <div className={`${style.cta}  ${hideNav && style.hide}`}>
                         <p className={style.text}>Your free plan</p>
                         <div className={style.textHolder}>
                             <p className={style.earn}>Uploads</p>
@@ -88,7 +89,7 @@ export default function Layout({children}){
                             <span>25</span>/<span>100</span>
                             </div>
                         </div>
-                        <div className={style.upload}>
+                        <div className={`${style.upload}`}>
                             <div></div>
                         </div>
                         <button>Upgrade now</button>
