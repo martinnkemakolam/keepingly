@@ -1,5 +1,4 @@
 'use client'
-import img from '../../../public/asset/logo/logo.png'
 import { useSelectedLayoutSegment } from 'next/navigation'
 import style from '../../style/layout.module.css'
 import '../../style/style.css'
@@ -78,7 +77,7 @@ export default function Layout({children}){
                             <path d="M24.0003 14.6667L18.667 20.0001L24.0003 25.3334" stroke="#AAAAAA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
-                    { hideNav ? <img src='./asset/logo/logoHide.png' alt='keepingly logo' /> : <img alt='keepingly logo' src={img} width='116.25' height='40'/>}
+                    { hideNav ? <img src='./asset/logo/logoHide.png' alt='keepingly logo' /> : <img alt='keepingly logo' src={'./asset/logo/logo.png'} width='116.25' height='40'/>}
                     <ul>
                     {liMap}
                     </ul>

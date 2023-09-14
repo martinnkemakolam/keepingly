@@ -110,7 +110,7 @@ export default function FormProperties({setFormFiled}) {
         <>
             <form className={style.flex}>
                 <div className={style.upload}>
-                    <img src={imgSrc} alt="form image"/>
+                    <img src={imgSrc} alt=""/>
                     <input onChange={({target: {name, files}})=> handleUploadInput(name, files)} type="file" name="file" accept="image/*" id="file"/>
                     <label className={style.label} htmlFor="file">Upload image</label>
                 </div>
