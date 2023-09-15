@@ -1,11 +1,12 @@
 import InputApp from "../(components)/appInput";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import style from '../../../style/properties.module.css'
 export default function FormProperties({setFormFiled}) {
     
     let [userFormData, setUserFormData] = useState({})
     let [imgSrc, setImgSrc] = useState('')
     let [modalView, setModalView] = useState(false)
+    let formRef = useRef(null)
     let handleUploadInput =(name, files)=>{
         let fs = new FileReader()
         fs.onloadend=({target: {result}})=>{
@@ -100,15 +101,19 @@ export default function FormProperties({setFormFiled}) {
                 'test1', 'test2', 'test3'
             ]
         },{
-            name: 'city2',
-            label: 'City',
+            name: 'Zipcode',
+            label: 'ZIP code',
             type: 'text',
             placeholder: 'Enter city',
         }
     ]
     return (
         <>
-            <form className={style.flex}>
+            <form className={style.flex} ref={formRef} onSubmit={(e)=>{
+                e.preventDefault()
+                console.log(formRef.current)
+                setModalView(true)
+            }}>
                 <div className={style.upload}>
                     <img src={imgSrc} alt=""/>
                     <input onChange={({target: {name, files}})=> handleUploadInput(name, files)} type="file" name="file" accept="image/*" id="file"/>
@@ -130,11 +135,7 @@ export default function FormProperties({setFormFiled}) {
                         </div>
                     </div>
                     {/* check if the user has filed all inputs if yes make clickable */}
-                    <button type="submit" onClick={(e)=>{
-                        e.preventDefault()
-                        console.log(userFormData)
-                        setModalView(true)
-                    }} className={style.button}>Save profile</button>
+                    <button type="submit" className={style.button}>Save profile</button>
                 </div>
             </form>
             {

@@ -5,7 +5,7 @@ export default function InputApp({ input, className,inputType, optionArray, plac
         { (inputType === 'text' || inputType === 'email') && 
         <div className={className}>
             <label>{label}*</label>
-            <input required={true} name={label} onChange={({target:{name, value}})=> input(name, value)} type={inputType} placeholder={placeholder}/>
+            <input required={true} minLength='2' name={label} onChange={({target:{name, value}})=> input(name, value)} type={inputType} placeholder={placeholder}/>
         </div>}
         { inputType === 'select' && 
         

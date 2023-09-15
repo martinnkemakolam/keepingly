@@ -3,6 +3,8 @@
     align-items: center;
     justify-content: stretch;
     gap: 1rem;
+    height: 2.75rem;
+    width: 100%;
     align-self: stretch;
 }
 .h1 h1{
@@ -30,11 +32,15 @@
     border: 1px solid #AAAAAA;
     align-self: stretch;
 }
+.input input:focus{
+    
+}
 .input input, .input input::placeholder{
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
     letter-spacing: 0em;
+    font-family: 'Nunito Sans', sans-serif;
     text-align: left;
     color: #AAAAAA;
 }
@@ -138,6 +144,10 @@
     font-weight: 600;
     line-height: 1rem; /* 133.333% */
 }
+.inputs input:focus{
+    border: 1px solid #A61D4A;
+}
+
 .inputs input, .inputs select{
     display: flex;
     padding: 0.75rem 1rem;
@@ -148,7 +158,7 @@
     border-radius: 0.5rem;
     border: 1px solid var(--black-20);
     overflow: hidden;
-    color: var(--black-40, #AAA);
+    color: var(--black-40, #333);
     text-overflow: ellipsis;
     /* body small */
     font-size: 0.875rem;
@@ -168,6 +178,9 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+}
+.sect:focus-within{
+    border-color: #A61D4A;
 }
 .flexdiv{
     justify-content: space-between;

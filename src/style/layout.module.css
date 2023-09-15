@@ -9,8 +9,13 @@
     align-items: center;
     gap: 2.5rem;
     align-self: stretch;
-    background: #333333, #FFF;
+    background-color: #FFF;
     box-shadow: 4px 0px 32px 0px rgba(51, 51, 51, 0.08);
+}
+.sidebar ul{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 .main{
     margin: 0 auto;
@@ -136,5 +141,6 @@
 .floatBtn{
     position: absolute;
     right: -1.25rem;
+    cursor: pointer;
     top: 2.5rem;
 }
