@@ -21,7 +21,6 @@ export default function Properties() {
                 setProperties(mail.result.properties)
                 return
             }
-            router.push('./')
             return
             }
         }
