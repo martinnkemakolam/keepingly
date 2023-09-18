@@ -3,7 +3,6 @@ import { useSelectedLayoutSegment } from 'next/navigation'
 import style from '@/style/layout.module.css'
 import LayoutLi from '@/app/(application)/(components)/layoutLi'
 import { useState } from 'react'
-import Image from 'next/image'
 export default function Nav() {
     let currentParam = useSelectedLayoutSegment()
     let [hideNav, setHideNav] = useState(false)
@@ -74,7 +73,7 @@ export default function Nav() {
                             <path d="M24.0003 14.6667L18.667 20.0001L24.0003 25.3334" stroke="#AAAAAA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
-                    { hideNav ? <Image src='/asset/logo/logoHide.png' alt='keepingly logo' width='34' height='40' /> : <Image alt='keepingly logo' src={'/asset/logo/logo.png'} width={116.25} height={40} />}
+                    { hideNav ? <img src='./asset/logo/logoHide.png' alt='keepingly logo' width='34' height='40' /> : <img alt='keepingly logo' src={'./asset/logo/logo.png'} width={116.25} height={40} />}
                     <ul>
                     {liMap}
                     </ul>
