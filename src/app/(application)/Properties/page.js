@@ -10,7 +10,7 @@ export default function Properties() {
     let [properties, setProperties] = useState([])
     let router = useRouter()
     let btnFunc =()=>{
-        router.push('./Property/addproperty')
+        router.push('./Properties/addproperty')
     }
     useEffect(()=>{
         let db = indexedDB.open('keepinglyDB', 1.0)
