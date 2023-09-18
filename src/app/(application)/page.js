@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import TopBar from "@/app/(application)/(components)/Topbar";
 import FormProperties from "@/app/(application)/(hoc)/form";
 import { useRouter } from "next/navigation";
@@ -8,7 +8,7 @@ import style from '@/style/properties.module.css'
 export default function CompleteProfile() {
     let [modalView, setModalView] = useState(false)
     let [userFormData, setUserFormData] = useState({})
-    let db = window?.indexedDB.open('keepinglyDB', 1.0)
+    let db = useRef()
     let router = useRouter()
     let div1 = [
         {
@@ -117,6 +117,11 @@ export default function CompleteProfile() {
             }
         )
     }
+    useEffect(()=>{
+        if(window){
+            db.current = window.indexedDB.open('keepinglyDB', 1.0)
+        }
+    }, [])
     return (
         <>
         <TopBar title={`Welcome to Keepingly`}/>
