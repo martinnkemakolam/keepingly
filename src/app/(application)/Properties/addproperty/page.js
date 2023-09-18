@@ -82,7 +82,7 @@ export default function AddProperty() {
                     {
                         length: 'medium',
                         label: 'First name',
-                        placeholder: 'Enter fisrt name',
+                        placeholder: 'Enter first name',
                         type: 'text',
                         name: 'ownerfirstname'
                     },{
@@ -114,7 +114,7 @@ export default function AddProperty() {
                 {
                     length: 'medium',
                     label: 'First name',
-                    placeholder: 'Enter fisrt name',
+                    placeholder: 'Enter first name',
                     type: 'text',
                     name: 'addownerfirstname'
                 },{
