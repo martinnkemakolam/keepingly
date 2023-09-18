@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import style from '../../../style/properties.module.css'
 export default function TopBar({title, buttonText}) {
     return(
@@ -29,7 +28,7 @@ export default function TopBar({title, buttonText}) {
                 </svg>
             </div>
             <div>
-                <Image alt="user image" src="/asset/avatar/avatar.png" width={40} height={40}/>
+                <img alt="user image" src="/asset/avatar/avatar.png" width={40} height={40}/>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M4.66699 6.66675L8.00033 10.0001L11.3337 6.66675" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
