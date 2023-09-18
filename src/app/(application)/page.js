@@ -8,7 +8,7 @@ import style from '@/style/properties.module.css'
 export default function CompleteProfile() {
     let [modalView, setModalView] = useState(false)
     let [userFormData, setUserFormData] = useState({})
-    let db = indexedDB.open('keepinglyDB', 1.0)
+    let db = window?.indexedDB.open('keepinglyDB', 1.0)
     let router = useRouter()
     let div1 = [
         {
