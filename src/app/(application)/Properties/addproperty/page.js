@@ -61,9 +61,9 @@ export default function AddProperty(params) {
                         type: 'select',
                         name: 'howmanyowner',
                         opt: [
-                            'opt1',
-                            'opt2',
-                            'opt3'
+                            '1',
+                            '2',
+                            '3'
                         ]
                     }
                 ]
