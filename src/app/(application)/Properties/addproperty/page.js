@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import TopBar from "../../(components)/Topbar";
 import PropertyInfo from "../../(components)/propertyInfo";
 import FormProperties from "../../(hoc)/form";
@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 export default function AddProperty() {
     let formRef = useRef()
     let router = useRouter()
-    let db = indexedDB.open('keepinglyDB', 1.0)
+    let db = useRef()
     let arr = [
         {
             h1: 'Property details',
@@ -180,7 +180,7 @@ export default function AddProperty() {
         formRef.current.click()
     }
     let submit=()=>{
-        let result = db.result
+        let result = db.current.result
         let transact = result.transaction('user', 'readwrite').objectStore('user')
         let gotten = transact.get(0)
         gotten.onsuccess=()=>{
@@ -195,6 +195,9 @@ export default function AddProperty() {
             }
         }
     }
+    useEffect(()=>{
+        db.current = indexedDB.open('keepinglyDB', 1.0)
+    }, [])
     return (
         <>
         <TopBar title={`Properties`}/>
