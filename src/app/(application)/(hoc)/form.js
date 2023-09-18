@@ -19,8 +19,8 @@ export default function FormProperties({arrOpt, func, handleInput}) {
                 <>
                     <div className={style.flexdiv}>
                         {
-                            ele.map(({name, label, opt, placeholder, type}, id)=>{
-                                return <InputApp input={handleInput} className={style.inputs} label={label} placeholder={placeholder} inputType={type} key={id} name={name} optionArray={opt}/>
+                            ele.map(({name, label, opt, placeholder, type, length}, id)=>{
+                                return <InputApp input={handleInput} className={ `${style.inputs} ${length==="small" && style.inputLength1} ${length==="medium" && style.inputLength2}`} label={label} placeholder={placeholder} inputType={type} key={id} name={name} optionArray={opt}/>
                             })
                         }
                     </div>
