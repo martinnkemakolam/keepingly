@@ -29,7 +29,7 @@ export default function Properties() {
             let result = db.result
             result.createObjectStore('user', {keyPath: 'id'})
         }
-    }, [])
+    }, [router])
     return (
         <>
             <TopBar title={`Properties`} buttonText={`Add a property`} />
