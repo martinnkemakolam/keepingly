@@ -1,13 +1,17 @@
+import Image from 'next/image'
 import style from '../../../style/properties.module.css'
 export default function TopBar({title, buttonText}) {
     return(
+        <>
         <header className={style.header}>
             <div className={style}>
                 <h1>{title}</h1>
                 {
                     buttonText && <>
-                    <div></div>
-                    <button>{buttonText}</button>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.66675 8L13.3334 8" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <button className={style.button} >{buttonText}</button>
                     </>
                 }
             </div>
@@ -25,11 +29,15 @@ export default function TopBar({title, buttonText}) {
                 </svg>
             </div>
             <div>
-                <img alt="user image" src="./asset/avatar/avatar.png" />
+                <Image alt="user image" src="/asset/avatar/avatar.png" width={40} height={40}/>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M4.66699 6.66675L8.00033 10.0001L11.3337 6.66675" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
         </header>
+        <svg width="42" height="2" viewBox="0 0 42 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1H41" stroke="#A61D4A" stroke-linecap="round"/>
+        </svg>
+    </>
     )
 }

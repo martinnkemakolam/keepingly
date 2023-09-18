@@ -1,20 +1,39 @@
 'use client'
-import { useState } from "react"
-import FormProperties from "../(hoc)/form"
-import TopBar from "../(components)/Topbar"
-export default function Properties(params) {
-    // fetch user data on page mount, if none set formFiled to false
-    let [formFiled, setFormFiled] = useState(false)
+
+import TopBar from "@/app/(application)/(components)/Topbar"
+import { useRouter } from "next/navigation"
+
+import Table from "../(components)/table"
+import { useEffect, useState } from "react"
+export default function Properties() {
+    // fetch user data on page , if none set formFiled to false
+    let [properties, setProperties] = useState([])
+    let router = useRouter()
+    useEffect(()=>{
+        let db = indexedDB.open('keepinglyDB', 1.0)
+    db.onsuccess=()=>{
+        let result = db.result
+        let store = result.transaction('user', 'readonly').objectStore('user')
+        let mail = store.get(0)
+        mail.onsuccess=()=>{
+            if (mail.result) {
+                console.log(mail.result)
+                setProperties(mail.result.properties)
+                return
+            }
+            router.push('./Properties/completeprofile')
+            return
+            }
+        }
+        db.onupgradeneeded=()=>{
+            let result = db.result
+            result.createObjectStore('user', {keyPath: 'id'})
+        }
+    }, [])
     return (
         <>
-        {
-            formFiled ? <TopBar title={`Properties`} buttonText={`Add a property`}/> : <TopBar title={`Welcome to Keepingly`}/>
-        }
-        <svg width="42" height="2" viewBox="0 0 42 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 1H41" stroke="#A61D4A" stroke-linecap="round"/>
-        </svg>
-        { formFiled ? <div>Properties</div> : <FormProperties setFormFiled={setFormFiled}/> 
-        }
+            <TopBar title={`Properties`} buttonText={`Add a property`} />
+            <Table h1Text={`Available properties`} arrProperties={properties}/>
         </>
     )
 }

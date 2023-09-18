@@ -138,6 +138,9 @@
 .underline{
     text-decoration: underline;
 }
+.alignCenter{
+    text-align: center;
+}
 .floatBtn{
     position: absolute;
     right: -1.25rem;
