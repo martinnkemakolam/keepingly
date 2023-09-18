@@ -1,7 +1,4 @@
 'use client'
-export const metadata = {
-    title: 'Keepingly'
-}
 import { useState } from "react";
 import TopBar from "@/app/(application)/(components)/Topbar";
 import FormProperties from "@/app/(application)/(hoc)/form";
