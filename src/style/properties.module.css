@@ -102,7 +102,7 @@
     gap: 1.5rem;
     box-sizing: border-box;
     flex: 1 0 0;
-    width: 65%;
+    width: 100%;
     background-color: #FFF;
 }
 .info h1{
@@ -259,4 +259,8 @@
 }
 .addedProperty{
     width: 24%;
+}
+.infoSect{
+    width: 65%;
+    box-sizing: border-box;
 }

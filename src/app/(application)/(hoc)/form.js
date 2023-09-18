@@ -42,7 +42,7 @@ export default function FormProperties({arrOpt, func, handleInput}) {
                     <input required='true' onChange={({target: {name, files}})=> handleUploadInput(name, files)} type="file" name="file" accept="image/*" id="file"/>
                     <label className={style.label} htmlFor="file">Upload image</label>
                 </div>
-                <div>
+                <div className={style.infoSect}>
                     {
                         arrOpt.map((ele, id)=>{
                             return (
@@ -59,7 +59,7 @@ export default function FormProperties({arrOpt, func, handleInput}) {
                                                 })
                                             }
                                         </div>
-                                        {<button type="submit" className={style.button}>Save profile</button>}
+                                        {arrOpt.length===1 && <button type="submit" className={style.button}>Save profile</button>}
                                     </div>
                                 </>
                             )
