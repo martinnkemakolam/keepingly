@@ -40,6 +40,7 @@ export default function CompleteProfile() {
                     placeholder: 'Enter phone number'
                 },[
                     {
+                        length: 'medium',
                         name: 'license',
                         label: 'License',
                         type: 'select',
@@ -48,6 +49,7 @@ export default function CompleteProfile() {
                             'test1', 'test2', 'test3'
                         ]
                     },{
+                        length: 'medium',
                         name: 'issuingState',
                         label: 'Issuing state',
                         type: 'select',
@@ -73,11 +75,13 @@ export default function CompleteProfile() {
                     placeholder: 'Enter address'
                 },[
                     {
+                        length: 'small',
                         name: 'city',
                         label: 'City',
                         type: 'text',
                         placeholder: 'Enter city',
                     },{
+                        length: 'small',
                         name: 'state',
                         label: 'State',
                         type: 'select',
@@ -86,6 +90,7 @@ export default function CompleteProfile() {
                             'test1', 'test2', 'test3'
                         ]
                     },{
+                        length: 'small',
                         name: 'Zipcode',
                         label: 'ZIP code',
                         type: 'text',
@@ -96,7 +101,7 @@ export default function CompleteProfile() {
         }
     ]
     let addUser =()=>{
-        let result = db.result
+        let result = db.current.result
         let transact = result.transaction('user', 'readwrite')
         let objStore = transact.objectStore('user')
         let put = objStore.add(userFormData)

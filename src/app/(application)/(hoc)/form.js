@@ -3,7 +3,7 @@ import InputApp from "../(components)/appInput";
 import { useState } from "react";
 import style from '../../../style/properties.module.css'
 import Image from "next/image";
-export default function FormProperties({arrOpt, func, handleInput}) {
+export default function FormProperties({arrOpt, func, handleInput, refference}) {
     let [imgSrc, setImgSrc] = useState('')
     let handleUploadInput =(name, files)=>{
         let fs = new FileReader()
@@ -37,6 +37,7 @@ export default function FormProperties({arrOpt, func, handleInput}) {
                     func()
                 }
             }>
+                <button ref={refference} style={{display: 'none'}}></button>
                 <div className={style.upload}>
                     <Image src={imgSrc} alt="" width={306} height={306}/>
                     <input required='true' onChange={({target: {name, files}})=> handleUploadInput(name, files)} type="file" name="file" accept="image/*" id="file"/>

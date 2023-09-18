@@ -1,9 +1,14 @@
 'use client'
+import { useRef, useState } from "react";
 import TopBar from "../../(components)/Topbar";
 import PropertyInfo from "../../(components)/propertyInfo";
 import FormProperties from "../../(hoc)/form";
+import { useRouter } from "next/navigation";
 
-export default function AddProperty(params) {
+export default function AddProperty() {
+    let formRef = useRef()
+    let router = useRouter()
+    let db = indexedDB.open('keepinglyDB', 1.0)
     let arr = [
         {
             h1: 'Property details',
@@ -162,11 +167,39 @@ export default function AddProperty(params) {
             ]
         }
     ]
+    let [userFormData, setUserFormData] = useState()
+    let handleInput =(name, value)=>{
+        setUserFormData(
+            {
+                ...userFormData,
+                [name]: value
+            }
+        )
+    }
+    let formSubmit=()=>{
+        formRef.current.click()
+    }
+    let submit=()=>{
+        let result = db.result
+        let transact = result.transaction('user', 'readwrite').objectStore('user')
+        let gotten = transact.get(0)
+        gotten.onsuccess=()=>{
+            let user = gotten.result
+            let arr = gotten.result.properties
+            arr.push(userFormData)
+            user.properties = arr
+            transact.delete(0).onsuccess=()=>{
+                transact.add(user).onsuccess=()=>{
+                    router.push('./')
+                }
+            }
+        }
+    }
     return (
         <>
         <TopBar title={`Properties`}/>
-        <PropertyInfo h1Text={`Add a property`} buttonFunc={()=> console.log('lll')} buttonText={`Save property`}/>
-        <FormProperties arrOpt={arr}/>
+        <PropertyInfo h1Text={`Add a property`} buttonFunc={formSubmit} buttonText={`Save property`} />
+        <FormProperties arrOpt={arr} func={submit} handleInput={handleInput} refference={formRef}/>
         </>
     )
 }

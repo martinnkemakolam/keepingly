@@ -16,14 +16,17 @@ export default function Properties() {
         let db = indexedDB.open('keepinglyDB', 1.0)
     db.onsuccess=()=>{
         let result = db.result
-        let store = result.transaction('user', 'readonly').objectStore('user')
-        let mail = store.get(0)
+        let transact = result.transaction('user', 'readwrite').objectStore('user')
+        let mail = transact.get(0)
         mail.onsuccess=()=>{
             if (mail.result) {
                 console.log(mail.result)
                 setProperties(mail.result.properties)
                 return
             }
+            transact.add({
+                id: 0, properties: []
+            })
             return
             }
         }
