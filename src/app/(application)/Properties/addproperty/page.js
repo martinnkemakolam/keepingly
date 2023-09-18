@@ -151,7 +151,7 @@ export default function AddProperty(params) {
                     name: 'percentage'
                 },{
                     length: 'medium',
-                    label: 'Closing data',
+                    label: 'Closing date',
                     placeholder: 'Select closing date',
                     type: 'date',
                     name: 'date'
