@@ -1,4 +1,6 @@
+'use client'
 import TopBar from "../../(components)/Topbar";
+import PropertyInfo from "../../(components)/propertyInfo";
 import FormProperties from "../../(hoc)/form";
 
 export default function AddProperty(params) {
@@ -163,6 +165,7 @@ export default function AddProperty(params) {
     return (
         <>
         <TopBar title={`Properties`}/>
+        <PropertyInfo h1Text={`Add a property`} buttonFunc={()=> console.log('lll')} buttonText={`Save property`}/>
         <FormProperties arrOpt={arr}/>
         </>
     )

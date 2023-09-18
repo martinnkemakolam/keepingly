@@ -1,6 +1,7 @@
 import {earn, underline, text, alignCenter} from "@/style/layout.module.css"
 import style from '@/style/properties.module.css'
 import Card from "./card"
+import PropertyInfo from "./propertyInfo"
 export default function Table({h1Text, arrProperties}) {
     let properties = arrProperties?.map(()=>{
         return(
@@ -12,7 +13,7 @@ export default function Table({h1Text, arrProperties}) {
     return (
         <>
         <div className={style.table}>
-                <h1>{h1Text} { arrProperties.length > 0 && <span>{arrProperties.length}</span>}</h1>
+                <PropertyInfo h1Text={h1Text} arrProperties={arrProperties}/>
                 <div>
                     {arrProperties.length > 0 && properties}
                     <div className={style.addProperty} onClick={()=> console.log('works')}>
