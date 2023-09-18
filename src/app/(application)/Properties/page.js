@@ -9,6 +9,9 @@ export default function Properties() {
     // fetch user data on page , if none set formFiled to false
     let [properties, setProperties] = useState([])
     let router = useRouter()
+    let btnFunc =()=>{
+        router.push('./addProperty')
+    }
     useEffect(()=>{
         let db = indexedDB.open('keepinglyDB', 1.0)
     db.onsuccess=()=>{
@@ -31,7 +34,7 @@ export default function Properties() {
     }, [router])
     return (
         <>
-            <TopBar title={`Properties`} buttonText={`Add a property`} />
+            <TopBar title={`Properties`} buttonText={`Add a property`} btnFunc={btnFunc} />
             <Table h1Text={`Available properties`} arrProperties={properties}/>
         </>
     )

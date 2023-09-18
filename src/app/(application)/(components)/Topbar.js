@@ -1,5 +1,5 @@
 import style from '../../../style/properties.module.css'
-export default function TopBar({title, buttonText}) {
+export default function TopBar({title, buttonText, btnFunc}) {
     return(
         <>
         <header className={style.header}>
@@ -10,7 +10,7 @@ export default function TopBar({title, buttonText}) {
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2.66675 8L13.3334 8" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <button className={style.button} >{buttonText}</button>
+                    <button className={style.button} onClick={()=> btnFunc()}>{buttonText}</button>
                     </>
                 }
             </div>
