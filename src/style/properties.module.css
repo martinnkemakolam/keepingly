@@ -12,12 +12,26 @@
     width: 100%;
 }
 .h1{
+    height: auto;
+    text-overflow: ellipsis;
     color: var(--black-100, #333);
     /* title medium */
     width: 100%;
     font-style: normal;
     font-weight: 700;
     line-height: 2rem; /* 133.333% */
+}
+.cardH1{
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: var(--black-100, #333);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.5rem; /* 150% */
 }
 .input{
     margin-left: auto;
@@ -281,6 +295,7 @@
     align-items: center;
 }
 .card{
+    overflow: hidden;
     width: 273px;
     display: flex;
     flex-direction: column;
@@ -311,6 +326,7 @@
     height: 188px;
     padding: 24px;
     gap: 16px;
+    justify-content: space-between;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -323,6 +339,7 @@
     font-size: 14px;
     color: #333;
     display: flex;
+    line-height: 1.25rem;
 }
 .primaryResident{
     display: flex;
@@ -364,4 +381,7 @@
     padding: 0.25rem;
     align-items: center;
     justify-content: center;
+}
+.img{
+    object-fit: cover;
 }

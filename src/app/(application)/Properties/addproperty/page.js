@@ -186,7 +186,7 @@ export default function AddProperty() {
         gotten.onsuccess=()=>{
             let user = gotten.result
             let arr = gotten.result.properties
-            arr.push(userFormData)
+            arr.unshift(userFormData)
             user.properties = arr
             transact.delete(0).onsuccess=()=>{
                 transact.add(user).onsuccess=()=>{

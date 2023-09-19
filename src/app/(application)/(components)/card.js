@@ -3,7 +3,7 @@ import style from "@/style/properties.module.css"
 export default function Card({imgSrc, isPrimary, City, state, postal, Address1}) {
     return(
         <div className={style.card}>
-            <Image src={imgSrc} width={382} height={270} alt="property"/>
+            <Image className={style.img} src={imgSrc} width={382} height={270} alt="property"/>
             <div>
             {
                         isPrimary &&
@@ -17,7 +17,7 @@ export default function Card({imgSrc, isPrimary, City, state, postal, Address1})
                 </div>
                 }
                 <div>
-                    <h1 className={style.h1}>{Address1}</h1>
+                    <h1 className={style.cardH1}>{Address1}</h1>
                     <p className={style.cardP}>{City}</p>
                     <p className={style.cardP}>{state}, <span>{postal}</span></p>
                 </div>

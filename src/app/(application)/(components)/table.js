@@ -2,6 +2,7 @@ import {earn, underline, text, alignCenter} from "@/style/layout.module.css"
 import style from '@/style/properties.module.css'
 import Card from "./card"
 import PropertyInfo from "./propertyInfo"
+import Link from "next/link"
 export default function Table({h1Text, arrProperties}) {
     let properties = arrProperties?.map((ele)=>{
         return(
@@ -15,8 +16,7 @@ export default function Table({h1Text, arrProperties}) {
         <div className={style.table}>
                 <PropertyInfo h1Text={h1Text} arrProperties={arrProperties}/>
                 <div className={style.row}>
-                    {arrProperties.length > 0 && properties}
-                    <div className={ arrProperties.length > 0 ?  `${style.card} ${style.justifyCenter}` : style.addProperty} onClick={()=> console.log('works')}>
+                    <Link href={'/Properties/addproperty'} className={ arrProperties.length > 0 ?  `${style.card} ${style.justifyCenter}` : style.addProperty} onClick={()=> console.log('works')}>
                         <svg width="91" height="24" viewBox="0 0 91 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path opacity="0.15" d="M5.5 10L12.5 3L19.5 10L19.5 20H5.5L5.5 10Z" fill="#838383"/>
                             <path d="M5.5 10L12.5 3L19.5 10L19.5 20H5.5L5.5 10Z" stroke="#838383" stroke-linecap="round" stroke-linejoin="round"/>
@@ -26,7 +26,8 @@ export default function Table({h1Text, arrProperties}) {
                         </svg>
                         <p className={text + ' ' + alignCenter}><span className={underline + ' ' + earn}>Click</span> to add a property</p>
                         <p className={text + ' ' + alignCenter}>Expand your portfolio by adding a new property.</p>
-                    </div>
+                    </Link>
+                    {arrProperties.length > 0 && properties}
                 </div>
             </div>
         </>
