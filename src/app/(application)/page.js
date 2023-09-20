@@ -130,7 +130,7 @@ export default function CompleteProfile() {
     return (
         <>
         <TopBar title={`Welcome to Keepingly`}/>
-        <FormProperties arrOpt={div1} func={addUser} handleInput={handleInput}/>
+        <FormProperties arrOpt={div1} func={addUser} handleInput={handleInput} isProperty={false} isEdit={false}/>
         {
                 modalView &&
                 <div className={style.modal}>

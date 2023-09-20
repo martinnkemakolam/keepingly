@@ -11,7 +11,6 @@ export default function Reset(params) {
     let [secondPassword, setSecondPassword] = useState('')
     let [errorState, setErrorState] = useState(false)
     function validatePassword() {
-        console.log('called')
         if (firstPassword === secondPassword) {
             setErrorState(false)
             router.push('/authentication/success')    

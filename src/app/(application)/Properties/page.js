@@ -20,7 +20,6 @@ export default function Properties() {
         let mail = transact.get(0)
         mail.onsuccess=()=>{
             if (mail.result) {
-                console.log(mail.result)
                 setProperties(mail.result.properties)
                 return
             }

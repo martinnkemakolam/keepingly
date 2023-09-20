@@ -4,10 +4,10 @@ import Card from "./card"
 import PropertyInfo from "./propertyInfo"
 import Link from "next/link"
 export default function Table({h1Text, arrProperties}) {
-    let properties = arrProperties?.map((ele)=>{
+    let properties = arrProperties?.map((ele, id)=>{
         return(
         <>
-            <Card Address1={ele.address1} state={ele.state} City={ele.cty} postal={ele.zipcode} imgSrc={ele.file} isPrimary={true}/>
+            <Card key={id} Address1={ele.address1} state={ele.state} City={ele.cty} postal={ele.zipcode} imgSrc={ele.file} isPrimary={true} id={id}/>
         </>
         )
     })
@@ -16,7 +16,7 @@ export default function Table({h1Text, arrProperties}) {
         <div className={style.table}>
                 <PropertyInfo h1Text={h1Text} arrProperties={arrProperties}/>
                 <div className={style.row}>
-                    <Link href={'/Properties/addproperty'} className={ arrProperties.length > 0 ?  `${style.card} ${style.justifyCenter}` : style.addProperty} onClick={()=> console.log('works')}>
+                    <Link href={'/Properties/addproperty'} className={ arrProperties.length > 0 ?  `${style.card} ${style.justifyCenter}` : style.addProperty}>
                         <svg width="91" height="24" viewBox="0 0 91 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path opacity="0.15" d="M5.5 10L12.5 3L19.5 10L19.5 20H5.5L5.5 10Z" fill="#838383"/>
                             <path d="M5.5 10L12.5 3L19.5 10L19.5 20H5.5L5.5 10Z" stroke="#838383" stroke-linecap="round" stroke-linejoin="round"/>

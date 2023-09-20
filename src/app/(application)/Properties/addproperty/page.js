@@ -9,6 +9,7 @@ export default function AddProperty() {
     let formRef = useRef()
     let router = useRouter()
     let db = useRef()
+    let [isEdit, setIsEdit] = useState(false)
     let arr = [
         {
             h1: 'Property details',
@@ -197,12 +198,28 @@ export default function AddProperty() {
     }
     useEffect(()=>{
         db.current = indexedDB.open('keepinglyDB', 1.0)
+        db.onsuccess=()=>{
+            let result = db.result
+            let transact = result.transaction('user', 'readwrite').objectStore('user')
+            let mail = transact.get(0)
+            mail.onsuccess=()=>{
+                if (mail.result) {
+                    if (mail.result.properties.length > 1){
+                        setIsEdit(true)
+                    }else{
+                        setIsEdit(false)
+                    }
+                    return
+                }
+                return
+                }
+            }
     }, [])
     return (
         <>
         <TopBar title={`Properties`}/>
         <PropertyInfo h1Text={`Add a property`} buttonFunc={formSubmit} buttonText={`Save property`} />
-        <FormProperties arrOpt={arr} func={submit} handleInput={handleInput} refference={formRef}/>
+        <FormProperties arrOpt={arr} func={submit} handleInput={handleInput} refference={formRef} isProperty={true} isEdit={isEdit}/>
         </>
     )
 }
