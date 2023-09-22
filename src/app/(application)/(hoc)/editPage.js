@@ -134,7 +134,7 @@ export default function EditProperty({id}) {
                     return ele
                 })
                 store.put({
-                    id: 0,
+                    ...user.result,
                     properties: newData
                 }).onsuccess=()=>{
                     router.push('./')

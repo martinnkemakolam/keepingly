@@ -2,16 +2,17 @@
 import { useSelectedLayoutSegment } from 'next/navigation'
 import style from '@/style/layout.module.css'
 import LayoutLi from '@/app/(application)/(components)/layoutLi'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 export default function Nav() {
     let currentParam = useSelectedLayoutSegment()
     let [hideNav, setHideNav] = useState(false)
+    let [canClick, setCanClick] = useState(false)
     let arrayIcon = [
         {
             name: 'Overview',
             svg: <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9.00004 3.33359V2.33359H13.6667V7.00025H9.00004V6.00025M3.33337 9.00025H2.33337V13.6669H7.00004V9.00025H6.00004M2.33337 2.33359H7.00004V7.00025H2.33337V2.33359ZM9.00004 9.00025H13.6667V13.6669H9.00004V9.00025Z" stroke={ currentParam === null ? '#A61D4A' : "#838383"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M9.00004 3.33359V2.33359H13.6667V7.00025H9.00004V6.00025M3.33337 9.00025H2.33337V13.6669H7.00004V9.00025H6.00004M2.33337 2.33359H7.00004V7.00025H2.33337V2.33359ZM9.00004 9.00025H13.6667V13.6669H9.00004V9.00025Z" stroke={ currentParam === "Overview" ? '#A61D4A' : "#838383"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>        
         },{
             name: 'Properties',
@@ -62,9 +63,22 @@ export default function Nav() {
     ]
     let liMap = arrayIcon.map(({name, svg}, id)=>{
         return(
-            <LayoutLi hide={hideNav} isActive={name === currentParam || (currentParam === null && name === 'Overview')} Text={name} icon={svg} linkHref={name === 'Overview' ? '/' : `/${name}`} key={id}/>
+            <LayoutLi canClick={canClick} hide={hideNav} isActive={name === currentParam} Text={name} icon={svg} linkHref={name === 'Overview' ? '/' : `/${name}`} key={id}/>
         )
     })
+    useEffect(()=>{
+        let db= window.indexedDB.open('keepinglyDB', 1.0)
+        db.onsuccess=()=>{
+            let result = db.result
+            let store = result.transaction('user', 'readonly').objectStore('user')
+            let userData = store.get(0)
+            userData.onsuccess=()=>{
+                if (userData.result) {
+                    setCanClick(true)   
+                }
+            }
+        }
+    }, [])
     return(
         <nav className={`${style.sidebar} ${hideNav && style.left}`}>
                     <div className={style.floatBtn} onClick={()=> setHideNav(!hideNav)}>

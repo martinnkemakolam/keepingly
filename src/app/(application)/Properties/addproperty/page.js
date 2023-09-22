@@ -219,7 +219,7 @@ export default function AddProperty() {
         <>
         <TopBar title={`Properties`}/>
         <PropertyInfo h1Text={`Add a property`} buttonFunc={formSubmit} buttonText={`Save property`} />
-        <FormProperties arrOpt={arr} func={submit} handleInput={handleInput} refference={formRef} isProperty={true} isEdit={isEdit}/>
+        <FormProperties arrOpt={arr} func={submit} handleInput={handleInput} refference={formRef} isProperty={true} isEdit={isEdit} />
         </>
     )
 }
