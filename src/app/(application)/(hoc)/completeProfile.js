@@ -124,11 +124,6 @@ export default function CompleteProfile() {
     }
     useEffect(()=>{
         db.current = window.indexedDB.open('keepinglyDB', 1.0)
-        // db.current.onupgradeneeded=()=>{
-        //     console.log('profile upgrade')
-        //     let result = db.current.result
-        //     result.createObjectStore('user', {keyPath: 'id'})
-        // }
         db.current.onsuccess=()=>{
             console.log('profile succes')
             let result = db.current.result
