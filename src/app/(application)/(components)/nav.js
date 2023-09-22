@@ -69,6 +69,7 @@ export default function Nav() {
     useEffect(()=>{
         let db= window.indexedDB.open('keepinglyDB', 1.0)
         db.onsuccess=()=>{
+            console.log('nav')
             let result = db.result
             let store = result.transaction('user', 'readonly').objectStore('user')
             let userData = store.get(0)
@@ -77,6 +78,11 @@ export default function Nav() {
                     setCanClick(true)   
                 }
             }
+        }
+        db.onupgradeneeded=()=>{
+            console.log('profile upgrade')
+            let result = db.result
+            result.createObjectStore('user', {keyPath: 'id'})
         }
     }, [])
     return(
