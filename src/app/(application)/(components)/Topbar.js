@@ -1,7 +1,7 @@
 import Image from 'next/image'
 
 import style from '../../../style/properties.module.css'
-export default function TopBar({title, buttonText, btnFunc}) {
+export default function TopBar({title, buttonText, btnFunc, showSearch}) {
     return(
         <>
         <header className={style.header}>
@@ -16,6 +16,8 @@ export default function TopBar({title, buttonText, btnFunc}) {
                     </>
                 }
             </div>
+            {
+                showSearch && <>
             <div className={style.input}>
                 <input  placeholder="Enter search text" type="text"/>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -35,6 +37,8 @@ export default function TopBar({title, buttonText, btnFunc}) {
                     <path d="M4.66699 6.66675L8.00033 10.0001L11.3337 6.66675" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
+            </>
+}
         </header>
         <svg width="42" height="2" viewBox="0 0 42 2" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 1H41" stroke="#A61D4A" stroke-linecap="round"/>

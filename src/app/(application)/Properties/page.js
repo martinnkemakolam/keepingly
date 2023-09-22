@@ -29,10 +29,6 @@ export default function Properties() {
             return
             }
         }
-        db.onupgradeneeded=()=>{
-            let result = db.result
-            result.createObjectStore('user', {keyPath: 'id'})
-        }
     }, [router])
     return (
         <>

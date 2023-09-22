@@ -3,10 +3,11 @@ import InputApp from "../(components)/appInput";
 import { useEffect, useRef, useState } from "react";
 import style from '../../../style/properties.module.css'
 import Image from "next/image";
+import PopulatedData from "../(components)/populatedData";
+import CheckBox from "../(components)/checkBox";
 export default function FormProperties({ disable, file, arrOpt, func, handleInput, refference, isProperty, isEdit, values}) {
     let [imgSrc, setImgSrc] = useState('')
     let [pos, setPos] = useState(false)
-    let ref = useRef(0)
     let handleUploadInput =(name, files)=>{
         let fs = new FileReader()
         fs.onloadend=({target: {result}})=>{
@@ -15,9 +16,7 @@ export default function FormProperties({ disable, file, arrOpt, func, handleInpu
         }
         fs.readAsDataURL(files[0])
     }
-    let value = values ? Object.entries(values).map((ele, id)=>{
-        return ele
-    }) : null
+    let value = values ? values : null
     useEffect(()=>{
         setImgSrc(file)
     }, [file])
@@ -28,7 +27,7 @@ export default function FormProperties({ disable, file, arrOpt, func, handleInpu
                     <div className={style.flexdiv}>
                         {
                             ele.map(({name, label, opt, placeholder, type, length}, id)=>{
-                                let data = value !== null? value.filter((ele)=> ele[0] === name) : ''
+                                let data = value !== null? value[name] : ''
                                 return <InputApp isDisable={disable} value={data}  input={handleInput} className={ `${style.inputs} ${length==="small" && style.inputLength1} ${length==="medium" && style.inputLength2}`} label={label} placeholder={placeholder} inputType={type} key={id} name={name} optionArray={opt}/>
                             })
                         }
@@ -36,7 +35,8 @@ export default function FormProperties({ disable, file, arrOpt, func, handleInpu
                 </>
             )
         }
-        let data = value !== null ? value.filter((element)=> element[0] === ele.name) : ''
+        let name = ele.name
+        let data = value !== null ? value[name] : ''
         return <InputApp isDisable={disable} value={data} input={handleInput} className={style.inputs} label={ele.label} placeholder={ele.placeholder} inputType={ele.type} key={id} name={ele.name} optionArray={ele.opt}/>
     }
     return (
@@ -46,9 +46,9 @@ export default function FormProperties({ disable, file, arrOpt, func, handleInpu
                     func()
                 }
             }>
-                <input style={{display: 'none'}} required={ isEdit? false : true} onChange={({target: {name, files}})=> handleUploadInput(name, files)} type="file" name="file" accept="image/*" id="file"/>
+                <input style={{display: 'none'}} required={ file ? false : true} onChange={({target: {name, files}})=> handleUploadInput(name, files)} type="file" name="file" accept="image/*" id="file"/>
                 <button ref={refference} style={{display: 'none'}}></button>
-                <div className={style.upload} style={{height: isProperty ? "530px" : "22rem"}}>
+                <div className={style.upload} style={{height: isProperty ? "530px" : "22rem", pointerEvents: disable ? "none" : 'initial'}}>
                     <Image className={style.img} src={imgSrc} alt="" width={306} height={306}/>
                     <div className={style.uploadDiv}>
                         {isProperty && <div>
@@ -56,18 +56,24 @@ export default function FormProperties({ disable, file, arrOpt, func, handleInpu
                         <p className={style.uploadP}>
                             600x600px or larger recommended for property image.
                         </p></div>}
-                        <label className={ disable ? style.userSelect + " " + style.label: style.label} htmlFor="file" style={{pointerEvents: disable ? "none" : 'initial'}}>Upload image</label>
+                        <label className={ disable ? style.userSelect + " " + style.label: style.label} htmlFor="file" >Upload image</label>
                         {isProperty && isEdit && <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
                         <p>Set as primary residence</p>
-                        <label onClick={()=> setPos(!pos)} style={{borderRadius: '1.5rem', padding: '0.25rem'}} htmlFor="check" className={disable ? style.userSelect + " " + style.check : style.check}>
-                            <div className={style.circle + ' ' + `${ pos ? style.right : style.left}`}></div>
-                        </label>
+                        <CheckBox setPos={setPos} pos={pos} disable={disable}/>
                     </div>}
                     </div>
                 </div>
                 <div className={style.infoSect}>
                     {
                         arrOpt.map((ele, id)=>{
+                            if (ele.h1 === `Profile settings` || ele.h1 === 'Notification settings' || ele.h1 === 'Account settings') {
+                                return(
+
+                                    <div className={style.info} key={id}>
+                                        <PopulatedData mode={ele.h1} />
+                                    </div>
+                                )
+                            } else
                             return (
                                 <>
                                     <div className={style.info} key={id}>
