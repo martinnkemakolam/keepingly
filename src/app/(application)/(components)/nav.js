@@ -63,7 +63,7 @@ export default function Nav() {
     ]
     let liMap = arrayIcon.map(({name, svg}, id)=>{
         return(
-            <LayoutLi canClick={canClick} hide={hideNav} isActive={name === currentParam} Text={name} icon={svg} linkHref={name === 'Overview' ? '/' : `/${name}`} key={id}/>
+            <LayoutLi canClick={true} hide={hideNav} isActive={name === currentParam} Text={name} icon={svg} linkHref={name === 'Overview' ? '/' : `/${name}`} key={id}/>
         )
     })
     

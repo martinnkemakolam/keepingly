@@ -2,7 +2,10 @@
 import TopBar from "../(components)/Topbar";
 import style from '@/style/video.module.css'
 import PropertyInfo from "../(components)/propertyInfo";
+import DocumentHeader from "../(components)/documentHeader";
+import Overlay from "../(components)/overlay";
 export default function Video(){
+    let showOverLay = false
     return(
         <div className={style.video}>
             <TopBar title={`Videos`} showSearch={true}/>
@@ -19,7 +22,10 @@ export default function Video(){
                 </svg>
             </div>
             <PropertyInfo h1Text={`4517 Washington Ave. Manchester, Kentucky 39495`} showSvg={true} buttonText={`Send to Appraiser’s Edge`} buttonFunc={()=> console.log('CALLED')} extraButtonText={`Add videos`} extraButtonFunc={()=> console.log('func')}/>
-            
+            <DocumentHeader title={`Kitchen renovations`} />
+            { showOverLay &&
+                <Overlay/>
+            }
         </div>
     )
 }

@@ -1,6 +1,6 @@
 'use client'
 import InputApp from "../(components)/appInput";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import style from '../../../style/properties.module.css'
 import Image from "next/image";
 import PopulatedData from "../(components)/populatedData";
@@ -28,7 +28,7 @@ export default function FormProperties({ disable, file, arrOpt, func, handleInpu
                         {
                             ele.map(({name, label, opt, placeholder, type, length}, id)=>{
                                 let data = value !== null? value[name] : ''
-                                return <InputApp isDisable={disable} value={data}  input={handleInput} className={ `${style.inputs} ${length==="small" && style.inputLength1} ${length==="medium" && style.inputLength2}`} label={label} placeholder={placeholder} inputType={type} key={id} name={name} optionArray={opt}/>
+                                return <InputApp isDisable={disable} value={data}  input={handleInput} className={ `${length==="small" && style.inputLength1} ${length==="medium" && style.inputLength2}`} label={label} placeholder={placeholder} inputType={type} key={id} name={name} optionArray={opt}/>
                             })
                         }
                     </div>
