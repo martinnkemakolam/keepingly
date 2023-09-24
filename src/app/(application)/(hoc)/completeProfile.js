@@ -104,7 +104,7 @@ export default function CompleteProfile() {
         let result = db.current.result
         let transact = result.transaction('user', 'readwrite')
         let objStore = transact.objectStore('user')
-        let put = objStore.add(userFormData)
+        let put = objStore.put(userFormData)
         put.onerror=()=>{
             alert('OPPS an Error occured')
         }
@@ -124,11 +124,8 @@ export default function CompleteProfile() {
     }
     useEffect(()=>{
         db.current = window.indexedDB.open('keepinglyDB', 1.0)
-        db.current.onupgradeneeded=()=>{
-            let result = db.current.result
-            result.createObjectStore('user', {keyPath: 'id'})
-        }
         db.current.onsuccess=()=>{
+            console.log('profile succes')
             let result = db.current.result
             let store = result.transaction('user', 'readonly').objectStore('user')
             let userData = store.get(0)
@@ -136,6 +133,7 @@ export default function CompleteProfile() {
                 if (userData.result) {
                     setUserFormData(userData.result)   
                 }
+
             }
         }
     }, [])

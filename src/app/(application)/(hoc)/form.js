@@ -1,6 +1,6 @@
 'use client'
 import InputApp from "../(components)/appInput";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import style from '../../../style/properties.module.css'
 import Image from "next/image";
 import PopulatedData from "../(components)/populatedData";
@@ -28,7 +28,7 @@ export default function FormProperties({ disable, file, arrOpt, func, handleInpu
                         {
                             ele.map(({name, label, opt, placeholder, type, length}, id)=>{
                                 let data = value !== null? value[name] : ''
-                                return <InputApp isDisable={disable} value={data}  input={handleInput} className={ `${style.inputs} ${length==="small" && style.inputLength1} ${length==="medium" && style.inputLength2}`} label={label} placeholder={placeholder} inputType={type} key={id} name={name} optionArray={opt}/>
+                                return <InputApp isDisable={disable} value={data}  input={handleInput} className={ `${length==="small" && style.inputLength1} ${length==="medium" && style.inputLength2}`} label={label} placeholder={placeholder} inputType={type} key={id} name={name} optionArray={opt}/>
                             })
                         }
                     </div>
@@ -48,7 +48,7 @@ export default function FormProperties({ disable, file, arrOpt, func, handleInpu
             }>
                 <input style={{display: 'none'}} required={ file ? false : true} onChange={({target: {name, files}})=> handleUploadInput(name, files)} type="file" name="file" accept="image/*" id="file"/>
                 <button ref={refference} style={{display: 'none'}}></button>
-                <div className={style.upload} style={{height: isProperty ? "530px" : "22rem", pointerEvents: disable ? "none" : 'initial'}}>
+                <div className={style.upload} style={{height: isProperty ? "530px" : "fit-content", pointerEvents: disable ? "none" : 'initial'}}>
                     <Image className={style.img} src={imgSrc} alt="" width={306} height={306}/>
                     <div className={style.uploadDiv}>
                         {isProperty && <div>

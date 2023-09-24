@@ -63,20 +63,16 @@ export default function Nav() {
     ]
     let liMap = arrayIcon.map(({name, svg}, id)=>{
         return(
-            <LayoutLi canClick={canClick} hide={hideNav} isActive={name === currentParam} Text={name} icon={svg} linkHref={name === 'Overview' ? '/' : `/${name}`} key={id}/>
+            <LayoutLi canClick={true} hide={hideNav} isActive={name === currentParam} Text={name} icon={svg} linkHref={name === 'Overview' ? '/' : `/${name}`} key={id}/>
         )
     })
+    
     useEffect(()=>{
         let db= window.indexedDB.open('keepinglyDB', 1.0)
-        db.onsuccess=()=>{
+        db.onupgradeneeded=()=>{
+            console.log('profile upgrade')
             let result = db.result
-            let store = result.transaction('user', 'readonly').objectStore('user')
-            let userData = store.get(0)
-            userData.onsuccess=()=>{
-                if (userData.result) {
-                    setCanClick(true)   
-                }
-            }
+            result.createObjectStore('user', {keyPath: 'id'})
         }
     }, [])
     return(
