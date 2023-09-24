@@ -48,7 +48,7 @@ export default function FormProperties({ disable, file, arrOpt, func, handleInpu
             }>
                 <input style={{display: 'none'}} required={ file ? false : true} onChange={({target: {name, files}})=> handleUploadInput(name, files)} type="file" name="file" accept="image/*" id="file"/>
                 <button ref={refference} style={{display: 'none'}}></button>
-                <div className={style.upload} style={{height: isProperty ? "530px" : "22rem", pointerEvents: disable ? "none" : 'initial'}}>
+                <div className={style.upload} style={{height: isProperty ? "530px" : "fit-content", pointerEvents: disable ? "none" : 'initial'}}>
                     <Image className={style.img} src={imgSrc} alt="" width={306} height={306}/>
                     <div className={style.uploadDiv}>
                         {isProperty && <div>

@@ -163,8 +163,8 @@ export default function EditProperty({id}) {
     return(
         <>
         <TopBar title={`Properties`}/>
-        <PropertyInfo isEdit={disable} h1Text={`${userData?.address1},${userData?.cty},${userData?.state} ${userData?.zipcode}`} buttonText={ disable ?`Edit property`: `Save property`} buttonFunc={changeButtonOrSubmit} func={dbEdit}/>
-        <FormProperties disable={disable} arrOpt={arr} isProperty={true} isEdit={true} file={userData?.file} values={userData} handleInput={handleInput} func={dbEdit} refference={formRef}/>
+        <PropertyInfo isEdit={disable} showSvg={true} h1Text={`${userData?.address1},${userData?.cty},${userData?.state} ${userData?.zipcode}`} buttonText={ disable ?`Edit property`: `Save property`} buttonFunc={changeButtonOrSubmit} func={dbEdit}/>
+        <FormProperties disable={disable} arrOpt={arr} isProperty={false} isEdit={true} file={userData?.file} values={userData} handleInput={handleInput} func={dbEdit} refference={formRef}/>
         </>
     )
 }

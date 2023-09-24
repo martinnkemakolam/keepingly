@@ -66,19 +66,9 @@ export default function Nav() {
             <LayoutLi canClick={canClick} hide={hideNav} isActive={name === currentParam} Text={name} icon={svg} linkHref={name === 'Overview' ? '/' : `/${name}`} key={id}/>
         )
     })
+    
     useEffect(()=>{
         let db= window.indexedDB.open('keepinglyDB', 1.0)
-        db.onsuccess=()=>{
-            console.log('nav')
-            let result = db.result
-            let store = result.transaction('user', 'readonly').objectStore('user')
-            let userData = store.get(0)
-            userData.onsuccess=()=>{
-                if (userData.result) {
-                    setCanClick(true)   
-                }
-            }
-        }
         db.onupgradeneeded=()=>{
             console.log('profile upgrade')
             let result = db.result
