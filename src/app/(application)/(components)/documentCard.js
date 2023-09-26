@@ -1,16 +1,24 @@
 import Image from "next/image";
 import style from '@/style/video.module.css'
-export default function DocumentCard ({optValue,name, time, showMenu = false}){
+import Tick from "./tick";
+export default function DocumentCard ({optValue,name, time, view ,showMenu = false}){
     return(
-        <div className={style.document}>
-            <Image src={''} alt="" width={265} height={200}/>
-            <div className={style.documentCard}>
-                <div className={style.cardFrame}>
+        <div className={ view ? style.flexView : style.document}>
+            <Tick ticked={true} className={ view ? style.tickFlex : style.tick}/>
+            <div style={{display: view ? 'none' : 'block', position: 'relative'}}>
+                <Image src={'/asset/background image/authBackgroundImage.png'} alt="" width={265} height={200}/>
+                {optValue === 'video' && <svg className={style.floatMiddle} width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path opacity="0.15" d="M13.4585 10V30L30.1252 20L13.4585 10Z" fill="white"/>
+                    <path d="M13.4585 10V30L30.1252 20L13.4585 10Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>}
+            </div>
+            <div className={ view ? style.textFlex:style.documentCard}>
+                <div className={ view ? style.textFlex : style.cardFrame}>
                     <p className={style.cardFrameText1}>{name}</p>
                     <p className={style.cardFrameText2}>{time}</p>
                 </div>
                 <div>
-                    <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg style={{display: view ? 'none' : 'block'}}  width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8.25016 8.66669C8.61835 8.66669 8.91683 8.36821 8.91683 8.00002C8.91683 7.63183 8.61835 7.33335 8.25016 7.33335C7.88197 7.33335 7.5835 7.63183 7.5835 8.00002C7.5835 8.36821 7.88197 8.66669 8.25016 8.66669Z" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M8.25016 4.00002C8.61835 4.00002 8.91683 3.70154 8.91683 3.33335C8.91683 2.96516 8.61835 2.66669 8.25016 2.66669C7.88197 2.66669 7.5835 2.96516 7.5835 3.33335C7.5835 3.70154 7.88197 4.00002 8.25016 4.00002Z" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M8.25016 13.3334C8.61835 13.3334 8.91683 13.0349 8.91683 12.6667C8.91683 12.2985 8.61835 12 8.25016 12C7.88197 12 7.5835 12.2985 7.5835 12.6667C7.5835 13.0349 7.88197 13.3334 8.25016 13.3334Z" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

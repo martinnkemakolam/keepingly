@@ -84,7 +84,8 @@ export default function Nav() {
                             <path d="M24.0003 14.6667L18.667 20.0001L24.0003 25.3334" stroke="#AAAAAA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
-                    <Image src={ hideNav ? '/asset/logo/logoHide.png' : '/asset/logo/logo.png'} alt='keepingly logo' width={ hideNav ? 34 : 116 } height={40} />
+                    <Image src={'/asset/logo/logoHide.png'} alt='keepingly logo' width={34} height={40} style={{display: hideNav ? 'block': 'none'}} />
+                    <Image src={'/asset/logo/logo.png'} alt='keepingly logo' width={116 } height={40} style={{display: hideNav ? 'none' : 'block'}}/>
                     <ul>
                     {liMap}
                     </ul>
