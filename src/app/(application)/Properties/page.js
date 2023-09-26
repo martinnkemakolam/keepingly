@@ -32,8 +32,8 @@ export default function Properties() {
     }, [router])
     return (
         <>
-            <TopBar title={`Properties`} buttonText={`Add a property`} btnFunc={btnFunc} />
-            <Table h1Text={`Available properties`} arrProperties={properties}/>
+            <TopBar title={`Properties`} showSearch={true} buttonText={`Add a property`} btnFunc={btnFunc} />
+            <Table h1Text={`Available properties`} arrProperties={properties} />
         </>
     )
 }

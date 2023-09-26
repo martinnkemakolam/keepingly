@@ -319,7 +319,7 @@
 }
 .card{
     overflow: hidden;
-    width: 273px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -345,8 +345,8 @@
     letter-spacing: 0.0175rem;
 }
 .card > div{
-    width: 273.5px;
-    height: 188px;
+    width: 100%;
+    height: 100%;
     padding: 24px;
     gap: 16px;
     justify-content: space-between;
@@ -356,7 +356,6 @@
 }
 .card img{
     height: 220px;
-    width: 273.5px;
 }
 .cardP{
     font-size: 14px;
@@ -366,16 +365,23 @@
 }
 .primaryResident{
     display: flex;
+    margin-bottom: 0.5rem;
     padding: 0.25rem 0.25rem 0.25rem 0.5rem;
     align-items: center;
     gap: 0.5rem;
     box-sizing: border-box;
-    width: fit-content;
-    border-radius: 1.5rem;
+    width: 100%;
+    flex-direction: row-reverse;
+    border-radius: 0.25rem;
     background: var(--primary-100, #A61D4A);
     color: white;
 }
 .primaryResident div{
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
     color: var(--black-0, #FFF);
     font-size: 0.75rem;
     font-style: normal;
@@ -421,11 +427,12 @@
     left: calc(100% - 1.25rem);
 }
 .row{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     width: 100%;
     gap: 1rem;
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: stretch;
     flex-shrink: 0;
     border-radius: 0.5rem;
 }
@@ -441,4 +448,16 @@
 }
 .img{
     object-fit: cover;
+}
+.centerText{
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+.noView{
+    opacity: 0;
 }

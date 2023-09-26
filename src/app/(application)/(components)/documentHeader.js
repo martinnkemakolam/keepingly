@@ -1,7 +1,7 @@
 import DocumentCard from "./documentCard";
 import Tick from "./tick";
 import style from '@/style/video.module.css'
-export default function DocumentHeader({title}) {
+export default function DocumentHeader({title, type}) {
     return(
         <>
             <div className={style.header}>
@@ -11,7 +11,7 @@ export default function DocumentHeader({title}) {
                     <span className={style.headerPill}>7</span>
                 </div>
                 
-                    <button className={style.headerBtn}>Add a photo</button>
+                    <button className={style.headerBtn}>Add a {type}</button>
                     <svg width="2" height="14" viewBox="0 0 2 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1 13L1 1" stroke="#D2D2D2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -44,8 +44,11 @@ export default function DocumentHeader({title}) {
                     </svg>
                 </div>
             
-            <div className={style.row}>
-                <DocumentCard optValue={`photo`} name={`Photo name`} time={`1 minute ago`}/>
+            <div className={ type === 'document' ? style.rowDoc : style.row}>
+                <DocumentCard optValue={type} name={`Video name`} view={ type === 'document' ? true : false} time={`1 minute ago`}/>
+                <DocumentCard optValue={type} name={`Video name`} view={ type === 'document' ? true : false} time={`1 minute ago`}/>
+                <DocumentCard optValue={type} name={`Video name`} view={ type === 'document' ? true : false} time={`1 minute ago`}/>
+                <DocumentCard optValue={type} name={`Video name`} view={ type === 'document' ? true : false} time={`1 minute ago`}/>
             </div>
         </>
     )

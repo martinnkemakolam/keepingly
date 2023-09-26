@@ -46,7 +46,7 @@ export default function AddProperty() {
                     },{
                         length: 'small',
                         label: 'Zip code',
-                        placeholder: 'Enter address',
+                        placeholder: 'Enter Zip code',
                         type: 'text',
                         name: 'zipcode'
                     },{
@@ -218,7 +218,7 @@ export default function AddProperty() {
     return (
         <>
         <TopBar title={`Properties`}/>
-        <PropertyInfo h1Text={`Add a property`} buttonFunc={formSubmit} buttonText={`Save property`} />
+        <PropertyInfo h1Text={`Add a property`}  buttonFunc={formSubmit} buttonText={`Save property`} />
         <FormProperties arrOpt={arr} func={submit} handleInput={handleInput} refference={formRef} isProperty={true} isEdit={isEdit} />
         </>
     )

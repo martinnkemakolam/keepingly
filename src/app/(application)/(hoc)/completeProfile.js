@@ -94,7 +94,7 @@ export default function CompleteProfile() {
                         name: 'Zipcode',
                         label: 'ZIP code',
                         type: 'text',
-                        placeholder: 'Enter city',
+                        placeholder: 'Enter Zip code',
                     }
                 ]
             ]
