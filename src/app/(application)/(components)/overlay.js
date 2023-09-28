@@ -1,12 +1,12 @@
 import InputApp from "./appInput";
 import style from '@/style/video.module.css'
-export default function Overlay({overlay, closeFunc}){
+export default function Overlay({overlay, currentPage,closeFunc}){
     return(
         <div className={style.overlay}>
              <div className={`${overlay === 'Upload' ? style.modalUploadScreen : ''} ${overlay === 'Send' ? style.modal : ''}`}>
                 <div className={style.modalHead}>
                     <p className={style.modalHeadText}>
-                        Send documents
+                        Send {currentPage}
                     </p>
                     <svg onClick={()=> closeFunc()} width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18.6663 9.33331L9.33301 18.6667M9.33302 9.33331L18.6664 18.6667" stroke="#333333" stroke-linecap="round" stroke-linejoin="round"/>
@@ -14,7 +14,7 @@ export default function Overlay({overlay, closeFunc}){
                 </div>
                 {overlay === 'Send' && <><div className={style.modalDiv}>
                     <div className={style.modalInfo}>
-                        <p className={style.modalInfoText}>Documents to be sent</p>
+                        <p className={style.modalInfoText}>{currentPage} to be sent</p>
                         <div>
                             <p className={style.modalInfoText2}>Property improvement/update information</p>
                             <p className={style.modalInfoText2}>Property information</p>
@@ -34,14 +34,14 @@ export default function Overlay({overlay, closeFunc}){
                         Cancel
                     </button>
                     <button className={style.footerBtn + ' ' + style.footerBtnGray}>
-                        Send document
+                        Send {currentPage}
                     </button>
                 </div>
                 </>}
                 {
                     overlay === "Delete" && <>
                     <p className={style.modalInfoText2}>
-                        Document, <span className={style.bold}>Document name.jpg</span> will be permanently deleted. Are you sure you want to continue?
+                        {currentPage}, <span className={style.bold}>Document name.jpg</span> will be permanently deleted. Are you sure you want to continue?
                     </p>
                     <div className={style.footer}>
                         <button className={style.footerBtn + ' ' + style.footerBtnRed}>No, cancel</button>
@@ -60,7 +60,7 @@ export default function Overlay({overlay, closeFunc}){
                 }
                 {
                     overlay === 'Upload' && <>
-                    <p className={style.modalInfoText2}>Select from the document category or upload to a new category.</p>
+                    <p className={style.modalInfoText2}>Select from the {currentPage} category or upload to a new category.</p>
                     <div className={style.modalForm}>
                         <InputApp label={'Document category'} inputType={'select'} placeholder={'Category name'} />
                         <InputApp label={'Enter a new category'} inputType={'text'} placeholder={'Enter a new category'} />
