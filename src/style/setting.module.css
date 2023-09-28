@@ -21,6 +21,10 @@ align-self: stretch;
     line-height: 1.75rem; /* 155.556% */
 }
 .titleButton{
+    display: flex;
+justify-content: center;
+align-items: center;
+gap: 0.5rem;
     color: var(--primary-100, #A61D4A);
     background-color: transparent;
     /* button */
@@ -83,4 +87,7 @@ font-size: 0.875rem;
 font-style: normal;
 font-weight: 400;
 line-height: 1.25rem; /* 142.857% */
+}
+.reverse{
+    flex-direction: row-reverse;
 }
