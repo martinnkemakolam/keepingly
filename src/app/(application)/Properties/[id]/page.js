@@ -1,10 +1,10 @@
 import EditProperty from "../../(hoc)/editPage";
 export default async function EditPbnage(params) {
-    let id = await getData(params.params.id)
+    let id = params.params.id
     return(
-        <>
+        <div>
         <EditProperty id={id}/>
-        </>
+        </div>
     )
 }
 
@@ -15,8 +15,4 @@ export function generateStaticParams(){
             id: '0'
         }
     ]
-}
-export async function getData(id) {
-    let data = await fetch('https://dummyjson.com/carts', {cache: 'no-store'})
-    return id
 }
