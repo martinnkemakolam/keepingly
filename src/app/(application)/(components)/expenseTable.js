@@ -1,14 +1,12 @@
 import { useState } from "react";
 import TableRow from "./tableRow";
 import style from "@/style/expense.module.css"
-import { ExpenseFooter } from "./expenseFooter";
 export default function ExpensesTable() {
     let [showDropDown, setShowDropDown] = useState(false)
     let openDropDown=()=>{
         setShowDropDown(true)
     }
     return(
-        <>
         <table className={style.table}>
             <tr className={style.tableRow}>
                 <th className={style.th + ' ' + style.small}>S/N</th>
@@ -26,8 +24,6 @@ export default function ExpensesTable() {
                 <th className={style.th + ' ' + style.small}></th>
             </tr>
             <TableRow showFunc={openDropDown} show={showDropDown} no={1} expense={`Building maintainance`} amount={500.00} paidto={`Sacony Construction`} expenseType={'Mortage'} date={'2020-01-30'}/>
-        </table>
-        <ExpenseFooter currentPage={1} lastPage={2}/>
-        </>
+        </table> 
     )
 }

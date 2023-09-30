@@ -3,7 +3,7 @@ export let ClearBtn=({text, svg, reverse})=>{
     return (
         <button className={`${style.titleButton}  ${reverse && style.reverse}`}>
             {text}
-            {svg}
+            {svg && svg}
         </button>
     )
 }
