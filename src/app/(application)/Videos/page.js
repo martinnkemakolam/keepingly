@@ -34,7 +34,7 @@ export default function Video(){
             <PropertyInfo h1Text={`4517 Washington Ave. Manchester, Kentucky 39495`} showSvg={true} buttonText={`Send to Appraiser’s Edge`} buttonFunc={()=> send()} extraButtonText={`Add videos`} extraButtonFunc={()=> add()}/>
             <DocumentHeader title={`Kitchen renovations`} type={'video'} buttonFunc={add}/>
             { showOverLay.bol &&
-                <Overlay overlay={showOverLay.type} currentPage={showOverLay.value} closeFunc={close}/>
+                <Overlay overlay={showOverLay.type} currentPage={showOverLay.value} closeFunc={close} type={'video'}/>
             }
         </div>
     )
