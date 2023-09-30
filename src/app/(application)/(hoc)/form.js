@@ -27,7 +27,7 @@ export default function FormProperties({ disable, file, arrOpt, func, handleInpu
             }>
                 <input style={{display: 'none'}} required={ file ? false : true} onChange={({target: {name, files}})=> handleUploadInput(name, files)} type="file" name="file" accept="image/*" id="file"/>
                 <button ref={refference} style={{display: 'none'}}></button>
-                <UploadImg imgSrc={imgSrc} disable={disable} setPos={setPos} isProperty={isProperty} pos={pos}/>
+                <UploadImg imgSrc={imgSrc} isEdit={isEdit} disable={disable} setPos={setPos} isProperty={isProperty} pos={pos}/>
                 <div className={style.infoSect}>
                     {
                         arrOpt.map((ele, id)=>{
@@ -39,7 +39,7 @@ export default function FormProperties({ disable, file, arrOpt, func, handleInpu
                                 )
                             } else
                             return (
-                                <FormPage values={values} showButton={!isProperty} btnText={ele.btnText} handleInput={handleInput} ele={ele}/>
+                                <FormPage values={values} showButton={isProperty} btnText={ele.btnText} handleInput={handleInput} ele={ele}/>
                             )
                         })
                     }

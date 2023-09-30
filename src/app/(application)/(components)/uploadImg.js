@@ -1,7 +1,7 @@
 import style from '../../../style/properties.module.css'
 import CheckBox from "../(components)/checkBox";
 import Image from "next/image";
-export let UploadImg =({pos, setPos, disable, isProperty, imgSrc,})=>{
+export let UploadImg =({pos, setPos, disable, isProperty, imgSrc, isEdit})=>{
     return(
         <div className={style.upload} style={{height: isProperty ? "530px" : "fit-content", pointerEvents: disable ? "none" : 'initial'}}>
                     <Image className={style.img} src={imgSrc} alt="" width={306} height={306}/>
