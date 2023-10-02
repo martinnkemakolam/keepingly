@@ -1,3 +1,4 @@
+'use client'
 import style from '@/style/expense.module.css'
 import ExpenseTitle from "../(components)/expenseTitle"
 import ExpensesTable from "./expenseTable"

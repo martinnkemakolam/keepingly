@@ -13,7 +13,7 @@ export default function ExpenseTitle({title, dividerPos,buttonText1, buttonText2
                 <Count count={20}/>
             </div>
             {
-                buttonText1 && <ButtonDivider dividerPos={dividerPos} svg1={svg1 || false} svg2={svg2 || false} buttonText1={buttonText1} buttonText2={buttonText2}/>
+               buttonText1 || buttonText2 && <ButtonDivider dividerPos={dividerPos} svg1={svg1 || false} svg2={svg2 || false} buttonText1={buttonText1} buttonText2={buttonText2}/>
             }
             {showDropDown && arrowDownSvg}
         </div>

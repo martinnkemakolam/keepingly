@@ -15,6 +15,7 @@ let Renovation=()=>{
         <>
         <TopBar title={`Renovations`} buttonText={`Add a renovation`} btnFunc={()=> console.log('called')}/>
         <RenovationTable />
+        <RenovationTable />
         </>
     )
 }
