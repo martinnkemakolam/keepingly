@@ -4,7 +4,7 @@ import Tick from "./tick";
 export default function DocumentCard ({optValue,name, time, view ,showMenu, id, showMenuFunc}){
     return(
         <div className={ view ? style.flexView : style.document}>
-            <Tick ticked={true} className={ view ? style.tickFlex : style.tick}/>
+            <Tick ticked={true} float={ view ? false : true}/>
             <div style={{display: view ? 'none' : 'block', position: 'relative'}} className={style.borderTop}>
                 <Image src={'/asset/background image/authBackgroundImage.png'} alt="" width={265} height={200}/>
                 {optValue === 'video' && <svg className={style.floatMiddle} width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,6 +1,7 @@
-export default function Tick({className, ticked}) {
+import style from "@/style/video.module.css"
+export default function Tick({float, ticked}) {
     return (
-        <div className={className}>
+        <div className={ float ? style.tick : style.headerTick}>
             { ticked ?
             <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path opacity="0.15" d="M3.1665 2.66663H13.8332V13.3333H3.1665V2.66663Z" fill="#AAAAAA"/>

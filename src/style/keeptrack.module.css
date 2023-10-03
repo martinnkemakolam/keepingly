@@ -1,0 +1,178 @@
+.frame{
+    display: flex;
+padding: 1.5rem;
+justify-content: center;
+align-items: center;
+gap: 2.5rem;
+align-self: stretch;
+border-radius: 0.5rem;
+background: var(--black-0, #FFF);
+box-sizing: border-box;
+}
+.circle{
+    display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0.9rem;
+width: 7.5rem;
+height: 7.5rem;
+justify-content: center;
+background-color: red;
+border-radius: 50%;
+}
+.innerCircle{
+    box-sizing: border-box;
+    width: 6.5rem;
+    height: 6.5rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFF;
+    border-radius: 50%;
+}
+.innerCircleText{
+    color: var(--success-80, #3D975B);
+text-align: center;
+
+/* title medium */
+font-size: 1.5rem;
+font-style: normal;
+font-weight: 700;
+line-height: 2rem; /* 133.333% */
+}
+.innerCircleText1{
+    color: var(--black-100, #333);
+
+/* label */
+font-size: 0.75rem;
+font-style: normal;
+font-weight: 700;
+line-height: 1rem; /* 133.333% */
+letter-spacing: 0.06rem;
+}
+.performance{
+    display: flex;
+align-items: flex-start;
+gap: 5rem;
+}
+.performanceHolder{
+    display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 1.5rem;
+}
+.grade{
+    display: flex;
+width: 3.5rem;
+flex-direction: column;
+align-items: flex-start;
+}
+.gradeText{
+    color: var(--black-100, #333);
+
+/* body */
+font-size: 1rem;
+font-style: normal;
+font-weight: 400;
+line-height: 1.5rem; /* 150% */
+}
+.gradeText2{
+    color: var(--error-100, #E20000);
+
+/* caption */
+font-size: 0.75rem;
+font-style: normal;
+font-weight: 600;
+line-height: 1rem; /* 133.333% */
+}
+.activities{
+    display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 1rem;
+height: 100%;
+flex: 1 0 0;
+}
+.activity{
+    display: flex;
+align-items: center;
+gap: 1rem;
+width: 100%;
+align-self: stretch;
+}
+.activityContent{
+    display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 0.5rem;
+align-self: stretch;
+}
+.activityText{
+    color: var(--black-100, #333);
+    flex: 1 0 0;
+/* body */
+font-size: 1rem;
+font-style: normal;
+font-weight: 400;
+line-height: 1.5rem; /* 150% */
+}
+.points{
+    color: var(--success-100, #17823B);
+
+    /* subtitle small */
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.25rem; /* 142.857% */
+}
+.checkListTable{
+    display: grid;
+align-items: flex-start;
+gap: 1rem;
+align-self: stretch;
+grid-template-columns: 1fr 1fr 1fr;
+}
+.checkList{
+    position: relative;
+    display: flex;
+padding: 1.5rem;
+flex-direction: column;
+align-items: flex-start;
+gap: 1rem;
+flex: 1 0 0;
+border-radius: 0.5rem;
+background: var(--black-0, #FFF);
+}
+.checkListContent{
+    display: flex;
+align-items: flex-start;
+gap: 1rem;
+align-self: stretch;
+}
+.checkListContentText{
+    display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 0.25rem;
+flex: 1 0 0;
+}
+.tags{
+    display: flex;
+align-items: center;
+gap: 0.5rem;
+}
+.checkListHolder{
+    display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 1rem;
+align-self: stretch;
+}
+.keepTrackScoreHolder{
+    display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 1rem;
+align-self: stretch;
+}

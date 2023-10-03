@@ -2,18 +2,19 @@
 import Image from 'next/image'
 
 import style from '../../../style/properties.module.css'
-export default function TopBar({title, buttonText, btnFunc, showSearch}) {
+import { ButtonDivider } from './buttonDivider'
+export default function TopBar({title, buttonText1, btnFunc2, btnFunc1, svg1, svg2, showSearch, buttonText2}) {
     return(
         <>
         <header className={style.header}>
             <div className={style}>
                 <h1>{title}</h1>
                 {
-                    buttonText && <>
+                    buttonText1 && <>
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2.66675 8L13.3334 8" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <button className={style.button} onClick={()=> btnFunc()}>{buttonText}</button>
+                    <ButtonDivider buttonText1={buttonText1} btnFunc1={btnFunc1} btnFunc2={btnFunc2} svg1={svg1} svg2={svg2} dividerPos={true} buttonText2={buttonText2}/>
                     </>
                 }
             </div>

@@ -10,8 +10,8 @@ let ViewRenovation=()=>{
         <TopBar showSearch={true} title={`Building renovation`} buttonText={`Go back to Renovations`}/>
         <ExpenseTitle title={`Basic details`} showDropDown={true}/>
         <BasicRenovationDetails />
-        <RenovationTable />
-        <ExpenseTitle title={`Photos`} showDropDown={`true`}/>
+        <RenovationTable title={`Kitchen`} btn1={`Add expense`}/>
+        <ExpenseTitle title={`Photos`} showDivider={true} showDropDown={`true`}/>
         <AlbumPhoto text={`Before`} />
         <AlbumPhoto text={`During`} />
         <AlbumPhoto text={`After`} />

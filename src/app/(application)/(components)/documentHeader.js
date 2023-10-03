@@ -26,7 +26,7 @@ export default function DocumentHeader({title, type, buttonFunc}) {
         <>
             <div className={style.header} onClick={()=> setShowId({trigger: false, id: null})}>
                 <div className={style.headerTitle}>
-                    <Tick className={style.headerTick} ticked={true}/>
+                    <Tick float={false} ticked={true}/>
                     <p className={style.headerText}>{title}</p>
                     <span className={style.headerPill}>7</span>
                 </div>

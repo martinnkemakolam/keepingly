@@ -14,8 +14,8 @@ let Renovation=()=>{
     return(
         <>
         <TopBar title={`Renovations`} buttonText={`Add a renovation`} btnFunc={()=> console.log('called')}/>
-        <RenovationTable />
-        <RenovationTable />
+        <RenovationTable title={`Kitchen`} btn1={`View renovation`} btn2={`Add expense`}/>
+        <RenovationTable title={`Kitchen`} btn1={`View renovation`} btn2={`Add expense`}/>
         </>
     )
 }

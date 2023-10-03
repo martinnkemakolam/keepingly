@@ -227,3 +227,12 @@ align-self: stretch;
 border-radius: 0.25rem;
 background: var(--black-0, #FFF);
 }
+.underTitle{
+    color: var(--black-100, #333);
+
+/* body */
+font-size: 1rem;
+font-style: normal;
+font-weight: 400;
+line-height: 1.5rem; /* 150% */
+}
