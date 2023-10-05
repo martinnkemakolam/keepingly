@@ -183,3 +183,56 @@ align-items: flex-start;
 gap: 1rem;
 align-self: stretch;
 }
+.basicDetail{
+    display: flex;
+padding: 0.75rem 1rem;
+align-items: flex-start;
+gap: 1rem;
+align-self: stretch;
+border-radius: 0.25rem;
+background: var(--black-0, #FFF);
+}
+.renovationDetail{
+    display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 0.25rem;
+flex: 1 0 0;
+}
+.detailText1{
+    color: var(--black-60, #838383);
+
+/* caption */
+font-size: 0.75rem;
+font-style: normal;
+font-weight: 600;
+line-height: 1rem; /* 133.333% */
+}
+.detailText2{
+    color: var(--black-100, #333);
+
+/* body small */
+font-size: 0.875rem;
+font-style: normal;
+font-weight: 400;
+line-height: 1.25rem; /* 142.857% */
+}
+.album{
+    display: flex;
+padding: 0.75rem 1rem 1rem 1rem;
+flex-direction: column;
+align-items: flex-start;
+gap: 1rem;
+align-self: stretch;
+border-radius: 0.25rem;
+background: var(--black-0, #FFF);
+}
+.underTitle{
+    color: var(--black-100, #333);
+
+/* body */
+font-size: 1rem;
+font-style: normal;
+font-weight: 400;
+line-height: 1.5rem; /* 150% */
+}
