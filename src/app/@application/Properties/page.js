@@ -1,6 +1,6 @@
 'use client'
 
-import TopBar from "@/app/(application)/(components)/Topbar"
+import TopBar from "@/app/@application/(components)/Topbar"
 import { useRouter } from "next/navigation"
 
 import Table from "../(components)/table"
