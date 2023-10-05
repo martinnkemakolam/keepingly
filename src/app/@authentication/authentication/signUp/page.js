@@ -29,6 +29,7 @@ export default function Register(params) {
                     setMailError(true)
                 }else{
                     userStore.put(user)
+                    router.push('./verification')
                 }
             }
         }
@@ -38,7 +39,6 @@ export default function Register(params) {
         <form className={style.modular} onSubmit={(e)=>{
             e.preventDefault()
             submit()
-            router.push('./verification')
         }}>
         <TopText h1Text={`Register to get started`} pText={`Easily maintain and manage your home with Keepingly.`} />
         <div className={style.form}>
