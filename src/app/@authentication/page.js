@@ -1,11 +1,11 @@
 'use client'
-import style from "../../../style/auth.module.css"
+import style from "@/style/auth.module.css"
 import Link from "next/link";
-import AuthButton from "../(component)/authButton";
-import DivOr from "../(component)/divOr";
-import Input from "../(component)/input";
-import TopText from "../(component)/topText";
-import BottomComp from "../(component)/bottomComp";
+import AuthButton from "./(component)/authButton";
+import DivOr from "./(component)/divOr";
+import Input from "./(component)/input";
+import TopText from "./(component)/topText";
+import BottomComp from "./(component)/bottomComp";
 
 export default function SignIn (){
     return (

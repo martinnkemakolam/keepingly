@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from "react";
-import TopBar from "@/app/(application)/(components)/Topbar";
-import FormProperties from "@/app/(application)/(hoc)/form";
+import TopBar from "@/app/@application/(components)/Topbar";
+import FormProperties from "@/app/@application/(hoc)/form";
 import { useRouter } from "next/navigation";
 import style from '@/style/properties.module.css'
 

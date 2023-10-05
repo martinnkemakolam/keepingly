@@ -1,7 +1,7 @@
 'use client'
 import { useSelectedLayoutSegment } from 'next/navigation'
 import style from '@/style/layout.module.css'
-import LayoutLi from '@/app/(application)/(components)/layoutLi'
+import LayoutLi from '@/app/@application/(components)/layoutLi'
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 export default function Nav() {
@@ -82,15 +82,6 @@ export default function Nav() {
             <LayoutLi canClick={true} hide={hideNav} isActive={name === currentParam} Text={name} icon={svg} linkHref={name === 'Overview' ? '/' : `/${name}`} key={id}/>
         )
     })
-    
-    useEffect(()=>{
-        let db= window.indexedDB.open('keepinglyDB', 1.0)
-        db.onupgradeneeded=()=>{
-            console.log('profile upgrade')
-            let result = db.result
-            result.createObjectStore('user', {keyPath: 'id'})
-        }
-    }, [])
     return(
         <nav className={`${style.sidebar} ${hideNav && style.left}`}>
                     <div className={style.floatBtn} onClick={()=> setHideNav(!hideNav)}>

@@ -1,10 +1,10 @@
 import style from "../../../style/auth.module.css"
-export default function Input ({password, inputText, errorState, errorMsg, changeFunc}){
+export default function Input ({password, name,inputText, errorState, errorMsg, changeFunc}){
     return(
         <div className={style.inputDiv}>
             <div className={style.error}>
                 <p className={ errorState ? style.active : ''}>{errorMsg}</p>
-                <input className={errorState ? style.colRed : ''} onChange={({target: {value}})=> changeFunc(value)} placeholder={inputText} type={ password ? 'password' : "email"}/>
+                <input required={true} name={name} className={errorState ? style.colRed : ''} onChange={({target: {value}})=> changeFunc(name, value)} placeholder={inputText} type={ password ? 'password' : "email"}/>
             </div>
             { password ? <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6.50942 3.53012C6.97767 3.40483 7.47493 3.33333 8.00004 3.33333C12.2425 3.33333 14.6667 8 14.6667 8C14.6667 8 14.1141 9.06385 13.0747 10.1757M2.89945 5.85215C1.87684 6.95382 1.33337 8 1.33337 8C1.33337 8 3.75762 12.6667 8.00004 12.6667C8.53476 12.6667 9.04059 12.5925 9.51632 12.463M7.66671 9.97235C6.94392 9.85109 6.35259 9.34215 6.11384 8.66667M8.33337 6.02765C9.17088 6.16816 9.83188 6.82917 9.97239 7.66667M2.00004 2L14 14" stroke={ errorState ? '#A61D4A' : '#333333'} strokeWidth="1.5" strokeLinecap="round"  strokeLinejoin="round"/>
