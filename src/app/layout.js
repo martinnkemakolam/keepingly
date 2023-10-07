@@ -4,17 +4,14 @@ import style from '@/style/layout.module.css'
 import '@/style/style.css'
 import Nav from './@application/(components)/nav'
 import { Nunito } from 'next/font/google'
-import { UserContext, userContext } from './userContext'
-import { useContext, useEffect, useState} from 'react'
+import { UserContext } from './userContext'
+import { useEffect, useState} from 'react'
  
 const nunito = Nunito({
   weight: '400',
   subsets: ['latin'],
   display: 'swap',
 })
-export const metadata = {
-    title: 'Keepingly'
-}
 export default function Layout({children, authentication, application}){
     let [user, setUser] = useState(false)
     UserContext.setView = setUser
