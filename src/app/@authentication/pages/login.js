@@ -7,6 +7,7 @@ import DivOr from "../presentation/divOr";
 import Input from "../presentation/input";
 import BottomComp from "../container/bottomComp";
 import { handleInput } from "@/app/reusedFunctions";
+import { useState } from "react";
 
 export default function SignIn (){
     let [loginDetail, setLoginDetails] = useState({})
