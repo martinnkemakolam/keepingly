@@ -1,10 +1,10 @@
 'use client'
 import { useState } from "react";
-import AuthButton from "../../(component)/authButton";
-import BottomComp from "../../(component)/bottomComp";
-import DivOr from "../../(component)/divOr";
-import Input from "../../(component)/input";
-import TopText from "../../(component)/topText";
+import AuthButton from "../../presentation/authButton";
+import BottomComp from "../../container/bottomComp";
+import DivOr from "../../presentation/divOr";
+import Input from "../../presentation/input";
+import TopText from "../../container/topText";
 import style from "../../../../style/auth.module.css"
 import { handleInput } from "@/app/reusedFunctions";
 import { useRouter } from "next/navigation";
@@ -47,6 +47,9 @@ export default function Register(params) {
             <DivOr/>
             <Input name={'mail'} password={false} inputText={`Email address`} errorMsg={'mail already used'} errorState={mailError} changeFunc={(name, value)=> handleInput(name, value, user, setUser)}/>
             <Input name={'password'} password={true} inputText={`Password`} errorMsg={'password doesnt match'} errorState={passwordError} changeFunc={(name, value)=> handleInput(name, value, user, setUser)}/>
+            <p>
+            Your password must be at least 8 characters long and include a combination of uppercase letters, lowercase letters, numbers, and special characters.
+            </p>
             <Input name={'confirm'} password={true} inputText={`Confirm password`} errorMsg={'Password doesnt match'} errorState={passwordError} changeFunc={(name, value)=> handleInput(name, value, passwordConfirm, setPasswordConfirm)}/>
             <p className={style.signupText}>
             By signing up, you agree that you are a US resident, 18 years or older, and you accept Keepingly’s <span className={style.colRed}>Terms and Conditions</span> and <span className={style.colRed}>Privacy Policy.</span>

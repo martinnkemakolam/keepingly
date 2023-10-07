@@ -6,3 +6,4 @@ export let handleInput =(name, value, hook, setHook)=>{
         }
     )
 }
+

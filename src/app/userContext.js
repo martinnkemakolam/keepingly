@@ -5,6 +5,7 @@ export let UserContext=({children})=>{
     let [user, setUser] = useState({})
     UserContext.user = user
     UserContext.setUser = setUser
+    console.log(user)
     useEffect(()=>{
       let db = indexedDB.open('keepinglyDB', 1)
       db.onupgradeneeded=()=>{
@@ -12,13 +13,15 @@ export let UserContext=({children})=>{
           result.createObjectStore('user', {keyPath: "mail"})
       }
       db.onsuccess=()=>{
+        console.log('called')
           let result = db.result
           let user = result.transaction('user', 'readonly').objectStore('user')
-          let loggedInUser = localStorage.getItem('mail') || ''
+          let loggedInUser = localStorage.getItem('mail') || sessionStorage.getItem('mail') || ''
+          console.log(loggedInUser)
           let mail = user.get(loggedInUser)
           mail.onsuccess=()=>{
               if (mail.result){
-                  setUser(mail.result)
+                setUser(mail.result)         
               }
           }
       }
