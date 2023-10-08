@@ -6,7 +6,7 @@ import AuthButton from "../presentation/authButton";
 import DivOr from "../presentation/divOr";
 import Input from "../presentation/input";
 import BottomComp from "../container/bottomComp";
-import { handleInput } from "@/app/reusedFunctions";
+import { VisibleChnage, handleInput } from "@/app/reusedFunctions";
 import { useState } from "react";
 
 export default function SignIn (){
@@ -14,6 +14,7 @@ export default function SignIn (){
     let [mailError, setMailError] = useState(false)
     let [remember, setRemember] = useState(false)
     let [passwordError, setPasswordError] = useState(false)
+    let [input1, setInput1, input2, setInput2] = VisibleChnage()
     let submit=()=>{
         let db = indexedDB.open('keepinglyDB', 1)
         db.onsuccess=()=>{
@@ -46,8 +47,8 @@ export default function SignIn (){
         <AuthButton google={true} pText={`Sign in with Google`}/>
         <AuthButton google={false} pText={`Sign in with Apple`}/>
         <DivOr/>
-        <Input name={`mail`} changeFunc={(name, value)=> handleInput( name, value, loginDetail, setLoginDetails)} password={false} inputText={`Email address`} errorMsg={`email not found`} errorState={mailError} />
-        <Input name={`password`} changeFunc={(name, value)=> handleInput( name, value, loginDetail, setLoginDetails)} password={true} inputText={`Password`} errorMsg={`incorrect password`} errorState={passwordError} />
+        <Input name={`mail`} changeFunc={(name, value)=> handleInput( name, value, loginDetail, setLoginDetails)} type={'email'} inputText={`Email address`} errorMsg={`email not found`} errorState={mailError} />
+        <Input name={`password`} changeFunc={(name, value)=> handleInput( name, value, loginDetail, setLoginDetails)} setPass={()=>setInput1(!input1)} type={input1 ? 'text' : 'password'} inputText={`Password`} errorMsg={`incorrect password`} errorState={passwordError} />
         <div className={style.checkBox}>
             <div className={style.label}>
                 <input type="checkbox" id="remember" checked={remember} onClick={()=>setRemember(!remember)}/>
