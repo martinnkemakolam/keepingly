@@ -13,7 +13,6 @@ export default function Verification(){
     useEffect(()=>{
         let recall=()=>{
             if (count === 0) {
-                router.push('/')
                 setLink('resend link')
                 return
             }
@@ -24,10 +23,13 @@ export default function Verification(){
         recall()
     }, [count, router])
     return(
-        <form className={style.modular}>
+        <form className={style.modular} onSubmit={(e)=>{
+            e.preventDefault()
+            router.push('/')
+        }}>
             <TopText h1Text={`Verification`} pText={`Please enter the One-Time Password (OTP) that was sent to <email address>.`}/>
             <InputContainer />
-            <BottomComp pText={`Didn’t get the OTP? Resend link in  ${count}`} buttonText={`Verify`} linkHref={'/'} linkText={link}/>
+            <BottomComp pText={`Didn’t get the OTP? ${ count === 0 ? '' : `Resend link in ${count}`}`} buttonText={`Verify`} linkHref={'/'} linkText={link}/>
         </form>
     )
 }

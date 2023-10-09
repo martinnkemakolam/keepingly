@@ -23,11 +23,11 @@ export default function Reset(params) {
         <form className={style.modular}>
         <TopText h1Text={`Forgot your password?`} pText={`Please enter the email address associated with your Keepingly account. We will send you a password reset link to this email.`}/>
         <div className={style.form}>
-            <Input password={true} inputText={`Password`} errorState={errorState} errorMsg={`Password don't match`} changeFunc={setFirstPassword}/>
+            <Input label={`Password`} password={true} inputText={`Password`} errorState={errorState} errorMsg={`Password don't match`} changeFunc={setFirstPassword}/>
             <p>
             Your password must be at least 8 characters long and include a combination of uppercase letters, lowercase letters, numbers, and special characters.
             </p>
-            <Input password={true} inputText={`Comfirm password`} errorState={errorState} errorMsg={`Password don't match`} changeFunc={setSecondPassword}/>
+            <Input label={`Confirm password`} password={true} inputText={`Comfirm password`} errorState={errorState} errorMsg={`Password don't match`} changeFunc={setSecondPassword}/>
         </div>
         <BottomComp func={validatePassword} pText={`Remember password?`} linkHref={`/authentication/`} linkText={`Sign in`} buttonText={`Reset password`}/>
         </form>

@@ -6,7 +6,7 @@ import Nav from './@application/(components)/nav'
 import { Nunito } from 'next/font/google'
 import { UserContext } from './userContext'
 import { useEffect, useState} from 'react'
- 
+ import Head from 'next/head'
 const nunito = Nunito({
   weight: '400',
   subsets: ['latin'],
@@ -41,7 +41,7 @@ export default function Layout({children, authentication, application}){
         <body>
             <UserContext>
                 {
-                user ? <section className={style.section}>
+                false ? <section className={style.section}>
                 <Nav/>
                 <main className={style.main}>
                     {application}

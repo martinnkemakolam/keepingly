@@ -9,7 +9,7 @@ export default function ForgotPassword(params) {
     return(
         <form className={style.modular}>
         <TopText h1Text={`Forgot your password?`} pText={`Please enter the email address associated with your Keepingly account. We will send you a password reset link to this email.`}/>
-        <Input errorState={false} errorMsg={`email not found`} changeFunc={setInputValue} inputText={'Email address'} password={false}/>
+        <Input label={`Email address`}  errorState={false} errorMsg={`email not found`} changeFunc={setInputValue} inputText={'Email address'} password={false}/>
         <BottomComp func={()=> console.log('called')} pText={`Remember password?`} buttonText={`Reset password`} linkHref={`/authentication/`} linkText={`Sign in`}/>
         </form>
     )

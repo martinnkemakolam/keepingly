@@ -1,6 +1,7 @@
 import CompleteProfile from "./(hoc)/completeProfile";
 export const metadata = {
-    title: 'Keepingly'
+    title: 'Keepingly',
+    
 }
 export default function homePage (){
     return(
