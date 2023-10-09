@@ -1,0 +1,93 @@
+.form{
+    display: flex;
+padding: 1.5rem;
+flex-direction: column;
+align-items: flex-start;
+gap: 1.5rem;
+align-self: stretch;
+}
+.title{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: stretch;
+}
+.titleH1{
+    color: var(--black-100, #333);
+    /* title small */
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.75rem; /* 155.556% */
+}
+.titleButton{
+    display: flex;
+justify-content: center;
+align-items: center;
+gap: 0.5rem;
+    color: var(--primary-100, #A61D4A);
+    background-color: transparent;
+    /* button */
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.25rem; /* 142.857% */
+    letter-spacing: 0.0175rem;
+}
+.titleRow{
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+.dataRow{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    align-self: stretch;
+}
+.dataTexts{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    flex: 1 0 0;
+}
+.dataTexts1{
+    color: var(--black-60, #838383);
+
+/* caption */
+
+font-size: 0.75rem;
+font-style: normal;
+font-weight: 600;
+line-height: 1rem; /* 133.333% */
+}
+.dataTexts2{
+    color: var(--black-100, #333);
+
+/* body small */
+
+font-size: 0.875rem;
+font-style: normal;
+font-weight: 400;
+line-height: 1.25rem; /* 142.857% */
+}
+.marginLeft{
+    margin-left: auto;
+}
+.delete{
+    color: var(--error-100, #E20000);
+
+/* body small */
+font-size: 0.875rem;
+font-style: normal;
+font-weight: 400;
+line-height: 1.25rem; /* 142.857% */
+}
+.reverse{
+    flex-direction: row-reverse;
+}
