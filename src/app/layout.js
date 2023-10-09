@@ -41,7 +41,7 @@ export default function Layout({children, authentication, application}){
         <body>
             <UserContext>
                 {
-                false ? <section className={style.section}>
+                user ? <section className={style.section}>
                 <Nav/>
                 <main className={style.main}>
                     {application}
