@@ -1,0 +1,17 @@
+[Unit]
+Description=Next.js Application Service
+After=network.target
+
+[Service]
+Restart=on-failure
+RestartSec=2
+EnvironmentFile=/home/azureuser/.env
+WorkingDirectory=/home/azureuser/code/keepingly_v2_react/
+ExecStartPre=-/bin/bash -c 'echo =========NPM INSTALL ...........'
+ExecStartPre=/usr/bin/npm install
+ExecStartPre=-/bin/bash -c 'echo =========NPM BUILD ...........'
+ExecStartPre=/usr/bin/npm build
+ExecStartPre=-/bin/bash -c 'echo =========NPM START ...........'
+ExecStart=/usr/bin/npx serve@latest out
+[Install]
+WantedBy=multi-user.target
