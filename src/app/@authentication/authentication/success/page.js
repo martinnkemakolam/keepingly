@@ -1,6 +1,6 @@
 import Link from "next/link"
 import style from "../../../../style/auth.module.css"
-import TopText from "../../container/topText"
+import TopText from "../../(container)/topText"
 export default function success() {
     return(
         <div className={style.modular}>
