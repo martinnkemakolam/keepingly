@@ -35,7 +35,7 @@ export let FormPage =({showButton, btnText, ele, values, disable, handleInput})=
                     })
                 }
             </div>
-            {showButton && <button type="submit" className={style.button}>{btnText}</button>}
+            {btnText && <button type="submit" className={style.button}>{btnText}</button>}
         </div>
     )
 }

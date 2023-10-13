@@ -4,11 +4,13 @@ import TopBar from "@/app/@application/(components)/Topbar"
 import { useRouter } from "next/navigation"
 
 import Table from "../(components)/table"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import { userContext } from "@/app/userContext"
 export default function Properties() {
     // fetch user data on page , if none set formFiled to false
     let [properties, setProperties] = useState([])
     let router = useRouter()
+    let userObj = useContext(userContext)
     let btnFunc =()=>{
         router.push('./Properties/addproperty')
     }
@@ -17,22 +19,20 @@ export default function Properties() {
     db.onsuccess=()=>{
         let result = db.result
         let transact = result.transaction('user', 'readwrite').objectStore('user')
-        let mail = transact.get(0)
+        let mail = transact.get(userObj.user.mail)
         mail.onsuccess=()=>{
             if (mail.result) {
                 setProperties(mail.result.properties)
                 return
-            }
-            transact.add({
-                id: 0, properties: []
-            })
-            return
+            }else{
+                alert('no mail')
             }
         }
-    }, [router])
+        }
+    }, [router, userObj])
     return (
         <>
-            <TopBar title={`Properties`} showSearch={true} buttonText={`Add a property`} btnFunc={btnFunc} />
+            <TopBar title={`Properties`} showSearch={true} buttonText1={`Add a property`} btnFunc1={btnFunc} />
             <Table h1Text={`Available properties`} arrProperties={properties} />
         </>
     )

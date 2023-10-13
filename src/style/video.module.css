@@ -25,7 +25,7 @@ font-style: normal;
 font-weight: 400;
 line-height: 1.25rem; /* 142.857% */
 }
-.header{
+.header, .header2{
     display: flex;
 padding-left: 0px;
 align-items: center;
@@ -508,4 +508,36 @@ line-height: 1rem; /* 133.333% */
     border-radius: 50%;
     background-color: white;
     transform: translate(-50%, -50%);
+}
+@media (max-width: 800px) {
+    .mobileVid{
+        display: none;
+    }
+    .header{
+        flex-direction: column;
+    }
+    .flexView{
+        box-sizing: border-box;
+    }
+    .views{
+        flex: 1 0 0;
+    }
+    .row{
+        grid-template-columns: 1fr;
+    }
+    .borderTop{
+        width: 100%;
+    }
+    .overlay{
+        z-index: 1000;
+    }
+    .modalDiv{
+        flex-direction: column;
+    }
+    .modalContent{
+        width: 100%;
+    }
+    .modalInfo{
+        padding: 0;
+    }
 }

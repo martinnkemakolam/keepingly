@@ -1,3 +1,4 @@
+'use client'
 import TopBar from "../(components)/Topbar"
 import { CheckListHolder } from "../(components)/checkListHolder"
 import { CheckListTable } from "../(components)/checkListTable"

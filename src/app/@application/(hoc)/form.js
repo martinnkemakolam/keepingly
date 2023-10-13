@@ -4,7 +4,7 @@ import style from '../../../style/properties.module.css'
 import PopulatedData from "../(components)/populatedData";
 import { FormPage } from "../(components)/formPage";
 import { UploadImg } from "../(components)/uploadImg";
-export default function FormProperties({ disable, file, arrOpt, func, handleInput, refference, isProperty, isEdit, values}) {
+export default function FormProperties({ disable, showBtn,file, arrOpt, func, handleInput, refference, isProperty, isEdit, values}) {
     let [imgSrc, setImgSrc] = useState('')
     let [pos, setPos] = useState(false)
     let handleUploadInput =(name, files)=>{
@@ -39,7 +39,7 @@ export default function FormProperties({ disable, file, arrOpt, func, handleInpu
                                 )
                             } else
                             return (
-                                <FormPage values={values} showButton={isProperty} btnText={ele.btnText} handleInput={handleInput} ele={ele}/>
+                                <FormPage values={values} btnText={ele.btnText} handleInput={handleInput} ele={ele}/>
                             )
                         })
                     }

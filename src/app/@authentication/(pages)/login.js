@@ -1,11 +1,11 @@
 'use client'
 import style from "@/style/auth.module.css"
 import Link from "next/link";
-import TopText from "../container/topText";
-import AuthButton from "../presentation/authButton";
-import DivOr from "../presentation/divOr";
-import Input from "../presentation/input";
-import BottomComp from "../container/bottomComp";
+import TopText from "../(container)/topText";
+import AuthButton from "../(presentation)/authButton";
+import DivOr from "../(presentation)/divOr";
+import Input from "../(presentation)/input";
+import BottomComp from "../(container)/bottomComp";
 import { ErrorHook, VisibleChnage, handleInput } from "@/app/reusedFunctions";
 import { useContext, useState } from "react";
 import { UserContext, userContext } from "../../userContext";

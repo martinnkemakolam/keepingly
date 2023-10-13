@@ -1,4 +1,4 @@
-import style from "../../../style/auth.module.css"
+import style from "@/style/auth.module.css"
 export default function Input ({type, name,inputText, errorState, errorMsg, changeFunc, setPass, label}){
     return(
         <div className={style.input}>

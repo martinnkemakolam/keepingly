@@ -1,6 +1,6 @@
 import ExpenseDropDow from "./expenseDropDow";
 import style from "@/style/expense.module.css"
-export default function TableRow({no, showFunc, show, expense, expenseType, amount, paidto, date}) {
+export default function TableRow({no, showFunc, show, expense, expenseType, amount, paidto, date, hide}) {
     return (
         <tr className={style.tableRow}>
             <td className={style.td + ' ' + style.small}>{no}</td>
@@ -16,7 +16,7 @@ export default function TableRow({no, showFunc, show, expense, expenseType, amou
                     <path d="M8.00016 13.3333C8.36835 13.3333 8.66683 13.0348 8.66683 12.6666C8.66683 12.2984 8.36835 12 8.00016 12C7.63197 12 7.3335 12.2984 7.3335 12.6666C7.3335 13.0348 7.63197 13.3333 8.00016 13.3333Z" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </td>
-            <ExpenseDropDow show={show}/>
+            {hide && <ExpenseDropDow show={show}/>}
         </tr>
     )
 }

@@ -1,7 +1,7 @@
 'use client'
 import TopBar from "../(components)/Topbar"
 import { RenovationTable } from "../(components)/renovationTable"
-
+import style from "@/style/expense.module.css"
 
 let Renovation=()=>{
     let filterSvg = <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -14,8 +14,10 @@ let Renovation=()=>{
     return(
         <>
         <TopBar title={`Renovations`} buttonText={`Add a renovation`} btnFunc={()=> console.log('called')}/>
-        <RenovationTable title={`Kitchen`} btn1={`View renovation`} btn2={`Add expense`}/>
-        <RenovationTable title={`Kitchen`} btn1={`View renovation`} btn2={`Add expense`}/>
+        <div className={style.renovationHold}>
+            <RenovationTable title={`Kitchen`} btn1={`View renovation`} btn2={`Add expense`}/>
+            <RenovationTable title={`Kitchen`} btn1={`View renovation`} btn2={`Add expense`}/>
+        </div>
         </>
     )
 }
