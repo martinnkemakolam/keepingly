@@ -1,4 +1,4 @@
-import style from "../../../style/auth.module.css"
+import style from "@/style/auth.module.css"
 export default function TopText({h1Text, pText}) {
     return(
         <div className={`${style.topText}`}>

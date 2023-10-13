@@ -1,3 +1,4 @@
+'use client'
 import TopBar from "../../(components)/Topbar"
 import { AlbumPhoto } from "../../(components)/albumPhoto"
 import { BasicRenovationDetails } from "../../(components)/basicRenovationDetails"

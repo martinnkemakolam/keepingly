@@ -7,7 +7,8 @@ export default function ExpensesTable() {
         setShowDropDown(true)
     }
     return(
-        <table className={style.table}>
+        <div className={style.table}>
+            <table className={style.table2}>
             <tr className={style.tableRow}>
                 <th className={style.th + ' ' + style.small}>S/N</th>
                 <th className={style.th}>
@@ -23,7 +24,8 @@ export default function ExpensesTable() {
                 <th className={style.th + ' ' + style.medium}>DATE</th>
                 <th className={style.th + ' ' + style.small}></th>
             </tr>
-            <TableRow showFunc={openDropDown} show={showDropDown} no={1} expense={`Building maintainance`} amount={500.00} paidto={`Sacony Construction`} expenseType={'Mortage'} date={'2020-01-30'}/>
+            <TableRow showFunc={openDropDown} hide={false} show={showDropDown} no={1} expense={`Building maintainance`} amount={500.00} paidto={`Sacony Construction`} expenseType={'Mortage'} date={'2020-01-30'}/>
         </table> 
+        </div>
     )
 }

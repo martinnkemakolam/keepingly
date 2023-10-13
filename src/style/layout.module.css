@@ -1,4 +1,3 @@
-
 .sidebar{
     position: relative;
     width: fit-content;
@@ -69,8 +68,10 @@
     margin-top: auto;
     display: flex;
     padding: 1rem;
+    box-sizing: border-box;
     flex-direction: column;
     align-items: center;
+    width: 100%;
     gap: 0.5rem;
     background: #FAFAFA;
     align-self: stretch;
@@ -147,4 +148,84 @@
     right: -1.25rem;
     cursor: pointer;
     top: 2.5rem;
+}
+.block{
+    display: block;
+}
+.none{
+    display: none;
+}
+.mobileTab{
+    display: none;
+}
+.mobileTabImg{
+    display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+flex: 1 0 0;
+align-self: stretch;
+}
+.icon{
+    display: flex;
+justify-content: center;
+align-items: center;
+gap: 1.5rem;
+align-self: stretch;
+}
+.icon>*{
+    cursor: pointer;
+}
+.show{
+    display: none;
+}
+@media (max-width: 800px) {
+    .show{
+        display: block;
+    }
+    .img{
+        display: none;
+    }
+    .sidebar{
+        position: fixed;
+        width: 100%;
+        top: 88px;
+        transition: all 300ms;
+        height: fit-content;
+        gap: 1.5rem;
+        z-index: 100;
+        height: calc(100% - 88px);
+        padding: 1.5rem;
+        box-sizing: border-box;
+    }
+    .sidebar ul{
+        width: 100%;
+    }
+    .floatBtn{
+        display: none;
+    }
+    .mobileTab{
+        background: var(--black-0, #FFF);
+box-shadow: 4px 0px 16px 0px rgba(51, 51, 51, 0.08);
+        top: 0;
+        position: fixed;
+        width: 100%;
+        left: 0;
+        display: flex;
+        box-sizing: border-box;
+padding: 1.5rem;
+justify-content: center;
+align-items: center;
+gap: 1.5rem;
+align-self: stretch;
+    }
+    .left{
+        top: -1000px;
+    }
+    .main{
+        margin-top: 88px;
+        padding: 1.5rem;
+        gap: 0;
+        align-items: stretch;
+    }
 }

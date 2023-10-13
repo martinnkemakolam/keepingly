@@ -91,3 +91,11 @@ line-height: 1.25rem; /* 142.857% */
 .reverse{
     flex-direction: row-reverse;
 }
+@media (max-width: 800px) {
+    .titleButton{
+        width: max-content;
+    }
+    .titleButton svg{
+        display: none;
+    }
+}

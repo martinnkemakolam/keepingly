@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { FormPage } from "./formPage"
 import { FormUpload } from "./formUpload"
+import style from "@/style/expense.module.css"
 export let CurrentForm=({view})=>{
     let [userData, setUserData] = useState()
     let array = 
@@ -48,12 +49,20 @@ export let CurrentForm=({view})=>{
             )
         }
     return(
-        <>
-        { view === 0 && <FormPage btnText={`Save`} showButton={true} ele={array} handleInput={handleInput}/> }
-        { view === 1 && <FormUpload h1Text={`Documents`} pText={`Please provide receipts, invoices, or any document showing proof of expense.
-Uploading these documents is crucial for ensuring the authenticity and validity of the maintenance work.`} type={`document`}/>}
-        { view === 2 && <FormUpload h1Text={`Photos`} pText={`You can upload up to 12 photos.`} type={`photo`}/> }
-        { view === 3 && <FormUpload h1Text={`Videos`} pText={`You can upload up to 6 videos.`} type={`video`}/> }
-        </>
+        <div className={style.multiForm}>
+            <div className={ view === 1 ? style.display : style.noDisplay}>
+                <FormPage btnText={`Save`} showButton={true} ele={array} handleInput={handleInput}/> 
+            </div>
+            <div className={ view === 2 ? style.display : style.noDisplay}>
+                <FormUpload h1Text={`Documents`} pText={`Please provide receipts, invoices, or any document showing proof of expense.
+                Uploading these documents is crucial for ensuring the authenticity and validity of the maintenance work.`} type={`document`}/>
+            </div>
+            <div className={ view === 3 ? style.display : style.noDisplay}>
+                <FormUpload h1Text={`Photos`} pText={`You can upload up to 12 photos.`} type={`photo`}/>
+            </div>
+            <div className={ view === 4 ? style.display : style.noDisplay}>
+                <FormUpload h1Text={`Videos`} pText={`You can upload up to 6 videos.`} type={`video`}/>
+            </div>
+        </div>
     )
 }

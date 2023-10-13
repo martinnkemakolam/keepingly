@@ -1,14 +1,17 @@
 'use client'
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import TopBar from "../../(components)/Topbar";
 import PropertyInfo from "../../(components)/propertyInfo";
 import FormProperties from "../../(hoc)/form";
 import { useRouter } from "next/navigation";
+import { userContext } from "@/app/userContext";
 
 export default function AddProperty() {
     let formRef = useRef()
     let router = useRouter()
     let db = useRef()
+    db.current = indexedDB.open('keepinglyDB', 1.0)
+    let userObj = useContext(userContext)
     let [isEdit, setIsEdit] = useState(false)
     let arr = [
         {
@@ -180,41 +183,22 @@ export default function AddProperty() {
     let formSubmit=()=>{
         formRef.current.click()
     }
+
     let submit=()=>{
         let result = db.current.result
         let transact = result.transaction('user', 'readwrite').objectStore('user')
-        let gotten = transact.get(0)
+        let gotten = transact.get(userObj.user.mail)
         gotten.onsuccess=()=>{
             let user = gotten.result
             let arr = gotten.result.properties
             arr.unshift(userFormData)
             user.properties = arr
-            transact.delete(0).onsuccess=()=>{
-                transact.add(user).onsuccess=()=>{
-                    router.push('./')
-                }
+            let update = transact.put(user)
+            update.onsuccess=()=>{
+                router.push('./')
             }
         }
     }
-    useEffect(()=>{
-        db.current = indexedDB.open('keepinglyDB', 1.0)
-        db.onsuccess=()=>{
-            let result = db.result
-            let transact = result.transaction('user', 'readwrite').objectStore('user')
-            let mail = transact.get(0)
-            mail.onsuccess=()=>{
-                if (mail.result) {
-                    if (mail.result.properties.length > 1){
-                        setIsEdit(true)
-                    }else{
-                        setIsEdit(false)
-                    }
-                    return
-                }
-                return
-                }
-            }
-    }, [])
     return (
         <>
         <TopBar title={`Properties`}/>

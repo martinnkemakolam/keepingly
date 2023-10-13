@@ -5,7 +5,7 @@ import PropertyInfo from "../../(components)/propertyInfo";
 export default function addExpense(){
     return(
         <>
-        <TopBar title={`Expenses`} buttonText={`Save expense`} showSearch={true}/>
+        <TopBar title={`Expenses`} buttonText1={`Save expense`} showSearch={true}/>
         <PropertyInfo h1Text={`Add an expense`}/>
         <ExpenseForm />
         </>

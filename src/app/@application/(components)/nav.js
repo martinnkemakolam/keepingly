@@ -4,6 +4,7 @@ import style from '@/style/layout.module.css'
 import LayoutLi from '@/app/@application/(components)/layoutLi'
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import { SearchInput } from '../(presentation)/search'
 export default function Nav() {
     let currentParam = useSelectedLayoutSegment()
     let [hideNav, setHideNav] = useState(false)
@@ -40,31 +41,11 @@ export default function Nav() {
             <path d="M10.6667 6.00033L14 4.66699V11.3337L10.6667 10.0003M2.66667 12.3337H10C10.3682 12.3337 10.6667 12.0352 10.6667 11.667V4.33366C10.6667 3.96547 10.3682 3.66699 10 3.66699H2.66667C2.29848 3.66699 2 3.96547 2 4.33366V11.667C2 12.0352 2.29848 12.3337 2.66667 12.3337Z" stroke={ currentParam === 'Videos' ? '#A61D4A' : "#838383"} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>                     
         },{
-            name: "Appraiser's Edge",
-            svg: <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path opacity="0.15" d="M8.66663 7.00033C8.66663 8.28899 9.71129 9.33366 11 9.33366L13.3333 11.667V7.00033C13.3333 5.71166 12.2886 4.66699 11 4.66699C9.71129 4.66699 8.66663 5.71166 8.66663 7.00033Z" fill={ currentParam === "Appraiser's Edge" ? '#A61D4A' : "#838383"}/>
-            <path d="M2 7.00033C2 8.28899 3.04467 9.33366 4.33333 9.33366L6.66667 11.667V7.00033C6.66667 5.71166 5.622 4.66699 4.33333 4.66699C3.04467 4.66699 2 5.71166 2 7.00033Z" stroke={ currentParam === "Appraiser's Edge" ? '#A61D4A' : "#838383"} stroke-width="1.5" stroke-linejoin="round"/>
-            <path d="M8.66667 7.00033C8.66667 8.28899 9.71134 9.33366 11 9.33366L13.3333 11.667V7.00033C13.3333 5.71166 12.2887 4.66699 11 4.66699C9.71134 4.66699 8.66667 5.71166 8.66667 7.00033Z" stroke={ currentParam === "Appraiser's Edge" ? '#A61D4A' : "#838383"} stroke-width="1.5" stroke-linejoin="round"/>
-            </svg>                                   
-        },{
             name: "Expenses",
             svg: <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path opacity="0.2" fill-rule="evenodd" clip-rule="evenodd" d="M2.66667 4.66687C2.29848 4.66687 2 4.96535 2 5.33354V10.6669C2 11.0351 2.29848 11.3335 2.66667 11.3335H13.3333C13.7015 11.3335 14 11.0351 14 10.6669V5.33354C14 4.96535 13.7015 4.66687 13.3333 4.66687H2.66667ZM8 9.66687C8.92047 9.66687 9.66667 8.92068 9.66667 8.0002C9.66667 7.07973 8.92047 6.33354 8 6.33354C7.07953 6.33354 6.33333 7.07973 6.33333 8.0002C6.33333 8.92068 7.07953 9.66687 8 9.66687Z" fill={ currentParam === 'Expenses' ? '#A61D4A' : "#838383"}/>
             <path d="M12 6.33354V9.66687M4 6.33354V9.66687M2.66667 11.3335H13.3333C13.7015 11.3335 14 11.0351 14 10.6669V5.33354C14 4.96535 13.7015 4.66687 13.3333 4.66687H2.66667C2.29848 4.66687 2 4.96535 2 5.33354V10.6669C2 11.0351 2.29848 11.3335 2.66667 11.3335ZM9.66667 8.0002C9.66667 8.92068 8.92047 9.66687 8 9.66687C7.07953 9.66687 6.33333 8.92068 6.33333 8.0002C6.33333 7.07973 7.07953 6.33354 8 6.33354C8.92047 6.33354 9.66667 7.07973 9.66667 8.0002Z" stroke={ currentParam === 'Expenses' ? '#A61D4A' : "#838383"} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>            
-        },{
-            name: 'Preferred Vendors',
-            svg: <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path opacity="0.15" d="M12.6667 13.3336V6.00024H3.33337V13.3336H12.6667Z" fill={ currentParam === 'Preferred Vendors' ? '#A61D4A' : "#838383"}/>
-            <path d="M12.6666 6.00033V13.3337H3.33329V6.00033M12.6666 6.00033H3.33329M12.6666 6.00033C13.0348 6.00033 13.3333 5.70185 13.3333 5.33366V3.33366C13.3333 2.96547 13.0348 2.66699 12.6666 2.66699H3.33329C2.9651 2.66699 2.66663 2.96547 2.66663 3.33366V5.33366C2.66663 5.70185 2.9651 6.00033 3.33329 6.00033M6.66663 8.66699H9.33329" stroke={ currentParam === 'Preferred Vendors' ? '#A61D4A' : "#838383"} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>            
-        },{
-            name: 'Chatbot',
-            svg: <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path opacity="0.15" d="M13.3333 2.66699H2.66663V10.667H4.66663V14.0003L7.99996 10.667H13.3333V2.66699Z" fill={ currentParam === 'Chatbot' ? '#A61D4A' : "#838383"}/>
-            <path d="M5.33329 5.33366H10.6666M5.33329 8.00033H8.66663M2.66663 2.66699H13.3333V10.667H7.99996L4.66663 14.0003V10.667H2.66663V2.66699Z" stroke={ currentParam === 'Chatbot' ? '#A61D4A' : "#838383"} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            
         },{
             name: 'Renovation',
             svg: <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -91,8 +72,28 @@ export default function Nav() {
                             <path d="M24.0003 14.6667L18.667 20.0001L24.0003 25.3334" stroke="#AAAAAA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
-                    <Image src={'/asset/logo/logoHide.png'} alt='keepingly logo' width={34} height={40} style={{display: hideNav ? 'block': 'none'}} />
-                    <Image src={'/asset/logo/logo.png'} alt='keepingly logo' width={116 } height={40} style={{display: hideNav ? 'none' : 'block'}}/>
+                    <Image className={hideNav ? style.img +' ' + style.block: style.img + ' ' + style.none}  src={'/asset/logo/logoHide.png'} alt='keepingly logo' width={34} height={40} />
+                    <Image className={hideNav ? style.img  + ' ' + style.none : style.img  + ' ' + style.block} src={'/asset/logo/logo.png'} alt='keepingly logo' width={116 } height={40}/>
+                    <div className={style.mobileTab}>
+                        <div className={style.mobileTabImg}>
+                            <Image  src={'/asset/logo/logo.png'} alt='keepingly logo' width={116} height={40} />
+                        </div>
+                        <div className={style.icon}>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path opacity="0.15" d="M8.00033 2C5.79119 2 4.00033 3.79086 4.00033 6C4.00033 8.66667 2.66699 11.3333 2.66699 11.3333H13.3337C13.3337 11.3333 12.0003 8.66667 12.0003 6C12.0003 3.79086 10.2095 2 8.00033 2Z" fill="#333333"/>
+                                <path d="M2.66699 11.3333L1.99617 10.9979C1.87993 11.2304 1.89235 11.5065 2.029 11.7276C2.16566 11.9487 2.40706 12.0833 2.66699 12.0833V11.3333ZM13.3337 11.3333V12.0833C13.5936 12.0833 13.835 11.9487 13.9716 11.7276C14.1083 11.5065 14.1207 11.2304 14.0045 10.9979L13.3337 11.3333ZM4.75033 6C4.75033 4.20507 6.2054 2.75 8.00033 2.75V1.25C5.37697 1.25 3.25033 3.37665 3.25033 6H4.75033ZM8.00033 2.75C9.79525 2.75 11.2503 4.20507 11.2503 6H12.7503C12.7503 3.37665 10.6237 1.25 8.00033 1.25V2.75ZM3.25033 6C3.25033 7.21989 2.943 8.46693 2.62215 9.4295C2.46322 9.90629 2.30437 10.3033 2.18597 10.5796C2.12685 10.7175 2.07803 10.8248 2.04465 10.8964C2.02796 10.9321 2.01515 10.9589 2.00685 10.9761C2.0027 10.9846 1.99968 10.9908 1.99787 10.9945C1.99697 10.9963 1.99637 10.9975 1.99608 10.9981C1.99594 10.9984 1.99587 10.9985 1.99589 10.9985C1.9959 10.9985 1.99592 10.9984 1.99597 10.9983C1.99599 10.9983 1.99604 10.9982 1.99606 10.9982C1.99611 10.998 1.99617 10.9979 2.66699 11.3333C3.33781 11.6687 3.33788 11.6686 3.33796 11.6685C3.33799 11.6684 3.33807 11.6682 3.33814 11.6681C3.33826 11.6678 3.33841 11.6675 3.33858 11.6672C3.33892 11.6665 3.33934 11.6657 3.33983 11.6647C3.34083 11.6627 3.34214 11.66 3.34376 11.6567C3.347 11.6502 3.35147 11.641 3.35709 11.6294C3.36832 11.6062 3.38415 11.5731 3.40392 11.5307C3.44345 11.446 3.4988 11.3242 3.56468 11.1704C3.69628 10.8634 3.87077 10.427 4.04517 9.90384C4.39098 8.8664 4.75033 7.44677 4.75033 6H3.25033ZM2.66699 12.0833H13.3337V10.5833H2.66699V12.0833ZM13.3337 11.3333C14.0045 10.9979 14.0045 10.998 14.0046 10.9982C14.0046 10.9982 14.0047 10.9983 14.0047 10.9983C14.0047 10.9984 14.0048 10.9985 14.0048 10.9985C14.0048 10.9985 14.0047 10.9984 14.0046 10.9981C14.0043 10.9975 14.0037 10.9963 14.0028 10.9945C14.001 10.9908 13.998 10.9846 13.9938 10.9761C13.9855 10.9589 13.9727 10.9321 13.956 10.8964C13.9226 10.8248 13.8738 10.7175 13.8147 10.5796C13.6963 10.3033 13.5374 9.90629 13.3785 9.4295C13.0576 8.46693 12.7503 7.21989 12.7503 6H11.2503C11.2503 7.44677 11.6097 8.8664 11.9555 9.90384C12.1299 10.427 12.3044 10.8634 12.436 11.1704C12.5018 11.3242 12.5572 11.446 12.5967 11.5307C12.6165 11.5731 12.6323 11.6062 12.6436 11.6294C12.6492 11.641 12.6537 11.6502 12.6569 11.6567C12.6585 11.66 12.6598 11.6627 12.6608 11.6647C12.6613 11.6657 12.6617 11.6665 12.6621 11.6672C12.6622 11.6675 12.6624 11.6678 12.6625 11.6681C12.6626 11.6682 12.6627 11.6684 12.6627 11.6685C12.6628 11.6686 12.6628 11.6687 13.3337 11.3333ZM9.25033 12C9.25033 12.6904 8.69068 13.25 8.00033 13.25V14.75C9.51911 14.75 10.7503 13.5188 10.7503 12H9.25033ZM8.00033 13.25C7.30997 13.25 6.75033 12.6904 6.75033 12H5.25033C5.25033 13.5188 6.48154 14.75 8.00033 14.75V13.25ZM6.75033 12V11.3333H5.25033V12H6.75033ZM10.7503 12V11.3333H9.25033V12H10.7503Z" fill="#333333"/>
+                            </svg>
+                            { hideNav ? <svg onClick={()=> setHideNav(!hideNav)} width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.66699 4.66675H13.3337M2.66699 8.00008H13.3337M2.66699 11.3334H13.3337" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg> : <svg onClick={()=> setHideNav(!hideNav)} width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.6663 3.33325L3.33301 12.6666M3.33302 3.33325L12.6664 12.6666" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            }
+                        </div>
+                    </div>
+                    <div style={{width: '100%'}} className={style.show}>
+                        <SearchInput/>
+                    </div>
                     <ul>
                     {liMap}
                     </ul>

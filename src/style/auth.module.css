@@ -35,6 +35,9 @@
 .colRed{
     color: #A61D4A;
 }
+.colRed2{
+    color: #E20000;
+}
 .topText{
     display: flex;
     flex-direction: column;
@@ -82,17 +85,34 @@
     gap: 8px;
 }
 .error{
+    color: var(--error-100, #E20000);
     width: 100%;
     display: flex;
     flex-direction: column;
 }
-.error p{
-    display: none;
-    font-size: 14px;
-    color: #A61D4A;
+.errorCol{
+    color: var(--error-100, #E20000);
+    
+    overflow: hidden;
+text-overflow: ellipsis;
+
+/* caption */
+font-size: 0.75rem;
+font-style: normal;
+font-weight: 600;
+line-height: 1rem; /* 133.333% */
 }
-.error .colRed::placeholder{
-    color: #A61D4A;
+.errorP{
+    color: var(--error-100, #E20000);
+
+/* caption */
+font-size: 0.75rem;
+font-style: normal;
+font-weight: 600;
+line-height: 1rem; /* 133.333% */
+}
+.error .colRed2::placeholder{
+    color: var(--error-100, #E20000);
 }
 .error p.active{
     display: block;
@@ -162,4 +182,42 @@ background: var(--black-0, #FFF);
 align-items: flex-start;
 gap: 0.5rem;
 align-self: stretch;
+}
+.divError{
+    border-color: #E20000;
+}
+.input{
+    display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+gap: 0.25rem;
+align-self: stretch;
+}
+.labelInput{
+    overflow: hidden;
+color: var(--black-100, #333);
+text-overflow: ellipsis;
+
+/* caption */
+font-size: 0.75rem;
+font-style: normal;
+font-weight: 600;
+line-height: 1rem; /* 133.333% */
+}
+@media (max-width: 800px) {
+    .section{
+        display: flex;
+        padding: 1.5rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+        flex: 1 0 0;
+        align-self: stretch;
+    }
+    .modular{
+        width: 23rem;
+        box-sizing: border-box;
+    } 
 }

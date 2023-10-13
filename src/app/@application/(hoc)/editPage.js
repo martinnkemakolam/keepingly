@@ -1,11 +1,13 @@
 'use client'
-import { useEffect, useRef, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import TopBar from "../(components)/Topbar"
 import PropertyInfo from "../(components)/propertyInfo"
 import FormProperties from "./form"
 import { useRouter } from "next/navigation"
+import { userContext } from "@/app/userContext"
 
 export default function EditProperty({id}) {
+    let userObj = useContext(userContext)
     let arr = [
         {
             h1: 'Property details',
@@ -123,7 +125,7 @@ export default function EditProperty({id}) {
     let dbEdit =()=>{
         let result = db.current.result
         let store = result.transaction('user', "readwrite").objectStore('user')
-        let user = store.get(0)
+        let user = store.get(userObj.user.mail)
         user.onsuccess=()=>{
             if (user.result) {
                 let property = id
@@ -147,7 +149,7 @@ export default function EditProperty({id}) {
         db.current.onsuccess=()=>{
             let result = db.current.result
             let transact = result.transaction('user', 'readwrite').objectStore('user')
-            let mail = transact.get(0)
+            let mail = transact.get(userObj.user.mail)
             mail.onsuccess=()=>{
                 if (mail.result) {
                     let property = id
@@ -158,7 +160,7 @@ export default function EditProperty({id}) {
                 }
             }
         }
-    }, [id])
+    }, [id, userObj])
     
     return(
         <>

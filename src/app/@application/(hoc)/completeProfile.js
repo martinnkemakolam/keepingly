@@ -1,9 +1,10 @@
 'use client'
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import TopBar from "@/app/@application/(components)/Topbar";
 import FormProperties from "@/app/@application/(hoc)/form";
 import { useRouter } from "next/navigation";
 import style from '@/style/properties.module.css'
+import { userContext } from "@/app/userContext";
 
 export default function CompleteProfile() {
     let [modalView, setModalView] = useState(false)
@@ -14,6 +15,7 @@ export default function CompleteProfile() {
         {
             h1: 'Complete your profile',
             p: 'Fill in the required information.',
+            btnText: `Save profile`,
             arr: [
                 {
                     name: 'firstName',
@@ -100,16 +102,23 @@ export default function CompleteProfile() {
             ]
         }
     ]
+    let userObj = useContext(userContext)
     let addUser =()=>{
         let result = db.current.result
         let transact = result.transaction('user', 'readwrite')
         let objStore = transact.objectStore('user')
-        let put = objStore.put(userFormData)
+        let put = objStore.get(userObj.user.mail)
         put.onerror=()=>{
             alert('OPPS an Error occured')
         }
         put.onsuccess=()=>{
-            setModalView(true)
+            let data = {
+                ...put.result, ...userFormData
+            }
+            let updateReq = objStore.put(data)
+            updateReq.onsuccess=()=>{
+                setModalView(true)
+            }
         }
     }
     let handleInput =(name, value)=>{
@@ -140,7 +149,7 @@ export default function CompleteProfile() {
     return (
         <>
         <TopBar title={`Welcome to Keepingly`} showSearch={false}/>
-        <FormProperties arrOpt={div1} func={addUser} handleInput={handleInput} isProperty={false} isEdit={false} values={userFormData} file={userFormData.file}/>
+        <FormProperties arrOpt={div1} showBtn={true} func={addUser} handleInput={handleInput} isProperty={false} isEdit={false} values={userFormData} file={userFormData.file}/>
         {
                 modalView &&
                 <div className={style.modal}>

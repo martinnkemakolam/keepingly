@@ -30,11 +30,13 @@ export default function DocumentHeader({title, type, buttonFunc}) {
                     <p className={style.headerText}>{title}</p>
                     <span className={style.headerPill}>7</span>
                 </div>
-                
-                    <button onClick={()=> buttonFunc()} className={style.headerBtn}>Add a {type}</button>
-                    <svg width="2" height="14" viewBox="0 0 2 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 13L1 1" stroke="#D2D2D2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+                <div className={style.header2}>
+                <button onClick={()=> buttonFunc()} className={style.headerBtn}>Add a {type}</button>
+                    <div>
+                        <svg width="2" height="14" viewBox="0 0 2 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 13L1 1" stroke="#D2D2D2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
                     <div className={style.views}>
                         {
                             type === 'document' ? <>
@@ -88,6 +90,7 @@ export default function DocumentHeader({title, type, buttonFunc}) {
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4.6665 6.66663L7.99984 9.99996L11.3332 6.66663" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
+                </div>
                 </div>
             <div className={ type === 'document' ? style.rowDoc : style.row} onClick={()=> showId.trigger === true && setShowId({trigger: false, id: null}) }>
                 {data.map(({name, time}, id)=>{

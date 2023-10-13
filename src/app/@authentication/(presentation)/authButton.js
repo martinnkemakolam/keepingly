@@ -1,4 +1,4 @@
-import style from "../../../style/auth.module.css"
+import style from "@/style/auth.module.css"
 export default function AuthButton({pText, google}) {
     return(
         <button className={`${style.inputDiv} ${google ? style.bgColAuth : style.bgColAuthblack}`}>
