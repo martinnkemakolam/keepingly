@@ -1,10 +1,9 @@
-import EditProperty from "../../(hoc)/editPage";
+import EditProperty from "../../(pages)/editPage"
+
 export default async function EditPbnage(params) {
     let id = params.params.id
     return(
-        <>
         <EditProperty id={id}/>
-        </>
     )
 }
 

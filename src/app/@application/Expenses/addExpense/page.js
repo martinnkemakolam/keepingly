@@ -1,13 +1,8 @@
-import TopBar from "../../(components)/Topbar";
-import { ExpenseForm } from "../../(components)/expenseForm";
-import PropertyInfo from "../../(components)/propertyInfo";
+import { AddExpense } from "../../(pages)/addExpense"
 
-export default function addExpense(){
+export function Page(){
     return(
-        <>
-        <TopBar title={`Expenses`} buttonText1={`Save expense`} showSearch={true}/>
-        <PropertyInfo h1Text={`Add an expense`}/>
-        <ExpenseForm />
-        </>
+    <AddExpense/>
     )
+   
 }

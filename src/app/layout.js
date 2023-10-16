@@ -2,7 +2,7 @@
 import auth from '@/style/auth.module.css'
 import style from '@/style/layout.module.css'
 import '@/style/style.css'
-import Nav from './@application/(components)/nav'
+import Nav from './@application/(container)/nav'
 import { Nunito } from 'next/font/google'
 import { UserContext } from './userContext'
 import { useEffect, useState} from 'react'
@@ -40,7 +40,7 @@ export default function Layout({children, authentication, application}){
         <body>
             <UserContext>
                 {
-                false ? <section className={style.section}>
+                true ? <section className={style.section}>
                 <Nav/>
                 <main className={style.main}>
                     {application}
