@@ -1,6 +1,6 @@
 import { AddExpense } from "../../(pages)/addExpense"
 
-export function Page(){
+export default function Page(){
     return(
     <AddExpense/>
     )
