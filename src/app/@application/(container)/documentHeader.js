@@ -3,6 +3,7 @@ import DocumentCard from "../(presentation)/documentCard";
 import Tick from "../(presentation)/tick";
 import style from '@/style/video.module.css'
 export default function DocumentHeader({title, setTogView,type, buttonFunc, togView}) {
+    let [select, setSelect] = useState(true)
     let data = [
         {
             name: 'Video 1',
@@ -26,7 +27,9 @@ export default function DocumentHeader({title, setTogView,type, buttonFunc, togV
         <>
             <div className={style.header} onClick={()=> setShowId({trigger: false, id: null})}>
                 <div className={style.headerTitle}>
-                    <Tick float={false} ticked={true}/>
+                    <div onClick={()=> setSelect(!select)}>
+                    <Tick float={false} ticked={select}/>
+                    </div>
                     <p className={style.headerText}>{title}</p>
                     <span className={style.headerPill}>7</span>
                 </div>

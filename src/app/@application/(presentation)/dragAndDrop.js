@@ -1,7 +1,7 @@
 import style from '@/style/video.module.css'
-export let DragAndDrop=({type})=>{
+export let DragAndDrop=({type, dropEvt})=>{
     return(
-        <div className={style.modalUpload}>
+        <label htmlFor='file' className={style.modalUpload} onDrop={dropEvt}>
             <div className={style.icon}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path opacity="0.15" d="M5 21H19V9H15C13.8954 9 13 8.10457 13 7V3H5V21Z" fill="#838383"/>
@@ -19,6 +19,7 @@ export let DragAndDrop=({type})=>{
                 <p className={style.modalUploadText1}>Drag here or <span className={style.modalUploadTextBtn}>click</span> to upload {type}</p>
                 <p className={style.modalUploadText2}>Maximum file size is 2MB.<br/>File must be in { type === 'document' && 'DOC, DOCX or PDF'}{ type === 'video' && 'MP4, MKV, or WEBM'}{ type === 'photo' && 'JPG, PNG, or WEBP'} formats.</p>
             </div>
-        </div>
+            <input style={{display: "none"}} type="file" id='file' />
+        </label>
     )
 }

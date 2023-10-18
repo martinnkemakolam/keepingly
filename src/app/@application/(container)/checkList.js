@@ -2,10 +2,12 @@ import { ButtonDivider } from "./buttonDivider"
 import { Point } from "../(presentation)/point"
 import Tick from "../(presentation)/tick"
 import style from "@/style/keeptrack.module.css"
+import { useState } from "react"
 
 export let Checklist=({text})=>{
+    let [click, setClick] = useState(false)
     return(
-        <div className={style.checkList}>
+        <div className={style.checkList} onClick={()=> setClick(!click)}>
             <div className={style.checkListContent}>
                 <div className={style.checkListContentText}>
                     <p>{text}</p>
@@ -17,7 +19,7 @@ export let Checklist=({text})=>{
                         <p>Due in 5days</p>
                     </div>
                 </div>
-                <Tick className={style}/>
+                <Tick ticked={click} className={style}/>
             </div>
             <ButtonDivider buttonText1={`Add expense`} buttonText2={`Upload documents`} btnStyle1={`clearBtn`} btnStyle2={`clearBtn`}/>
         </div>
