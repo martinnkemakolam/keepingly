@@ -31,7 +31,7 @@ export let Properties=()=>{
     }, [router, userObj])
     return (
         <>
-            <TopBar title={`Properties`} showSearch={true} buttonText1={`Add a property`} btnFunc1={btnFunc} />
+            <TopBar title={`Properties`} showSearch={true} btnStyle1={`redFillBtn`} buttonText1={`Add a property`} btnFunc1={btnFunc} />
             <Table h1Text={`Available properties`} arrProperties={properties} />
         </>
     )

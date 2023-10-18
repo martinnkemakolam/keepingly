@@ -106,7 +106,7 @@
 }
 .upload img{
     width: 100%;
-    height: 19.125rem;
+    height: 100%;
 }
 .uploadDiv{
     display: flex;
@@ -360,6 +360,8 @@
 }
 .card img{
     height: 220px;
+    width: 100%;
+    height: 100%;
 }
 .cardP{
     font-size: 14px;
@@ -452,6 +454,8 @@
 }
 .img{
     object-fit: cover;
+    width: 100%;
+    height: 100%;
 }
 .centerText{
     display: flex;

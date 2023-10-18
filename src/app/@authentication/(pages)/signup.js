@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react";
+import { use, useState } from "react";
 import AuthButton from "../(presentation)/authButton";
 import BottomComp from "../(container)/bottomComp";
 import DivOr from "../(presentation)/divOr";
@@ -11,39 +11,50 @@ import { useRouter } from "next/navigation";
 export default function Register(params) {
     let [passwordConfirm, setPasswordConfirm] = useState({})
     let [user, setUser] = useState({})
-    // let [mailError, setMailError] = useState(false)
-    // let [passwordError, setPasswordError] = useState(false)
-    // let [errorMsg, setErrorMsg] = useState(``)
-    // let [mailErrMsg, setMailErrMsg] = useState(``)
-    // let [confirmErr, setConfirmErr] = useState(false)
-    // let [confirmErrMsg, setConfirmErrMsg] = useState(``)
     let [mailError, mailErrMsg, change] = ErrorHook()
     let [passError, passErrMsg, passChange] = ErrorHook()
     let [conPassError, conPassErrMsg, conPassChange] = ErrorHook()
     let router = useRouter()
     let [input1, setInput1, input2, setInput2] = VisibleChnage()
     let submit =()=>{
-        //pattern={ type === 'password'  || type === 'text' ?`(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-_@#&!$%^*+=?|~:;/"'<>{}()[\],.]).{8,}` :""}
         let error = errorExist(user, passwordConfirm)
         if (error) {
             callMailErr(false, user, change)
             callPassErr(user, passwordConfirm, conPassChange ,passChange)
             return
         }
-        let db = indexedDB.open('keepinglyDB', 1)
-        db.onsuccess=()=>{
-            let result = db.result
-            let userStore = result.transaction('user', "readwrite").objectStore('user')
-            let mail = userStore.get(user.mail || '')
-            mail.onsuccess=()=>{
-                if (mail.result){
-                    return callMailErr(true, user, change)
-                }else{
-                    userStore.put(user)
-                    router.push('./verification')
+        // let db = indexedDB.open('keepinglyDB', 1)
+        // db.onsuccess=()=>{
+        //     let result = db.result
+        //     let userStore = result.transaction('user', "readwrite").objectStore('user')
+        //     let mail = userStore.get(user.mail || '')
+        //     mail.onsuccess=()=>{
+        //         if (mail.result){
+        //             return callMailErr(true, user, change)
+        //         }else{
+        //             userStore.put(user)
+        //             router.push('./verification')
+        //         }
+        //     }
+        // }
+        fetch('https://pre.api.keepingly.co/api/v2/signup', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            mode: "cors",
+            body: JSON.stringify(
+                {
+                    "first_name": "",
+                    "last_name": "",
+                    "email": user.mail,
+                    "password": user.password,
+                    "role": "realtor"
                 }
-            }
-        }
+            )
+        }).then(res=>{
+            alert(res.ok)
+        })
     }
     return(
         

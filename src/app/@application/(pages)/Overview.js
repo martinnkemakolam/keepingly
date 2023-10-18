@@ -19,7 +19,7 @@ export let Overview=()=>{
     </svg>       
     return(
         <>
-        <TopBar title={`Welcome David`} svg1={downSvg} svg2={sendSvg} buttonText1={`Quick actions`} buttonText2={`Send appraisal document`} showSearch={true}/>
+        <TopBar title={`Welcome David`} btnStyle1={`clearBtn`} btnStyle2={`clearBtn`} svg1={downSvg} svg2={sendSvg} buttonText1={`Quick actions`} buttonText2={`Send appraisal document`} showSearch={true}/>
         <ExpenseTitle title={`Accept closing documents`} btnStyle1={`redFillBtn`} underTitle={`Realtor, James Chimdindu provided your closing documents. Please accept them to claim your property.`} buttonText1={`Accept closing documents`}/>
         <Statistics />
         <KeepTrackScoreHolder />
