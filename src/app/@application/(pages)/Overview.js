@@ -26,7 +26,7 @@ export let Overview=()=>{
         <CheckListHolder />
         <MiniTableHolder/>
         <ResourcesHolder />
-        <DragAndDrop type={`document`} dropEvt={dropEvt}/>
+        <DragAndDrop type={`document`} />
         {/* <PropertyInfo h1Text={} buttonText={} paragraph={}/> */}
         </>
     )
