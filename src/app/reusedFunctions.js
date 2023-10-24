@@ -1,5 +1,7 @@
 import { useState } from "react"
 
+export let api = process.env.api
+
 export let handleInput =(name, value, hook, setHook)=>{
     setHook(
         {
@@ -41,5 +43,40 @@ export function callPassErr(user, passwordConfirm, setErr, conSetErr) {
 }
 
 export let errorExist =(user, passwordConfirm)=>{
-   return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(user.mail) || passwordConfirm.confirm !== user.password || !(/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-_@#&!$%^*+=?|~:;/"'<>{}()[\],.]).{8,}/.test(user.password))
+   return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(user?.mail) || passwordConfirm?.confirm !== user?.password || !(/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-_@#&!$%^*+=?|~:;/"'<>{}()[\],.]).{8,}/.test(user?.password))
+}
+
+export let FilesFunc =(data)=>{
+    let [select, setSelect] = useState([])
+    let selectDoc = (arg)=>{
+        let id2 = select.find((ele, id)=> ele === arg)
+        if (id2) {
+            setSelect(select.filter((e, id)=> e !== arg))
+            return
+        }
+        setSelect([...select, arg])
+    }
+    let addAll =()=>{
+        if (data.length === select.length) {
+            setSelect([])
+            return
+        }
+        let arr = data.map((ele)=> ele.name)
+        setSelect([...arr])
+    }
+    return [select, selectDoc, addAll]
+}
+
+export let ShowOverlayFunc =(arg)=>{
+    let [showOverLay, setShowOverlay]=useState({value: '' , type: '' ,bol: false})
+    let send=()=>{
+        setShowOverlay({value: arg, type: 'Send', bol: true})
+    }
+    let add=()=>{
+        setShowOverlay({value: arg, type: 'Upload',bol: true})
+    }
+    let close=()=>{
+        setShowOverlay({value:'', type:'', bol: false})
+    }
+    return [showOverLay, send, add, close]
 }

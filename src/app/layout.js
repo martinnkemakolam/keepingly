@@ -5,7 +5,7 @@ import '@/style/style.css'
 import Nav from './@application/(container)/nav'
 import { Nunito } from 'next/font/google'
 import { UserContext } from './userContext'
-import { useEffect, useState} from 'react'
+import { useContext, useEffect, useState} from 'react'
 const nunito = Nunito({
   weight: '400',
   subsets: ['latin'],
@@ -14,15 +14,12 @@ const nunito = Nunito({
 export default function Layout({children, authentication, application}){
     let [user, setUser] = useState(false)
     UserContext.setView = setUser
-    useEffect(()=>{
-        // Check if user should login
-    }, [])
     return(
     <html lang="en"  style={{fontFamily: nunito.style.fontFamily}}>
         <body>
             <UserContext>
                 {
-                true ? <section className={style.section}>
+                user ? <section className={style.section}>
                 <Nav/>
                 <main className={style.main}>
                     {application}

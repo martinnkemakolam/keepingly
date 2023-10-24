@@ -1,12 +1,10 @@
 import Image from "next/image";
 import style from '@/style/video.module.css'
 import Tick from "./tick";
-import { useState } from "react";
-export default function DocumentCard ({ selectAll,optValue,name, time, view ,showMenu, id, showMenuFunc}){
-    let [click, setClick] = useState(true)
+export default function DocumentCard ({ selectFunc, selected, optValue,name, time, view ,showMenu, id, showMenuFunc}){
     return(
-        <div className={ view ? style.flexView : style.document} onClick={()=> setClick(!click)}>
-            <Tick ticked={click} float={ view ? false : true}/>
+        <div className={ view ? style.flexView : style.document} onClick={()=> selectFunc()}>
+            <Tick ticked={!selected.includes(name)} float={ view ? false : true}/>
             <div style={{display: view ? 'none' : 'block', position: 'relative'}} className={style.borderTop}>
                 <Image src={'/asset/background image/image.png'} alt="" width={265} height={200}/>
                 {optValue === 'video' && <svg className={style.floatMiddle} width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">

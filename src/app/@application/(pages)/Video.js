@@ -5,18 +5,29 @@ import TopBar from '../(container)/Topbar';
 import PropertyInfo from '../(container)/propertyInfo';
 import DocumentHeader from '../(container)/documentHeader';
 import Overlay from '../(container)/overlay';
+import { FilesFunc, ShowOverlayFunc } from '@/app/reusedFunctions';
 export let Videos =()=>{
     let [view, setView] = useState(false)
-    let [showOverLay, setShowOverlay] = useState({value: '' , type: '' ,bol: false})
-    let send=()=>{
-        setShowOverlay({value: 'documents', type: 'Send', bol: true})
-    }
-    let add=()=>{
-        setShowOverlay({value: 'documents', type: 'Upload',bol: true})
-    }
-    let close=()=>{
-        setShowOverlay({value:'', type:'', bol: false})
-    }
+    let [showOverLay, send, add, close] = ShowOverlayFunc('videos')
+    let data = [
+        {
+            name: 'Video 1',
+            time: '1 minute ago'
+        },{
+            name: 'Video 2',
+            time: '1 minute ago'
+        },{
+            name: 'Video 3',
+            time: '1 minute ago'
+        },{
+            name: 'Video 4',
+            time: '1 minute ago'
+        },{
+            name: 'Video 5',
+            time: '1 minute ago'
+        }
+    ]
+    let [select, selectDoc, addAll] = FilesFunc(data)
     return(
         <div className={style.video}>
             <TopBar title={`Videos`} showSearch={true}/>
@@ -33,9 +44,9 @@ export let Videos =()=>{
                 </svg>
             </div>
             <PropertyInfo h1Text={`4517 Washington Ave. Manchester, Kentucky 39495`} showSvg={true} buttonText={`Send to Appraiser’s Edge`} buttonFunc={()=> send()} extraButtonText={`Add videos`} extraButtonFunc={()=> add()}/>
-            <DocumentHeader setTogView={setView} togView={view} title={`Kitchen renovations`} type={'video'} buttonFunc={add}/>
+            <DocumentHeader data={data} select={select} selectDoc={selectDoc} addAll={addAll} setTogView={setView} togView={view} title={`Kitchen renovations`} type={'video'} buttonFunc={add}/>
             { showOverLay.bol &&
-                <Overlay overlay={showOverLay.type} currentPage={showOverLay.value} closeFunc={close} type={'video'}/>
+                <Overlay select={select} overlay={showOverLay.type} currentPage={showOverLay.value} closeFunc={close} type={'video'}/>
             }
         </div>
     )

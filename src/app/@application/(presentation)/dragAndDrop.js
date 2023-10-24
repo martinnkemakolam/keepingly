@@ -1,7 +1,36 @@
 import style from '@/style/video.module.css'
-export let DragAndDrop=({type, dropEvt})=>{
+export let DragAndDrop=({type, addToUpload})=>{
+    let allowed
+    if (type === "document") {
+        allowed = ['pdf', 'doc', 'docs']
+    }
     return(
-        <label htmlFor='file' className={style.modalUpload} onDrop={dropEvt}>
+        <label htmlFor='file' className={style.modalUpload} onDragOver={(e)=> e.preventDefault()} onDrop={(ev)=>{
+            ev.preventDefault()
+            let arr = Array.from(ev.dataTransfer.items)
+            let noReturn
+             let files = arr.map(element => {
+                let file = element.getAsFile()
+                return file
+                let returnVal
+                allowed.forEach((ele)=>{
+                    if (file.name.includes(ele)) {
+                        returnVal = file
+                    }
+                })
+                if (returnVal) {
+                    console.log('reach')
+                    return returnVal   
+                }else{
+                    noReturn = true
+                }
+            });
+            if (noReturn) {
+                alert('A file with a non supported format was added')
+                return
+            }
+            addToUpload(files)
+        }}>
             <div className={style.icon}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path opacity="0.15" d="M5 21H19V9H15C13.8954 9 13 8.10457 13 7V3H5V21Z" fill="#838383"/>

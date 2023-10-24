@@ -5,19 +5,30 @@ import PropertyInfo from '../(container)/propertyInfo';
 import DocumentHeader from '../(container)/documentHeader';
 import Overlay from '../(container)/overlay';
 import TopBar from '../(container)/Topbar';
+import { FilesFunc, ShowOverlayFunc } from '@/app/reusedFunctions';
 
 export let DocumentPage =()=>{
-    let [showOverLay, setShowOverlay] = useState({value: '' , type: '' ,bol: false})
+    let data = [
+        {
+            name: 'Document 1',
+            time: '1 minute ago'
+        },{
+            name: 'Document 2',
+            time: '1 minute ago'
+        },{
+            name: 'Document 3',
+            time: '1 minute ago'
+        },{
+            name: 'Document 4',
+            time: '1 minute ago'
+        },{
+            name: 'Document 5',
+            time: '1 minute ago'
+        }
+    ]
+    let [select, selectDoc, addAll] = FilesFunc(data)
+    let [showOverLay, send, add, close] = ShowOverlayFunc('Documents')
     let [togView, setTogView] = useState(false)
-    let send=()=>{
-        setShowOverlay({value: 'documents', type: 'Send', bol: true})
-    }
-    let add=()=>{
-        setShowOverlay({value: 'documents', type: 'Upload',bol: true})
-    }
-    let close=()=>{
-        setShowOverlay({value:'', type:'', bol: false})
-    }
     return (
         <div className={style.video}>
             <TopBar title={`Documents`} showSearch={true}/>
@@ -35,9 +46,9 @@ export let DocumentPage =()=>{
             </div>
             {/* Property info and expensetile are too similar merge them, use Expesnsetitle also add a class to clearBtn to use differnent btn styles*/}
             <PropertyInfo h1Text={`4517 Washington Ave. Manchester, Kentucky 39495`} showSvg={true} buttonText={`Send to Appraiser’s Edge`} buttonFunc={()=> send()} extraButtonText={`Add document`} extraButtonFunc={()=> add()}/>
-            <DocumentHeader setTogView={setTogView} togView={togView} title={`Kitchen renovations`} type={'document'} buttonFunc={add}/>
+            <DocumentHeader select={select} selectDoc={selectDoc} data={data} addAll={addAll}  setTogView={setTogView} togView={togView} title={`Kitchen renovations`} type={'document'} buttonFunc={add}/>
             { showOverLay.bol &&
-                <Overlay overlay={showOverLay.type} currentPage={showOverLay.value} closeFunc={close} type={`document`}/>
+                <Overlay overlay={showOverLay.type} select={select} currentPage={showOverLay.value} closeFunc={close} type={`document`}/>
             }
         </div>
     )

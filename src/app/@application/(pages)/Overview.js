@@ -16,15 +16,7 @@ export let Overview=()=>{
     let sendSvg = <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path opacity="0.15" d="M13.8133 2.66669L2.47998 7.33335L7.14665 9.33335L9.14665 14L13.8133 2.66669Z" fill="#A61D4A"/>
     <path d="M13.8133 2.66669L2.47998 7.33335L7.14665 9.33335L9.14665 14L13.8133 2.66669Z" stroke="#A61D4A" stroke-linejoin="round"/>
-    </svg>       
-    let dropEvt =(ev)=>{
-        ev.preventDefault()
-        let arr = Array.from(ev.dataTransfer.items)
-        arr.forEach(element => {
-            element.getAsFile()
-            console.log(element.getAsFile().name)
-        });
-    }
+    </svg>
     return(
         <>
         <TopBar title={`Welcome David`} btnStyle1={`clearBtn`} btnStyle2={`clearBtn`} svg1={downSvg} svg2={sendSvg} buttonText1={`Quick actions`} buttonText2={`Send appraisal document`} showSearch={true}/>

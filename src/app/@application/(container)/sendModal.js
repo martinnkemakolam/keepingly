@@ -3,7 +3,7 @@ import InputApp from "../(presentation)/appInput"
 import { ModalFooter } from "../(presentation)/modalFooter"
 import { ModalHead } from '../(presentation)/modalHead'
 
-export let SendModal =({currentPage, closeFunc})=>{
+export let SendModal =({currentPage, select, closeFunc})=>{
     return(
         <div className={style.modal}>
             <ModalHead text={`Send ${currentPage}`} closeFunc={closeFunc}/>
@@ -11,11 +11,9 @@ export let SendModal =({currentPage, closeFunc})=>{
                     <div className={style.modalInfo}>
                         <p className={style.modalInfoText}>{currentPage} to be sent</p>
                         <div>
-                            <p className={style.modalInfoText2}>Property improvement/update information</p>
-                            <p className={style.modalInfoText2}>Property information</p>
-                            <p className={style.modalInfoText2}>Closing documents</p>
-                            <p className={style.modalInfoText2}>Litigated related publicly listed information</p>
-                            <p className={style.modalInfoText2}>Condominium document</p>
+                            {
+                                select.map((ele)=> <><p className={style.modalInfoText2}>{ele}</p></>)
+                            }
                         </div>
                     </div>
                         <form className={style.modalContent}>
@@ -25,6 +23,6 @@ export let SendModal =({currentPage, closeFunc})=>{
                         </form>
                 </div>
                 <ModalFooter btnText1={`Cancel`} btnText2={`Send`} btnStyle1={`${style.footerBtn}`} btnStyle2={`${style.footerBtn} ${style.footerBtnGray}`}/>
-                </div>
+        </div>
     )
 }

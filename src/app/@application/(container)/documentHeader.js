@@ -2,33 +2,15 @@ import { useState } from "react";
 import DocumentCard from "../(presentation)/documentCard";
 import Tick from "../(presentation)/tick";
 import style from '@/style/video.module.css'
-export default function DocumentHeader({title, setTogView,type, buttonFunc, togView}) {
-    let [select, setSelect] = useState(true)
-    let data = [
-        {
-            name: 'Video 1',
-            time: '1 minute ago'
-        },{
-            name: 'Video 1',
-            time: '1 minute ago'
-        },{
-            name: 'Video 1',
-            time: '1 minute ago'
-        },{
-            name: 'Video 1',
-            time: '1 minute ago'
-        },{
-            name: 'Video 1',
-            time: '1 minute ago'
-        }
-    ]
+export default function DocumentHeader({title, select, data,addAll,selectDoc,setTogView,type, buttonFunc, togView}) {
+
     let [showId, setShowId]=useState({trigger: false, id: null})
     return(
         <>
             <div className={style.header} onClick={()=> setShowId({trigger: false, id: null})}>
                 <div className={style.headerTitle}>
-                    <div onClick={()=> setSelect(!select)}>
-                    <Tick float={false} ticked={select}/>
+                    <div onClick={()=> addAll()}>
+                    <Tick float={false} ticked={select.length !== data.length}/>
                     </div>
                     <p className={style.headerText}>{title}</p>
                     <span className={style.headerPill}>7</span>
@@ -73,7 +55,7 @@ export default function DocumentHeader({title, setTogView,type, buttonFunc, togV
                 {data.map(({name, time}, id)=>{
                     return(
                     <>        
-                <DocumentCard key={id} showMenu={id === showId.id} id={id} showMenuFunc={setShowId} optValue={type} name={name} view={ togView} time={time}/>
+                <DocumentCard key={id} selectFunc={()=>selectDoc(name)} selected={select} showMenu={id === showId.id} id={id} showMenuFunc={setShowId} optValue={type} name={name} view={ togView} time={time}/>
                 </>)
                 })}
             </div>

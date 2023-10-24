@@ -6,7 +6,7 @@ import DivOr from "../(presentation)/divOr";
 import Input from "../(presentation)/input";
 import TopText from "../(container)/topText";
 import style from "@/style/auth.module.css"
-import { ErrorHook, VisibleChnage, callMailErr, callPassErr, errorExist, handleInput } from "@/app/reusedFunctions";
+import { ErrorHook, VisibleChnage, callMailErr, callPassErr, errorExist, handleInput, api } from "@/app/reusedFunctions";
 import { useRouter } from "next/navigation";
 export default function Register(params) {
     let [passwordConfirm, setPasswordConfirm] = useState({})
@@ -30,14 +30,19 @@ export default function Register(params) {
         //     let mail = userStore.get(user.mail || '')
         //     mail.onsuccess=()=>{
         //         if (mail.result){
-        //             return callMailErr(true, user, change)
+        //             
         //         }else{
         //             userStore.put(user)
         //             router.push('./verification')
         //         }
         //     }
         // }
-        fetch('https://pre.api.keepingly.co/api/v2/signup', {
+
+        // callMailErr(true, user, change)
+        let api = process.env.api
+        console.log(api)
+        try {
+            fetch('https://pre.api.keepingly.co/api/v2/signup', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -45,16 +50,19 @@ export default function Register(params) {
             mode: "cors",
             body: JSON.stringify(
                 {
-                    "first_name": "",
-                    "last_name": "",
+                    "first_name": "test",
+                    "last_name": "user",
                     "email": user.mail,
                     "password": user.password,
                     "role": "realtor"
                 }
             )
         }).then(res=>{
-            alert(res.ok)
-        })
+            console.log(res.body)
+        })   
+        } catch (error) {
+          console.error(error)  
+        }
     }
     return(
         

@@ -9,6 +9,8 @@ import BottomComp from "../(container)/bottomComp";
 import { ErrorHook, VisibleChnage, handleInput } from "@/app/reusedFunctions";
 import { useContext, useState } from "react";
 import { UserContext, userContext } from "../../userContext";
+import { Router } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function SignIn (){
     let [loginDetail, setLoginDetails] = useState({})
@@ -19,29 +21,57 @@ export default function SignIn (){
     let [passError, passMsg, setPassError] =  ErrorHook()
     let [input1, setInput1, input2, setInput2] = VisibleChnage()
     let {setUser} = useContext(userContext)
+    let router = useRouter()
     let submit=()=>{
         //pattern={ type === 'password'  || type === 'text' ?`(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-_@#&!$%^*+=?|~:;/"'<>{}()[\],.]).{8,}` :"/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/"}
-        let db = indexedDB.open('keepinglyDB', 1)
-        db.onsuccess=()=>{
-            let result = db.result
-            let store = result.transaction('user', "readwrite").objectStore('user')
-            let user = store.get(loginDetail.mail)
-            user.onsuccess=()=>{
-                if (user.result) {
-                   if(user.result.password === loginDetail.password ){
-                        setUser(user.result)
-                        sessionStorage.setItem('mail', `${loginDetail.mail}`)
-                        remember && localStorage.setItem('mail', `${loginDetail.mail}`)
-                        UserContext.setView(true)
-                    }else {
-                        setPassError(`Incorrect password`) //call wrong password
-                    }
-                }else{
-                    // call no user
-                    setMailError(`email not found`)
-                }
+        // let db = indexedDB.open('keepinglyDB', 1)
+        // db.onsuccess=()=>{
+        //     let result = db.result
+        //     let store = result.transaction('user', "readwrite").objectStore('user')
+        //     let user = store.get(loginDetail.mail)
+        //     user.onsuccess=()=>{
+        //         if (user.result) {
+        //            if(user.result.password === loginDetail.password ){
+        //                 
+        //                 sessionStorage.setItem('mail', `${loginDetail.mail}`)
+        //                 remember && localStorage.setItem('mail', `${loginDetail.mail}`)
+        //                 
+        //             }else {
+        //                 
+        //             }
+        //         }else{
+        //             // call no user
+        //         }
+        //     }
+        // }
+
+        
+        
+        fetch('https://pre.api.keepingly.co/api/v2/signin',{
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            mode: 'cors',
+            body: JSON.stringify({
+                "email": loginDetail.mail,
+                "password": loginDetail.password
+            })
+        }).then((res)=>{
+            console.log(res)
+            if (res.ok) {
+                return res.json()   
+            }else if (res.status === 401){
+                setPassError(`Incorrect password`)        
+            }else{
+                setMailError(`email not found`)
             }
-        }
+        })
+        .then(res =>{
+            setUser(res)
+            UserContext.setView(true)
+            router.push('/Setting/completeProfile')
+        })
     }
     return (
         <form className={style.modular} onSubmit={(e)=>{

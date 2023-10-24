@@ -5,19 +5,30 @@ import TopBar from '../(container)/Topbar';
 import PropertyInfo from '../(container)/propertyInfo';
 import DocumentHeader from '../(container)/documentHeader';
 import Overlay from '../(container)/overlay';
+import { FilesFunc, ShowOverlayFunc } from '@/app/reusedFunctions';
 
 export let Photo=()=>{
-    let [showOverLay, setShowOverlay]=useState({value: '' , type: '' ,bol: false})
+    let [showOverLay, send, add, close] = ShowOverlayFunc('photos')
     let [view, setView] = useState(false)
-    let send=()=>{
-        setShowOverlay({value: 'photos', type: 'Send', bol: true})
-    }
-    let add=()=>{
-        setShowOverlay({value: 'photos', type: 'Upload',bol: true})
-    }
-    let close=()=>{
-        setShowOverlay({value:'', type:'', bol: false})
-    }
+    let data = [
+        {
+            name: 'Photo 1',
+            time: '1 minute ago'
+        },{
+            name: 'Photo 2',
+            time: '1 minute ago'
+        },{
+            name: 'Photo 3',
+            time: '1 minute ago'
+        },{
+            name: 'Photo 4',
+            time: '1 minute ago'
+        },{
+            name: 'Photo 5',
+            time: '1 minute ago'
+        }
+    ]
+    let [select, selectDoc, addAll] = FilesFunc(data)
     return (
         <div className={style.video}>
             <TopBar title={`Photos`} showSearch={true}/>
@@ -34,9 +45,9 @@ export let Photo=()=>{
                 </svg>
             </div>
             <PropertyInfo h1Text={`4517 Washington Ave. Manchester, Kentucky 39495`} showSvg={true} buttonText={`Send to Appraiser’s Edge`} buttonFunc={()=> send()} extraButtonText={`Add photos`} extraButtonFunc={()=> add()}/>
-            <DocumentHeader setTogView={setView} togView={view} title={`Kitchen renovations`} type={'photo'}/>
+            <DocumentHeader addAll={addAll} select={select} selectDoc={selectDoc} data={data} setTogView={setView} togView={view} title={`Kitchen renovations`} type={'photo'}/>
             { showOverLay.bol &&
-                <Overlay overlay={showOverLay.type} currentPage={showOverLay.value} closeFunc={close} type={`photo`}/>
+                <Overlay overlay={showOverLay.type} select={select} currentPage={showOverLay.value} closeFunc={close} type={`photo`}/>
             }
         </div>
     )
