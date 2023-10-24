@@ -1,4 +1,6 @@
-export default async function KeepTrackDyn(params) {
+import KeepTrackDyn from "../../(pages)/keepTrachDyn"
+
+export default async function Page(params) {
     return(
         <KeepTrackDyn/>
     )
