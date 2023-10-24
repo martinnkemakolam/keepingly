@@ -1,7 +1,7 @@
 import { ViewRenovation } from "../../(pages)/viewrenovation";
 
 export default async function page(){
-    <ViewRenovation/>
+    return <ViewRenovation/>
 }
 
 export const dynamicParams = true
