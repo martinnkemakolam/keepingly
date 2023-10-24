@@ -10,8 +10,6 @@ import FormProperties from "../(container)/form";
 export let AddProperty=()=> {
     let formRef = useRef()
     let router = useRouter()
-    let db = useRef()
-    db.current = indexedDB.open('keepinglyDB', 1.0)
     let userObj = useContext(userContext)
     let [isEdit, setIsEdit] = useState(false)
     let arr = [
@@ -186,19 +184,19 @@ export let AddProperty=()=> {
     }
 
     let submit=()=>{
-        let result = db.current.result
-        let transact = result.transaction('user', 'readwrite').objectStore('user')
-        let gotten = transact.get(userObj.user.mail)
-        gotten.onsuccess=()=>{
-            let user = gotten.result
-            let arr = gotten.result.properties
-            arr.unshift(userFormData)
-            user.properties = arr
-            let update = transact.put(user)
-            update.onsuccess=()=>{
-                router.push('./')
-            }
-        }
+        // let result = db.current.result
+        // let transact = result.transaction('user', 'readwrite').objectStore('user')
+        // let gotten = transact.get(userObj.user.mail)
+        // gotten.onsuccess=()=>{
+        //     let user = gotten.result
+        //     let arr = gotten.result.properties
+        //     arr.unshift(userFormData)
+        //     user.properties = arr
+        //     let update = transact.put(user)
+        //     update.onsuccess=()=>{
+        //         router.push('./')
+        //     }
+        // }
     }
     return (
         <>
