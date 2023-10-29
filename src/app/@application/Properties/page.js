@@ -12,7 +12,7 @@ export default async function Page(params) {
     )
 }
 
-export async function getProperties(){
+async function getProperties(){
     let userToken = cookies().get('kpat')
     console.log('property at', cookies().get('kpat'))
     try {
