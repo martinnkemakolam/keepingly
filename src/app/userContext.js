@@ -11,6 +11,7 @@ export let UserContext=({children})=>{
     useEffect(()=>{
         setTkn(localStorage.getItem('staylogged') || user.access_token)
         sessionStorage.setItem('staylogged',localStorage.getItem('staylogged'))
+        
     }, [user])
     return(
         <userContext.Provider value={{user, setUser, tkn}}>
