@@ -7,8 +7,12 @@ export let UserContext=({children})=>{
     let [user, setUser] = useState({})
     UserContext.user = user
     UserContext.setUser = setUser
-    let tkn = localStorage.getItem('staylogged') || user.access_token
-    sessionStorage.setItem('staylogged',localStorage.getItem('staylogged'))
+    let tkn = 
+    
+    useEffect(()=>{
+        localStorage.getItem('staylogged') || user.access_token
+        sessionStorage.setItem('staylogged',localStorage.getItem('staylogged'))
+    }, [user])
     return(
         <userContext.Provider value={{user, setUser, tkn}}>
             {children}

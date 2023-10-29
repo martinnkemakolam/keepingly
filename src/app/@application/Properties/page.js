@@ -16,6 +16,7 @@ async function getProperties(){
     let userToken = cookies().get('kpat')
     console.log('property at', cookies().get('kpat'))
     try {
+        
         let prop = await apiServer.get(`/api/v2/get_property_user/`, {headers: {
             'Authorization': `Bearer ${userToken.value}`,
             "Content-Type": 'application/json'
