@@ -7,10 +7,9 @@ export let UserContext=({children})=>{
     let [user, setUser] = useState({})
     UserContext.user = user
     UserContext.setUser = setUser
-    let tkn = 
-    
+    let [tkn, setTkn] = useState()
     useEffect(()=>{
-        localStorage.getItem('staylogged') || user.access_token
+        setTkn(localStorage.getItem('staylogged') || user.access_token)
         sessionStorage.setItem('staylogged',localStorage.getItem('staylogged'))
     }, [user])
     return(
