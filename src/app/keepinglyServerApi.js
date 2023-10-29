@@ -20,6 +20,5 @@ export let apiServer = axios.create({
         let refresh_token = cookie.get('kprt').value
         let tkn = await axios.post(`https://pre.api.keepingly.co/api/v2/refresh`, {"refresh_token": refresh_token})
         res.headers.Authorization = `Bearer ${tkn.data.access_token}`
-        console.log('ran server fun', tkn.data.access_token)
         return res
     }, rej => rej)

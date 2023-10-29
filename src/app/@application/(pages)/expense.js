@@ -8,6 +8,7 @@ import ExpensesTable from "../(container)/expenseTable";
 import { ExpenseFooter } from "../(container)/expenseFooter";
 import { useContext, useEffect, useState } from "react";
 import { userContext } from "@/app/userContext";
+import { api } from "@/app/keepinglyClientApi";
 
 export let Expenses=(params)=>{
     let ctx = useContext(userContext)
@@ -19,17 +20,16 @@ export let Expenses=(params)=>{
     let exportSvg = <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M4.66675 6.66669L8.00008 10L11.3334 6.66669" stroke="#A61D4A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
+
+    // fetch data over server 
+
+
     useEffect(()=>{
-        fetch(`https://pre.api.keepingly.co/api/v2/get-expense/`,{
-            method: 'GET',
-            mode: 'cors',
+        api.get( '/api/v2/get_expense/',{
             headers: {
                 "Content-type": "application/json",
                 Authorization: `Bearer ${ctx.user.access_token}`
             }
-        }).then(res=>{
-            console.log(res)
-            return res.json()
         })
         .then(res => console.log(res))
     }, [ctx])

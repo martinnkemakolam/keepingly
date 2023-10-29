@@ -1,8 +1,6 @@
 'use client'
 import { useState } from "react"
 
-export let api = process.env.api
-
 export let handleInput =(name, value, hook, setHook)=>{
     setHook(
         {

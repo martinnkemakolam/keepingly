@@ -14,7 +14,6 @@ const nunito = Nunito({
 export default function Layout({children, authentication, application}){
     let [user, setUser] = useState()
     UserContext.setView = setUser
-    console.log(user)
     useEffect(()=>{
         setUser(sessionStorage.getItem('kpuo') || localStorage.getItem('staylogged'))
     }, [])
