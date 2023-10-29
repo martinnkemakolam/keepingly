@@ -12,9 +12,12 @@ const nunito = Nunito({
   display: 'swap',
 })
 export default function Layout({children, authentication, application}){
-    let [user, setUser] = useState(false)
+    let [user, setUser] = useState()
     UserContext.setView = setUser
-
+    console.log(user)
+    useEffect(()=>{
+        setUser(sessionStorage.getItem('kpuo') || localStorage.getItem('staylogged'))
+    }, [])
     return(
     <html lang="en"  style={{fontFamily: nunito.style.fontFamily}}>
         <body>

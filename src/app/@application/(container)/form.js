@@ -25,7 +25,7 @@ export default function FormProperties({ disable, showBtn,file, arrOpt, func, ha
                     func()
                 }
             }>
-                <input style={{display: 'none'}} required={ file ? false : true} onChange={({target: {name, files}})=> handleUploadInput(name, files)} type="file" name="file" accept="image/*" id="file"/>
+                <input style={{display: 'none'}}  onChange={({target: {name, files}})=> handleUploadInput(name, files)} type="file" name="file" accept="image/*" id="file"/>
                 <button ref={refference} style={{display: 'none'}}></button>
                 <UploadImg imgSrc={imgSrc} isEdit={isEdit} disable={disable} setPos={setPos} isProperty={isProperty} pos={pos}/>
                 <div className={style.infoSect}>

@@ -134,7 +134,6 @@ export default function CompleteProfile() {
     useEffect(()=>{
         db.current = window.indexedDB.open('keepinglyDB', 1.0)
         db.current.onsuccess=()=>{
-            console.log('profile succes')
             let result = db.current.result
             let store = result.transaction('user', 'readonly').objectStore('user')
             let userData = store.get(0)

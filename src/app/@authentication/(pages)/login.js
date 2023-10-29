@@ -12,9 +12,8 @@ import { UserContext, userContext } from "../../userContext";
 import { Router } from "next/router";
 import { useRouter } from "next/navigation";
 
-export default function SignIn (){
+export default function SignIn ({setCookies}){
     let [loginDetail, setLoginDetails] = useState({})
-    // let [mailError, setMailError] = useState(false)
     let [remember, setRemember] = useState(false)
     // let [passwordError, setPasswordError] = useState(false)
     let [mailError, errMsg, setMailError] =  ErrorHook()
@@ -23,30 +22,6 @@ export default function SignIn (){
     let {setUser} = useContext(userContext)
     let router = useRouter()
     let submit=()=>{
-        //pattern={ type === 'password'  || type === 'text' ?`(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-_@#&!$%^*+=?|~:;/"'<>{}()[\],.]).{8,}` :"/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/"}
-        // let db = indexedDB.open('keepinglyDB', 1)
-        // db.onsuccess=()=>{
-        //     let result = db.result
-        //     let store = result.transaction('user', "readwrite").objectStore('user')
-        //     let user = store.get(loginDetail.mail)
-        //     user.onsuccess=()=>{
-        //         if (user.result) {
-        //            if(user.result.password === loginDetail.password ){
-        //                 
-        //                 sessionStorage.setItem('mail', `${loginDetail.mail}`)
-        //                 remember && localStorage.setItem('mail', `${loginDetail.mail}`)
-        //                 
-        //             }else {
-        //                 
-        //             }
-        //         }else{
-        //             // call no user
-        //         }
-        //     }
-        // }
-
-        
-        
         fetch('https://pre.api.keepingly.co/api/v2/signin',{
             headers: {
                 'Content-Type': 'application/json'
@@ -58,19 +33,30 @@ export default function SignIn (){
                 "password": loginDetail.password
             })
         }).then((res)=>{
-            console.log(res)
+            console.log('login :' + res)
             if (res.ok) {
                 return res.json()   
             }else if (res.status === 401){
-                setPassError(`Incorrect password`)        
+                setPassError(`Incorrect password`)
+                return
             }else{
                 setMailError(`email not found`)
+                return
             }
         })
         .then(res =>{
-            setUser(res)
-            UserContext.setView(true)
-            router.push('/Setting/completeProfile')
+            if (res) {
+                setUser(res)
+                localStorage.setItem('kprt', res.refresh_token)
+                sessionStorage.setItem('kpuo', res.access_token)
+                remember && localStorage.setItem('staylogged', res.access_token)
+                document.cookie = `kpat = ${res.access_token};`
+                document.cookie = `kprt = ${res.refresh_token};`
+
+
+                UserContext.setView(true)
+                router.push('/Setting/completeProfile')
+                }
         })
     }
     return (

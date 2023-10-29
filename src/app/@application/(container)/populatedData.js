@@ -17,7 +17,6 @@ export default function PopulatedData({mode}) {
             let store = result.transaction('user', 'readonly').objectStore('user')
             let userData = store.get(0)
             userData.onsuccess=()=>{
-                console.log(userData.result)
                 setData(userData.result)
             }
         }

@@ -20,11 +20,12 @@ export default function ForgotPassword() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "email": inputValue
+                "email": inputValue.mail
             })
         }).then((res)=>{
             console.log(res)
-        })
+            return res.json()
+        }).then( e=> console.log(e))
     }
     return(
         <form className={style.modular} onSubmit={(e)=>{

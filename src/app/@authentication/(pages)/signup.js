@@ -19,30 +19,13 @@ export default function Register(params) {
     let submit =()=>{
         let error = errorExist(user, passwordConfirm)
         if (error) {
-            callMailErr(false, user, change)
-            callPassErr(user, passwordConfirm, conPassChange ,passChange)
+            passChange('Incorect password format look down for password format')
+            change('not a valid mail format')
             return
         }
-        // let db = indexedDB.open('keepinglyDB', 1)
-        // db.onsuccess=()=>{
-        //     let result = db.result
-        //     let userStore = result.transaction('user', "readwrite").objectStore('user')
-        //     let mail = userStore.get(user.mail || '')
-        //     mail.onsuccess=()=>{
-        //         if (mail.result){
-        //             
-        //         }else{
-        //             userStore.put(user)
-        //             router.push('./verification')
-        //         }
-        //     }
-        // }
-
-        // callMailErr(true, user, change)
-        let api = process.env.api
-        console.log(api)
         try {
-            fetch('https://pre.api.keepingly.co/api/v2/signup', {
+            let role = 'realtor'||'homeowner'
+            fetch(`https://pre.api.keepingly.co/api/v2/signup/${role}/`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -51,14 +34,23 @@ export default function Register(params) {
             body: JSON.stringify(
                 {
                     "first_name": "test",
-                    "last_name": "user",
+                    "last_name": "test",
                     "email": user.mail,
-                    "password": user.password,
-                    "role": "realtor"
+                    "password": user.password
                 }
             )
         }).then(res=>{
-            console.log(res.body)
+            switch (res.status) {
+                case 200:
+                    router.push('/')
+                    return res
+                case 409:
+                    change('Mail already exists')
+                    break;
+                case 400:
+                    change(`mail doesn't exist`)
+                    break
+            }
         })   
         } catch (error) {
           console.error(error)  

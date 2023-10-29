@@ -7,7 +7,7 @@ export default function Table({h1Text, arrProperties}) {
     let properties = arrProperties?.map((ele, id)=>{
         return(
         <>
-            <Card key={id} Address1={ele.address1} state={ele.state} City={ele.cty} postal={ele.zipcode} imgSrc={ele.file} isPrimary={ id === 0 ? true: false} id={id}/>
+            <Card key={id} Address1={ele.address_one} state={ele.state} City={ele.city} postal={ele.zipcode} imgSrc={ele.file} isPrimary={ id === 0 ? true: false} id={ele.id}/>
         </>
         )
     })

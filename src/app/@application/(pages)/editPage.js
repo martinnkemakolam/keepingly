@@ -17,7 +17,7 @@ export default function EditProperty({id}) {
                     label: 'Address (Line 1)',
                     placeholder: 'Enter address',
                     type: 'text',
-                    name: 'address1'
+                    name: 'address_one'
                 },
                 [
                     {
@@ -25,7 +25,7 @@ export default function EditProperty({id}) {
                         label: 'City',
                         placeholder: 'Enter city',
                         type: 'text',
-                        name: 'cty'
+                        name: 'city'
                     },{
                         length: 'small',
                         label: 'State',
@@ -102,7 +102,7 @@ export default function EditProperty({id}) {
     ]
     let router = useRouter()
     let formRef = useRef()
-    let db = useRef()
+    // let db = useRef()
     let [userData, setUserData] = useState({})
     let handleInput =(name, value)=>{
         setUserData(n=>{
@@ -123,50 +123,36 @@ export default function EditProperty({id}) {
         }
     }
     let dbEdit =()=>{
-        let result = db.current.result
-        let store = result.transaction('user', "readwrite").objectStore('user')
-        let user = store.get(userObj.user.mail)
-        user.onsuccess=()=>{
-            if (user.result) {
-                let property = id
-                let newData = user.result.properties.map((ele, id)=>{
-                    if(id === +property){
-                        return userData
-                    }
-                    return ele
-                })
-                store.put({
-                    ...user.result,
-                    properties: newData
-                }).onsuccess=()=>{
-                    router.push('./')
-                }
-            }
-        }
+        fetch(`https://pre.api.keepingly.co/api/v2/update/property/${id.id}/`, {
+            method: "PATCH",
+            mode: 'cors',
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `Bearer ${userObj.user.access_token}`
+            },
+            body: JSON.stringify({
+                "address_one": userData.address_one,
+                "address_two": "string",
+                "city": userData.city,
+                "state": userData.state,
+                "zipcode": userData.zipcode
+              })
+        }).then((res)=>res.json())
+        .then(res=>{
+            console.log(res)
+            router.push('./')
+        })
     }
     useEffect(()=>{
-        db.current = indexedDB.open('keepinglyDB', 1.0)
-        db.current.onsuccess=()=>{
-            let result = db.current?.result
-            let transact = result.transaction('user', 'readwrite').objectStore('user')
-            let mail = transact.get(userObj.user.mail || '')
-            mail.onsuccess=()=>{
-                if (mail.result) {
-                    let property = id
-                    let newData = mail.result.properties.filter((ele,id)=> id === +property)
-                    console.log(id, newData)
-                    setUserData(newData[0])
-                    return
-                }
-            }
-        }
-    }, [id, userObj])
+        setUserData(id)
+    }, [id])
     
     return(
         <>
+        {console.log(id)}
         <TopBar title={`Properties`}/>
-        <PropertyInfo isEdit={disable} showSvg={true} h1Text={`${userData?.address1},${userData?.cty},${userData?.state} ${userData?.zipcode}`} buttonText={ disable ?`Edit property`: `Save property`} buttonFunc={changeButtonOrSubmit} func={dbEdit}/>
-        <FormProperties disable={disable} arrOpt={arr} isProperty={false} isEdit={true} file={userData?.file} values={userData} handleInput={handleInput} func={dbEdit} refference={formRef}/>
+        <PropertyInfo isEdit={disable} showSvg={true} h1Text={`${id.address_one},${id.city},${id.state} ${id.zipcode}`} buttonText={ disable ?`Edit property`: `Save property`} buttonFunc={changeButtonOrSubmit} func={dbEdit}/>
+        <FormProperties disable={disable} arrOpt={arr} isProperty={false} isEdit={true} file={id?.file} values={id} handleInput={handleInput} func={dbEdit} refference={formRef}/>
         </>
     )
 }

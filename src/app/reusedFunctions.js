@@ -1,3 +1,4 @@
+'use client'
 import { useState } from "react"
 
 export let api = process.env.api
@@ -10,7 +11,6 @@ export let handleInput =(name, value, hook, setHook)=>{
         }
     )
 }
-
 export let VisibleChnage=()=>{
     let [first, setFirst] = useState(false)
     let [second, setSecond] = useState(false)

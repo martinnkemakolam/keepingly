@@ -1,11 +1,13 @@
 'use client'
-import { useContext, useEffect, useRef, useState } from "react";
-
+import { useContext, useEffect, useId, useRef, useState } from "react";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import { userContext } from "@/app/userContext";
 import TopBar from "../(container)/Topbar";
 import PropertyInfo from "../(container)/propertyInfo";
 import FormProperties from "../(container)/form";
+import { randomUUID } from "crypto";
+import { api } from "../../keepinglyClientApi";
 
 export let AddProperty=()=> {
     let formRef = useRef()
@@ -35,7 +37,7 @@ export let AddProperty=()=> {
                         label: 'City',
                         placeholder: 'Enter city',
                         type: 'text',
-                        name: 'cty'
+                        name: 'city'
                     },{
                         length: 'small',
                         label: 'State',
@@ -182,21 +184,25 @@ export let AddProperty=()=> {
     let formSubmit=()=>{
         formRef.current.click()
     }
-
-    let submit=()=>{
-        // let result = db.current.result
-        // let transact = result.transaction('user', 'readwrite').objectStore('user')
-        // let gotten = transact.get(userObj.user.mail)
-        // gotten.onsuccess=()=>{
-        //     let user = gotten.result
-        //     let arr = gotten.result.properties
-        //     arr.unshift(userFormData)
-        //     user.properties = arr
-        //     let update = transact.put(user)
-        //     update.onsuccess=()=>{
-        //         router.push('./')
-        //     }
-        // }
+    let submit = ()=>{
+        let tkn = sessionStorage.getItem('kpuo')
+        let data = {
+                "id": crypto.randomUUID(),
+                "address_one": userFormData.address1,
+                "address_two": userFormData.address2,
+                "city": userFormData.city,
+                "state": userFormData.state,
+                "zipcode": userFormData.zipcode,
+            }
+            // console.log(localStorage.getItem('kpat'))
+            console.log('This the user access tkn', tkn)
+        api.post('/api/v2/property', data, {headers: {
+            'accept': '*/*',
+            'access_token': tkn,
+            "Authorization": `Bearer ${tkn}`,
+            'Content-Type': "application/json"
+        }})
+        .then((res)=> console.log( res.config.headers.Authorization,res.data, res.headers))
     }
     return (
         <>
