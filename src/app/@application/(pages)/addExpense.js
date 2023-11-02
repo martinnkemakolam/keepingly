@@ -55,6 +55,7 @@ export let AddExpense =({id, edit})=>{
                 headers: {
                     'Content-type': 'application/json',
                     Authorization: `Bearer ${tkn}`
+                    
                 }
             })
             console.log(data)
