@@ -1,13 +1,27 @@
 import { useState } from "react";
 import TableRow from "../(presentation)/tableRow";
 import style from "@/style/expense.module.css"
-export default function ExpensesTable() {
-    let [showDropDown, setShowDropDown] = useState(false)
-    let openDropDown=()=>{
-        setShowDropDown(true)
+export default function ExpensesTable({data}) {
+    let [showDropDown, setShowDropDown] = useState({
+        isOpen: false,
+        id: null
+    })
+    let openDropDown=(arg)=>{
+        setShowDropDown({
+            isOpen: true,
+            id: arg
+        })
+    }
+    let closeDropDown=()=>{
+        if (showDropDown.isOpen) {
+            setShowDropDown({
+                isOpen: false,
+                id: null
+            })   
+        }
     }
     return(
-        <div className={style.table}>
+        <div className={style.table} onClick={closeDropDown}>
             <table className={style.table2}>
             <tr className={style.tableRow}>
                 <th className={style.th + ' ' + style.small}>S/N</th>
@@ -24,7 +38,15 @@ export default function ExpensesTable() {
                 <th className={style.th + ' ' + style.medium}>DATE</th>
                 <th className={style.th + ' ' + style.small}></th>
             </tr>
-            <TableRow showFunc={openDropDown} hide={showDropDown} show={showDropDown} no={1} expense={`Building maintainance`} amount={500.00} paidto={`Sacony Construction`} expenseType={'Mortage'} date={'2020-01-30'}/>
+            {
+                data.map((ele, id)=>{
+                    console.log(ele)
+                    if (ele === undefined) {
+                        return
+                    }
+                    return <><TableRow showFunc={openDropDown} id={id} expId={ele.id} hide={showDropDown} show={showDropDown} no={id + 1} expense={ele.expense_type.name} amount={ele.amount} paidto={ele.paid_to} expenseType={ele.expense_type.name} date={ele.date}/></>
+                })
+            }
         </table> 
         </div>
     )

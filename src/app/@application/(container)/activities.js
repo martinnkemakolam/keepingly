@@ -9,12 +9,11 @@ export let Activites=()=>{
     
     return(
         <div className={style.activities}>
+            <h1 className={style.innerCircleText1}>Recent activity</h1>
             <div className={style.activityContent}>
-                <p className={style.innerCircleText1}>Recent activity</p>
                 <Activity text={`Upload mortgage statement`} point={20}/>
                 <Activity text={`Upload mortgage statement`} point={20}/>
             </div>
-            <ClearBtn text={`Learn how we calculate this`} svg={svg} btnStyle={`clearBtn`}/>
         </div>
     )
 }

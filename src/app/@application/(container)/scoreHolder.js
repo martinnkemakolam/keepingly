@@ -10,9 +10,7 @@ export let ScoreHolder=()=>{
     return(
         <div className={style.frame}>
             <Score />
-            {lineSvg}
             <Performance/>
-            {lineSvg}
             <Activites/>
         </div>
     )

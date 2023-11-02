@@ -194,13 +194,12 @@ export let AddProperty=()=> {
                 "state": userFormData.state,
                 "zipcode": userFormData.zipcode,
             }
-            // console.log(localStorage.getItem('kpat'))
-            console.log('This the user access tkn', tkn)
+        console.log('This the user access tkn', tkn)
         api.post('/api/v2/property', data, {headers: {
             "Authorization": `Bearer ${tkn}`,
             'Content-Type': "application/json"
         }, "mode": "cors"})
-        .then((res)=> console.log( res.config.headers.Authorization,res.data, res.headers))
+        .then((res)=> res.status === 200 && router.push('./'))
     }
     return (
         <>

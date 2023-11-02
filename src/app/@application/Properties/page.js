@@ -1,7 +1,6 @@
 import { Properties } from "../(pages)/property";
 import {cookies} from 'next/headers'
 import { apiServer } from "@/app/keepinglyServerApi";
-import { reTry } from "../../keepinglyServerApi";
 
 
 export default async function Page(params) {
@@ -16,7 +15,6 @@ async function getProperties(){
     let userToken = cookies().get('kpat')
     console.log('property at', cookies().get('kpat'))
     try {
-        
         let prop = await apiServer.get(`/api/v2/get_property_user/`, {headers: {
             'Authorization': `Bearer ${userToken.value}`,
             "Content-Type": 'application/json'

@@ -1,12 +1,8 @@
 'use client'
 import { useRouter } from "next/navigation"
-import { useContext, useEffect, useState } from "react"
-import { userContext } from "@/app/userContext"
 import TopBar from "../(container)/Topbar"
 import Table from "../(container)/table"
 export let Properties=({property})=>{
-    // fetch user data on page , if none set formFiled to false
-    // let [properties, setProperties] = useState([])
     let router = useRouter()
     let btnFunc =()=>{
         router.push('./Properties/addproperty')

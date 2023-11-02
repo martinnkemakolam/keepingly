@@ -2,8 +2,7 @@
 import axios from "axios";
 
 export let api = axios.create({
-    baseURL: 'https://pre.api.keepingly.co',
-    withCredentials: true
+    baseURL: 'https://pre.api.keepingly.co'
 });
 
 api.interceptors.response.use(

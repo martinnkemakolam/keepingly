@@ -5,6 +5,7 @@ import PropertyInfo from "../(container)/propertyInfo"
 import FormProperties from "../(container)/form"
 import { useRouter } from "next/navigation"
 import { userContext } from "@/app/userContext"
+import { api } from "../../keepinglyClientApi"
 
 export default function EditProperty({id}) {
     let userObj = useContext(userContext)
@@ -123,25 +124,21 @@ export default function EditProperty({id}) {
         }
     }
     let dbEdit =()=>{
-        fetch(`https://pre.api.keepingly.co/api/v2/update/property/${id.id}/`, {
-            method: "PATCH",
-            mode: 'cors',
+        let tkn = sessionStorage.getItem('kpuo')
+        let data = {
+            "address_one": userData.address_one,
+            "address_two": "string",
+            "city": userData.city,
+            "state": userData.state,
+            "zipcode": userData.zipcode
+          }
+        api.patch(`/api/v2/update/property/${id.id}/`, data, {
             headers: {
-                'Content-type': 'application/json',
-                Authorization: `Bearer ${userObj.user.access_token}`
-            },
-            body: JSON.stringify({
-                "address_one": userData.address_one,
-                "address_two": "string",
-                "city": userData.city,
-                "state": userData.state,
-                "zipcode": userData.zipcode
-              })
-        }).then((res)=>res.json())
-        .then(res=>{
-            console.log(res)
-            router.push('./')
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${tkn}`
+            }
         })
+        .then((res)=>res.ok && router.push('./'))
     }
     useEffect(()=>{
         setUserData(id)

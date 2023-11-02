@@ -1,17 +1,13 @@
+import { Activity } from "../(presentation)/activity"
 import { Grade } from "../(presentation)/grade"
 import style from "@/style/keeptrack.module.css"
 export let Performance=()=>{
     return(
         <div className={style.performanceHolder}>
-            <div className={style.performance}>
-                <Grade begin={0} end={10}/>
-                <Grade begin={11} end={20}/>
-                <Grade begin={21} end={40}/>
-            </div>
-            <div className={style.performance}>
-                <Grade begin={41} end={60}/>
-                <Grade begin={61} end={80}/>
-                <Grade begin={81} end={100}/>
+            <h1 className={style.innerCircleText1}>Score history</h1>
+            <div className={style.activityContent}>
+                <Activity text={`June 2023`} point={20}/>
+                <Activity text={`May 2023`} point={20}/>
             </div>
         </div>
     )

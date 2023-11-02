@@ -14,7 +14,7 @@ export default function PropertyInfo({h1Text, setId,buttonText, buttonFunc, arrP
         </svg>
         </div>}
         {
-            showDrop && <div>
+            showDrop && <div className={style.dropDown}>
                 {arrProperties.map((ele, id)=> <><p onClick={()=> setId(id)}>{ele?.address_one}, {ele?.city} {ele?.zipcode}</p></>)}
             </div>
         }

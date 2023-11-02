@@ -72,6 +72,7 @@
     align-items: center;
     display: flex;
     gap: 32px;
+    position: relative;
     width: 100%;
 }
 .upload p{
@@ -283,6 +284,17 @@
     display: flex;
     gap: 0.8rem;
     line-height: 1.75rem; /* 155.556% */
+}
+.dropDown{
+    top: 40px;
+    position: absolute;
+    background-color: white;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 10px;
+    z-index: 1;
 }
 .addProperty, .addedProperty{
     height: 23rem;

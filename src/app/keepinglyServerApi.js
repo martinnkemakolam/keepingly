@@ -9,11 +9,9 @@ import { setCookies } from "./actions";
 import {setCookie} from 'cookies-next'
 // Get the refresh token from local storage
 let cookie = cookies()
-let refreshToken = cookie.get('kprt');
 // Create an Axios instance with a base URL
 export let apiServer = axios.create({
-    baseURL: 'https://pre.api.keepingly.co',
-    withCredentials: true,
+    baseURL: 'https://pre.api.keepingly.co'
 });
 
     apiServer.interceptors.response.use(async res=>{
