@@ -281,7 +281,7 @@ gap: 0.25rem;
 align-self: stretch;
 }
 .modalUploadText1{
-    color: var(--black-100, #333);
+    color: var(--primary-100, #A61D4A);
 text-align: center;
 
 /* body */
@@ -291,7 +291,7 @@ font-weight: 400;
 line-height: 1.5rem; /* 150% */
 }
 .modalUploadText2{
-    color: var(--black-60, #838383);
+    color: var(--primary-60, #C36887);
 text-align: center;
 
 /* caption */

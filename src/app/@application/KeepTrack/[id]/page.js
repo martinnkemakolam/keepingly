@@ -1,13 +1,16 @@
-import TopBar from "../../(components)/Topbar";
-import { ExpenseForm } from "../../(components)/expenseForm";
-import PropertyInfo from "../../(components)/propertyInfo";
+import KeepTrackDyn from "../../(pages)/keepTrachDyn"
 
-export default function addExpense(){
+export default async function Page(params) {
     return(
-        <>
-        <TopBar title={`Test and inspect smoke and carbon monoxide detector`} showSearch={true}/>
-        <PropertyInfo h1Text={`Add an expense`}/>
-        <ExpenseForm />
-        </>
+        <KeepTrackDyn/>
     )
+}
+export const dynamicParams = true
+export function generateStaticParams(){
+    console.log('called')
+    return [
+        {
+            id: '0'
+        }
+    ]
 }

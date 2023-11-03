@@ -1,7 +1,9 @@
+import Link from "next/link";
+
 export default function Default(){
     return(
-        <>
-        Default page
-        </>
+        <Link href={`/`}>
+        Home page
+        </Link>
     )
 }

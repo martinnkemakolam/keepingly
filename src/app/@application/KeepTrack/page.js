@@ -1,22 +1,7 @@
-'use client'
-import { useState } from "react"
-import TopBar from "../(components)/Topbar"
-import Overlay from "../(components)/overlay"
-import { CheckListHolder } from "../(components)/checkListHolder"
-import { KeepTrackScoreHolder } from "../(components)/keepTrackScoreHolder"
+import KeepTrack from "../(pages)/keepTrack";
 
-let KeepTrack=()=>{
-    let [view, setView]=useState(true)
+export default function Page(params) {
     return(
-        <>
-        <TopBar title={`KeepTrack`} showSearch={true}/>
-        <KeepTrackScoreHolder />
-        <CheckListHolder/>
-        {
-            view && <Overlay overlay={`keeptrack`} closeFunc={()=> setView(false)}/>
-        }
-        </>
+        <KeepTrack/>
     )
 }
-
-export default KeepTrack

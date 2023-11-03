@@ -1,3 +1,4 @@
+'use client'
 import { useState } from "react"
 
 export let handleInput =(name, value, hook, setHook)=>{
@@ -8,7 +9,6 @@ export let handleInput =(name, value, hook, setHook)=>{
         }
     )
 }
-
 export let VisibleChnage=()=>{
     let [first, setFirst] = useState(false)
     let [second, setSecond] = useState(false)
@@ -21,7 +21,8 @@ export let ErrorHook =()=>{
         setErrMsg(arg)
         setErr(true)
     }
-    return [err, errMsg, change]
+    let clearErrState=()=> setErr(false)
+    return [err, errMsg, change, clearErrState]
 }
 export function callMailErr (alreadyUsed, user, errSet) {
     if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(user.mail)) {
@@ -40,6 +41,47 @@ export function callPassErr(user, passwordConfirm, setErr, conSetErr) {
     }
 }
 
-export let errorExist =(user, passwordConfirm)=>{
-   return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(user.mail) || passwordConfirm.confirm !== user.password || !(/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-_@#&!$%^*+=?|~:;/"'<>{}()[\],.]).{8,}/.test(user.password))
+export let validMail =(user)=>{
+   return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(user?.mail)
+}
+export let validPassword=(user)=>{
+    return  (/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-_@#&!$%^*+=?|~:;/"'<>{}()[\],.]).{8,}/.test(user?.password))
+}
+export let validConfirmPass=(user, passwordConfirm)=>{
+    return passwordConfirm?.confirm === user?.password
+}
+
+export let FilesFunc =(data)=>{
+    let [select, setSelect] = useState([])
+    let selectDoc = (arg)=>{
+        let id2 = select.find((ele, id)=> ele === arg)
+        if (id2) {
+            setSelect(select.filter((e, id)=> e !== arg))
+            return
+        }
+        setSelect([...select, arg])
+    }
+    let addAll =()=>{
+        if (data.length === select.length) {
+            setSelect([])
+            return
+        }
+        let arr = data.map((ele)=> ele.name)
+        setSelect([...arr])
+    }
+    return [select, selectDoc, addAll]
+}
+
+export let ShowOverlayFunc =(arg)=>{
+    let [showOverLay, setShowOverlay]=useState({value: '' , type: '' ,bol: false})
+    let send=()=>{
+        setShowOverlay({value: arg, type: 'Send', bol: true})
+    }
+    let add=()=>{
+        setShowOverlay({value: arg, type: 'Upload',bol: true})
+    }
+    let close=()=>{
+        setShowOverlay({value:'', type:'', bol: false})
+    }
+    return [showOverLay, send, add, close]
 }

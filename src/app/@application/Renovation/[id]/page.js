@@ -1,22 +1,31 @@
-'use client'
-import TopBar from "../../(components)/Topbar"
-import { AlbumPhoto } from "../../(components)/albumPhoto"
-import { BasicRenovationDetails } from "../../(components)/basicRenovationDetails"
-import ExpenseTitle from "../../(components)/expenseTitle"
-import { RenovationTable } from "../../(components)/renovationTable"
-
-let ViewRenovation=()=>{
-    return(
-        <>
-        <TopBar showSearch={true} title={`Building renovation`} buttonText={`Go back to Renovations`}/>
-        <ExpenseTitle title={`Basic details`} showDropDown={true}/>
-        <BasicRenovationDetails />
-        <RenovationTable title={`Kitchen`} btn1={`Add expense`}/>
-        <ExpenseTitle title={`Photos`} showDivider={true} showDropDown={`true`}/>
-        <AlbumPhoto text={`Before`} />
-        <AlbumPhoto text={`During`} />
-        <AlbumPhoto text={`After`} />
-        </>
-    )
+import { ViewRenovation } from "../../(pages)/viewrenovation";
+import {apiServer} from "@/app/keepinglyServerApi"
+import {cookies} from 'next/headers'
+export default async function page({params: {id}}){
+    let data = await getReno(id)
+    return <ViewRenovation data={data[0]}/>
 }
-export default ViewRenovation
+
+export const dynamicParams = true
+
+async function getReno(renovation_id){
+    let tk = cookies().get('kpat').value
+    let data = await apiServer.get(`/api/v2/renovations/details/${renovation_id}/`, {
+        headers: {
+            Authorization: `Bearer ${tk}`,
+            'Content-Type': 'application/json'
+        }
+    })
+    return data.data.payload
+}
+export async function generateStaticParams(){
+    let data = await apiServer.get('/api/v2/get/all/renovation/', {
+        headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${tkn}`
+        }
+    })
+    return data.data.data.map((ele)=>({
+        id: ele.id
+    }))
+}
