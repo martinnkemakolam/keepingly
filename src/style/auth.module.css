@@ -24,7 +24,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: auto;
     padding: 40px 0;
     box-sizing: border-box;
@@ -124,7 +124,8 @@ line-height: 1rem; /* 133.333% */
 }
 .authP{
     text-align: center;
-    width: 100%;
+    width: 14rem;
+    margin-right: 16px;
 }
 .signupText{
     font-size: 14px;

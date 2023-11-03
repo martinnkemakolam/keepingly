@@ -1,6 +1,6 @@
 import style from "@/style/expense.module.css"
 import { OverviewTableRow } from "../(presentation)/overviewTableRow"
-export let OverviewTable=()=>{
+export let OverviewTable=({data})=>{
     return(
         <table className={style.table}>
             <tr className={style.tableRow}>
@@ -15,7 +15,11 @@ export let OverviewTable=()=>{
                 <th className={style.th}>PAID TO</th>
                 <th className={style.th + ' ' + style.meduim}>AMOUNT ($)</th>
             </tr>
-            <OverviewTableRow/>
+            {
+                data.map((ele, id)=>{
+                    return <><OverviewTableRow sn={id + 1} expType={ele.expense_type.name} amount={ele.amount} paidTo={ele.paid_to}/></>
+                })
+            }
         </table>
     )
 }

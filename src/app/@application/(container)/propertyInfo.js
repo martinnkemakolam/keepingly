@@ -2,7 +2,7 @@
 import { userContext } from "@/app/userContext"
 import style from "@/style/properties.module.css"
 import { useContext, useEffect, useState } from "react"
-export default function PropertyInfo({h1Text, setId,buttonText, buttonFunc, arrProperties, isEdit, extraButtonText, extraButtonFunc, showSvg}) {
+export default function PropertyInfo({h1Text, setId,buttonText, buttonFunc, arrProperties=[], isEdit, extraButtonText, extraButtonFunc, showSvg}) {
     let [showDrop, setDrop] = useState(false)
     return(
         <div className={style.flex2 + ' ' + style.alignCenter}>
@@ -18,6 +18,7 @@ export default function PropertyInfo({h1Text, setId,buttonText, buttonFunc, arrP
                 {arrProperties.map((ele, id)=> <><p onClick={()=> setId(id)}>{ele?.address_one}, {ele?.city} {ele?.zipcode}</p></>)}
             </div>
         }
+
         {
             buttonText &&
             <button className={`${ isEdit ? style.label : style.button}` + ' ' + style.autoLeft} onClick={()=> {

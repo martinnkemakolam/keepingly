@@ -285,6 +285,16 @@
     gap: 0.8rem;
     line-height: 1.75rem; /* 155.556% */
 }
+.dropDownH1{
+    color: var(--black-100, #333);
+text-align: center;
+
+/* title small */
+font-size: 1.125rem;
+font-style: normal;
+font-weight: 700;
+line-height: 1.75rem; /* 155.556% */
+}
 .dropDown{
     top: 40px;
     position: absolute;

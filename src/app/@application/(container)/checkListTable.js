@@ -4,7 +4,8 @@ import style from "@/style/keeptrack.module.css"
 export let CheckListTable=()=>{
     return(
         <div className={style.checkListTable}>
-            <Checklist text={`Test and inspect smoke and carbon monoxide detectors`} />
+            <p>No checlist available</p>
+            {/* <Checklist text={`Test and inspect smoke and carbon monoxide detectors`}/> */}
         </div>
     )
 }

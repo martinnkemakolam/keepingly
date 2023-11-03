@@ -18,7 +18,7 @@ export let AddExpense =({id, edit})=>{
                 'Content-type': 'application/json'
             }
         })
-        let currentType = exp.data.filter(element => element.name.toLowerCase() === (Object.values(id)[1].toLowerCase() || formData?.expense_type?.toLowerCase() || edit.expense_type.name.toLowerCase()));
+        let currentType = exp.data.filter(element => element.name.toLowerCase() === ( id ? Object?.values(id)[1].toLowerCase() : '' || formData?.expense_type?.toLowerCase() || edit.expense_type.name.toLowerCase()));
         if (currentType.length > 0) {
             expForm = currentType[0].id
         }else{
@@ -55,7 +55,7 @@ export let AddExpense =({id, edit})=>{
                 headers: {
                     'Content-type': 'application/json',
                     Authorization: `Bearer ${tkn}`
-                    
+
                 }
             })
             console.log(data)
@@ -65,7 +65,7 @@ export let AddExpense =({id, edit})=>{
     }
     return(
         <>
-
+        {console.log(id)}
         <TopBar title={`Expenses`} btnStyle1={'redFillBtn'} btnFunc1={()=> submit()} buttonText1={`Save expense`} showSearch={true}/>
         <PropertyInfo h1Text={`Add an expense`}/>
         <ExpenseForm handleInput={(name, value)=> handleInput(name, value, formData, setFormData)} value={ edit?{

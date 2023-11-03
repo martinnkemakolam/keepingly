@@ -21,7 +21,8 @@ export let ErrorHook =()=>{
         setErrMsg(arg)
         setErr(true)
     }
-    return [err, errMsg, change]
+    let clearErrState=()=> setErr(false)
+    return [err, errMsg, change, clearErrState]
 }
 export function callMailErr (alreadyUsed, user, errSet) {
     if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(user.mail)) {
@@ -40,8 +41,14 @@ export function callPassErr(user, passwordConfirm, setErr, conSetErr) {
     }
 }
 
-export let errorExist =(user, passwordConfirm)=>{
-   return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(user?.mail) || passwordConfirm?.confirm !== user?.password || !(/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-_@#&!$%^*+=?|~:;/"'<>{}()[\],.]).{8,}/.test(user?.password))
+export let validMail =(user)=>{
+   return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(user?.mail)
+}
+export let validPassword=(user)=>{
+    return  (/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-_@#&!$%^*+=?|~:;/"'<>{}()[\],.]).{8,}/.test(user?.password))
+}
+export let validConfirmPass=(user, passwordConfirm)=>{
+    return passwordConfirm?.confirm === user?.password
 }
 
 export let FilesFunc =(data)=>{

@@ -11,8 +11,7 @@ export let Activites=()=>{
         <div className={style.activities}>
             <h1 className={style.innerCircleText1}>Recent activity</h1>
             <div className={style.activityContent}>
-                <Activity text={`Upload mortgage statement`} point={20}/>
-                <Activity text={`Upload mortgage statement`} point={20}/>
+                <p>No recent activities</p>
             </div>
         </div>
     )

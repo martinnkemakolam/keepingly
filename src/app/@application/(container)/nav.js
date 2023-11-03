@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { SearchInput } from '../(presentation)/search'
 import LayoutLi from '../(presentation)/layoutLi'
+import { api } from '@/app/keepinglyClientApi'
 export default function Nav() {
     let currentParam = useSelectedLayoutSegment()
     let [hideNav, setHideNav] = useState(false)
@@ -60,9 +61,26 @@ export default function Nav() {
     ]
     let liMap = arrayIcon.map(({name, svg}, id)=>{
         return(
-            <LayoutLi canClick={true} hide={hideNav} isActive={name === currentParam} Text={name} icon={svg} linkHref={name === 'Overview' ? '/' : `/${name}`} key={id}/>
+            <LayoutLi canClick={canClick} hide={hideNav} isActive={name === currentParam} Text={name} icon={svg} linkHref={name === 'Overview' ? '/' : `/${name}`} key={id}/>
         )
     })
+    useEffect(()=>{
+        (async ()=>{
+            let tkn = sessionStorage.getItem('kpuo')
+            let apiValue = await api.get('/api/v2/profile/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${tkn}`
+                }
+            })
+
+            console.log(Array.isArray(apiValue.data))
+            setCanClick( Array.isArray(apiValue.data) ? apiValue.data[0]?.agency_address !== undefined : false)
+            console.log(apiValue)
+            sessionStorage.setItem('kppk', Array.isArray(apiValue.data) ? apiValue.data[0].id : '')
+        })()
+        console.log('ran')
+    }, [])
     return(
         <nav className={`${style.sidebar} ${hideNav && style.left}`}>
                     <div className={style.floatBtn} onClick={()=> setHideNav(!hideNav)}>

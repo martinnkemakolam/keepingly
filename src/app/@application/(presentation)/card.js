@@ -3,7 +3,7 @@ import style from "@/style/properties.module.css"
 import Link from "next/link";
 export default function Card({imgSrc, isPrimary, City, state, postal, Address1, id}) {
     return(
-        <div className={style.card}>
+        <Link href={`/Properties/[id]`} as={`/Properties/${id}`} className={style.card}>
             <Image className={style.img} src={imgSrc} width={382} height={270} alt="property"/>
             <div>
                 <div>
@@ -21,13 +21,13 @@ export default function Card({imgSrc, isPrimary, City, state, postal, Address1, 
                         <p className={style.cardP}>{state}, <span>{postal}</span></p>
                     </div>
                 </div>
-                    <Link  href={`/Properties/[id]`} as={`/Properties/${id}`} className={style.emptyBtn} style={{justifySelf: 'flex-end'}}>
-                        View home 
+                    <Link  href={`/Documents?propId=${id}`} className={style.emptyBtn} style={{justifySelf: 'flex-end'}}>
+                        View document 
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M11.3333 7.99992L4.66666 7.99992M11.3333 7.99992L8.66666 10.6666M11.3333 7.99992L8.66666 5.33325" stroke="#A61D4A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </Link>
             </div>
-        </div>
+        </Link>
     )
 }
