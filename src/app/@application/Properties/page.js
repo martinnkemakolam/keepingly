@@ -14,10 +14,9 @@ export default async function Page(params) {
 
 async function getProperties(){
     let userToken = cookies().get('kpat')
-    try {
         let prop = await apiServer.get(`/api/v2/get_property_user/`, {headers: {
             'Authorization': `Bearer ${userToken.value}`,
-            "Content-Type": 'application/json'
+            "Content-Type": 'application/json',
         }})
         console.log(prop)
         if (prop.status !== 200){
@@ -25,9 +24,6 @@ async function getProperties(){
         }
         let propetiiesJson = prop.data
         return propetiiesJson || []
-    } catch (error) {
-        console.log('this your custom error ' + error)
-    }
 }
 
 
