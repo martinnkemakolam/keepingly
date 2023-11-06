@@ -2,7 +2,7 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import style from '@/style/properties.module.css'
-import { userContext } from "@/app/userContext";
+import { UserContext } from "@/app/userContext";
 import TopBar from "../(container)/Topbar";
 import FormProperties from "../(container)/form";
 import { api } from "@/app/keepinglyClientApi";
@@ -10,7 +10,6 @@ import { api } from "@/app/keepinglyClientApi";
 export default function CompleteProfile() {
     let [modalView, setModalView] = useState(false)
     let [userFormData, setUserFormData] = useState({})
-    let db = useRef()
     let router = useRouter()
     let div1 = [
         {
@@ -19,13 +18,13 @@ export default function CompleteProfile() {
             btnText: `Save profile`,
             arr: [
                 {
-                    name: 'firstName',
+                    name: 'first_name',
                     label: 'First name',
                     type:"text",
                     placeholder: "Enter first name"
                 },
                 {
-                    name: 'lastName',
+                    name: 'last_name',
                     label: 'Last name',
                     type:"text",
                     placeholder:"Enter last name"
@@ -44,7 +43,7 @@ export default function CompleteProfile() {
                         placeholder: 'Enter license number'
                     },{
                         length: 'medium',
-                        name: 'licenseState',
+                        name: 'license_state',
                         label: 'License state',
                         type: 'select',
                         placeholder: 'Select state',
@@ -53,12 +52,12 @@ export default function CompleteProfile() {
                         ]
                     }
                 ],{
-                    name: 'agencyName',
+                    name: 'agency_name',
                     label: 'Agency name',
                     type: 'text',
                     placeholder: 'Enter agency name'
                 },{
-                    name: 'agencyAddress',
+                    name: 'agency_address',
                     label: 'Agency address',
                     type: 'text',
                     placeholder: 'Enter agency address'
@@ -89,16 +88,15 @@ export default function CompleteProfile() {
             ]
         }
     ]
-    let userObj = useContext(userContext)
     let addUser = async ()=>{
         let data = {
-            "first_name": userFormData.firstName,
-            "last_name": userFormData.lastName,
+            "first_name": userFormData.first_name,
+            "last_name": userFormData.last_name,
             "website": userFormData.website,
-            "license_state": userFormData.licenseState,
-            "license_number": userFormData.licenseNumber,
-            "agency_name": userFormData.agencyName,
-            "agency_address": userFormData.agencyAddress,
+            "license_state": userFormData.license_state,
+            "license_number": userFormData.license_number,
+            "agency_name": userFormData.agency_name,
+            "agency_address": userFormData.agency_address,
             "city": userFormData.city,
             "state": userFormData.state,
             "zipcode": userFormData.zipcode
@@ -111,9 +109,10 @@ export default function CompleteProfile() {
                 Authorization: `Bearer ${tkn}`
             }
         })
-        console.log('This is',apiValue)
+        UserContext.setCanClick(true)
         setModalView(true)
     }
+    
     let handleInput =(name, value)=>{
         setUserFormData(
             {
@@ -124,6 +123,18 @@ export default function CompleteProfile() {
             }
         )
     }
+    useEffect(()=>{
+        (async ()=>{
+            let tkn = sessionStorage.getItem('kpuo')
+            let apiValue = await api.get('/api/v2/profile/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${tkn}`
+                }
+            })
+            setUserFormData(apiValue.data[0])
+        })()
+    }, [])
     return (
         <>
         <TopBar title={`Welcome to Keepingly`} showSearch={false}/>
@@ -147,9 +158,6 @@ export default function CompleteProfile() {
                     <button className={style.button} onClick={()=>{
                         setModalView(false)
                         router.push('/')
-                        setTimeout(() => {
-                            location.reload()
-                        }, 1000);
                     }}>Proceed to Properties</button>
                 </div>
             </div>

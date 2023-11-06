@@ -5,11 +5,13 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { SearchInput } from '../(presentation)/search'
 import LayoutLi from '../(presentation)/layoutLi'
+import {UserContext} from "@/app/userContext"
 import { api } from '@/app/keepinglyClientApi'
 export default function Nav() {
     let currentParam = useSelectedLayoutSegment()
     let [hideNav, setHideNav] = useState(false)
     let [canClick, setCanClick] = useState(false)
+    UserContext.setCanClick = setCanClick
     let arrayIcon = [
         {
             name: 'Overview',
@@ -73,13 +75,9 @@ export default function Nav() {
                     Authorization: `Bearer ${tkn}`
                 }
             })
-
-            console.log(Array.isArray(apiValue.data))
             setCanClick( Array.isArray(apiValue.data) ? apiValue.data[0]?.agency_address !== undefined : false)
-            console.log(apiValue)
             sessionStorage.setItem('kppk', Array.isArray(apiValue.data) ? apiValue.data[0].id : '')
         })()
-        console.log('ran')
     }, [])
     return(
         <nav className={`${style.sidebar} ${hideNav && style.left}`}>

@@ -25,7 +25,7 @@ export let Statistics=()=>{
                     Authorization: `Bearer ${tk}`
                 }
             })
-            setExpNum(exp.data.data)
+            setExpNum(exp.data?.data)
         })()
     }, [])
     return(

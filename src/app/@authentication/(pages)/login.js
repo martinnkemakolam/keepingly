@@ -19,7 +19,7 @@ export default function SignIn ({setCookies}){
     // let [passwordError, setPasswordError] = useState(false)
     let [mailError, errMsg, setMailError] =  ErrorHook()
     let [passError, passMsg, setPassError] =  ErrorHook()
-    let [input1, setInput1, input2, setInput2] = VisibleChnage()
+    let [input1, setInput1] = VisibleChnage()
     let [loadingState, setLoadingState] = useState(false)
     let {setUser} = useContext(userContext)
     let router = useRouter()

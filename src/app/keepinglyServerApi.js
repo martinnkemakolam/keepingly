@@ -5,8 +5,6 @@ import dayjs from "dayjs";
 import { jwtDecode } from "jwt-decode";
 // import {cookies} from 'next/headers'
 import {cookies} from "next/headers";
-import { setCookies } from "./actions";
-import {setCookie} from 'cookies-next'
 // Get the refresh token from local storage
 let cookie = cookies()
 // Create an Axios instance with a base URL
