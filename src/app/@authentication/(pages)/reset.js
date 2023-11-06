@@ -23,7 +23,6 @@ export default function Reset({query}) {
     }
     let submit = ()=>{
         setLoadingState(true)
-        // get token and userid
         let data = {
             "new_password": firstPassword,
             "confirm_password": secondPassword
@@ -48,11 +47,11 @@ export default function Reset({query}) {
             {console.log(query)}
         <TopText h1Text={`Forgot your password?`} pText={`Please enter the email address associated with your Keepingly account. We will send you a password reset link to this email.`}/>
         <div className={style.form}>
-            <Input label={`Password`} password={true} inputText={`Password`} errorState={errorState} errorMsg={`Password don't match`} changeFunc={setFirstPassword}/>
+            <Input label={`Password`} password={true} inputText={`Password`} errorState={errorState} errorMsg={`Password don't match`} changeFunc={(name, val)=> setFirstPassword(val)}/>
             <p>
             Your password must be at least 8 characters long and include a combination of uppercase letters, lowercase letters, numbers, and special characters.
             </p>
-            <Input label={`Confirm password`} password={true} inputText={`Comfirm password`} errorState={errorState} errorMsg={`Password don't match`} changeFunc={setSecondPassword}/>
+            <Input label={`Confirm password`} password={true} inputText={`Comfirm password`} errorState={errorState} errorMsg={`Password don't match`} changeFunc={(name, val)=> setSecondPassword(val)}/>
         </div>
         <BottomComp func={validatePassword} pText={`Remember password?`} linkHref={`/`} linkText={`Sign in`} col={loadingState} buttonText={ loadingState? "loading...": `Reset password`}/>
         </form>
