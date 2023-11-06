@@ -2,7 +2,8 @@ import { Properties } from "../(pages)/property";
 import {cookies} from 'next/headers'
 import { apiServer } from "@/app/keepinglyServerApi";
 
-
+export const dynamic = "force-dynamic";
+export const fetchCache = 'force-no-store'
 export default async function Page(params) {
     let property = await getProperties()
     return(
@@ -10,7 +11,7 @@ export default async function Page(params) {
     )
 }
 
-export const dynamic = "force-dynamic";
+
 async function getProperties(){
     let userToken = cookies().get('kpat')
     try {
