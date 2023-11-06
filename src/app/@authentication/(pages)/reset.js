@@ -5,7 +5,8 @@ import TopText from "../(container)/topText";
 import style from '@/style/auth.module.css'
 import {useRouter } from "next/navigation";
 import Input from "../(presentation)/input";
-export default function Reset(params) {
+import { api } from "@/app/keepinglyClientApi";
+export default function Reset({query}) {
     let router = useRouter()
     let [firstPassword, setFirstPassword] = useState('')
     let [loadingState, setLoadingState] = useState(false)
@@ -21,27 +22,30 @@ export default function Reset(params) {
         }
     }
     let submit = ()=>{
-        
         setLoadingState(true)
         // get token and userid
-        fetch(api + `api/v2/password/reset/${token}/${user_id}/`, {
-            method: 'POST',
+        let data = {
+            "new_password": firstPassword,
+            "confirm_password": secondPassword
+          }
+          let newStr = query.id.slice(0, -1);
+        api.post(`api/v2/password/reset/${query.tkn}/${newStr}/`, data,{
             headers: {
                 'Content-Type': 'application/json'
-            },
-            mode: 'cors',
-            body: JSON.stringify({
-                "new_password": firstPassword,
-                "confirm_password": secondPassword
-              })
+            }
         })
-        .then(()=> setLoadingState(false))
+        .then((res)=>{
+            console.log(res)
+            setLoadingState(false)
+            router.push('/')
+        })
     }
     return(
         <form className={style.modular} onSubmit={(e)=>{
             e.preventDefault()
             submit()
         }}>
+            {console.log(query)}
         <TopText h1Text={`Forgot your password?`} pText={`Please enter the email address associated with your Keepingly account. We will send you a password reset link to this email.`}/>
         <div className={style.form}>
             <Input label={`Password`} password={true} inputText={`Password`} errorState={errorState} errorMsg={`Password don't match`} changeFunc={setFirstPassword}/>
