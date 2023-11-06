@@ -1,4 +1,3 @@
-'use server'
 // Import the Axios library for making HTTP requests
 import axios, { Axios } from "axios";
 import dayjs from "dayjs";
