@@ -8,6 +8,7 @@ export let api = axios.create({
 api.interceptors.response.use(
     async (res) => {
         let refresh_token = localStorage.getItem('kprt');
+        console.log(refresh_token)
         let tkn = await axios.post(`https://pre.api.keepingly.co/api/v2/refresh`, {"refresh_token": refresh_token})
         res.headers.Authorization = `Bearer ${tkn.data.access_token}`
         return res

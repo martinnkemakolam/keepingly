@@ -16,6 +16,7 @@ export default function Layout({children, authentication, application}){
     UserContext.setView = setUser
     useEffect(()=>{
         setUser(sessionStorage.getItem('kpuo') || localStorage.getItem('staylogged'))
+        console.log(document.cookie)
     }, [])
     return(
     <html lang="en"  style={{fontFamily: nunito.style.fontFamily}}>

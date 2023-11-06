@@ -1,7 +1,7 @@
 import Reset from "../../(pages)/reset";
 
-export default function Page(){
+export default function Page(params){
     return (
-        <Reset/>
+        <Reset query={params.searchParams}/>
     )
 }

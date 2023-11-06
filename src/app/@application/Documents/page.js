@@ -1,7 +1,7 @@
 import { DocumentPage } from "../(pages)/Document";
 
-export default function Page(){
+export default function Page(params){
     return(
-        <DocumentPage/>
+        <DocumentPage query={params.searchParams}/>
     )
 }

@@ -1,35 +1,34 @@
 'use client'
 import { useEffect, useState } from "react";
 import style from "@/style/auth.module.css"
+import style2 from "@/style/setting.module.css"
 import BottomComp from "../(container)/bottomComp";
 import TopText from "../(container)/topText";
 import { InputContainer } from "../(container)/InputContainer";
 import { useRouter } from "next/navigation";
-
-export default function Verification(){
+import { api } from "@/app/keepinglyClientApi";
+import Image from "next/image";
+import Link from "next/link"
+export default function Verification({params}){
     let [count, setCount] = useState(60)
     let [link, setLink] = useState('')
     let router = useRouter()
     useEffect(()=>{
-        let recall=()=>{
-            if (count === 0) {
-                setLink('resend link')
-                return
-            }
-            setTimeout(()=>{
-                setCount(count - 1)
-            }, 1000)
-        }
-        recall()
-    }, [count, router])
+        api.post(`/api/v2/activate/account/${params.id}`).then((ele)=>{
+            console.log(ele)
+        })
+    }, [count, router, params])
     return(
-        <form className={style.modular} onSubmit={(e)=>{
+        <form style={{display: 'flex', alignItem: 'center'}} className={style.modular} onSubmit={(e)=>{
             e.preventDefault()
             router.push('/')
         }}>
-            <TopText h1Text={`Verification`} pText={`Please enter the One-Time Password (OTP) that was sent to <email address>.`}/>
-            <InputContainer />
-            <BottomComp pText={`Didn’t get the OTP? ${ count === 0 ? '' : `Resend link in ${count}`}`} buttonText={`Verify`} linkHref={'/'} linkText={link}/>
+            <Image className={style.margin} src={'/asset/icons/success.png'} alt='keepingly logo' width={80} height={80} />
+            <h1 className={style.margin}>
+                success!
+            </h1>
+            <p className={style.margin}>You are successfully registered</p>
+            <Link href="/" className={style2.redFillBtn}>Log in</Link>
         </form>
     )
 }
