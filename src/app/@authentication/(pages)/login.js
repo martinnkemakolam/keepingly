@@ -45,7 +45,7 @@ export default function SignIn ({setCookies}){
             setUser(data)
             UserContext.setView(true)
             localStorage.setItem('kprt', data.refresh_token)
-            sessionStorage.setItem('kpur', data.role)
+            sessionStorage.setItem('kpur', data.user_role)
             sessionStorage.setItem('kpuo', data.access_token)
             remember && localStorage.setItem('staylogged', data.access_token)
             document.cookie = `kpat = ${data.access_token};`
@@ -75,7 +75,7 @@ export default function SignIn ({setCookies}){
             </div>
             <Link className={style.colRed} href={`/authentication/forgot`}>Forgot password?</Link>   
         </div>
-        <BottomComp func={()=> null} buttonText={ loadingState?`Loading...`: `Log in`} col={loadingState} pText={`Don’t have an account yet?`} linkHref={`/authentication/signUp`} linkText={`Register`}/>
+        <BottomComp func={()=> null} buttonText={ loadingState?`Loading...`: `Log in`} col={loadingState} pText={`Don’t have an account yet?`} linkHref={`/authentication/signUp-realtor`} linkHref2={`/authentication/signUp-homeowner`} linkText2={`Register as homeowner`} linkText={`Register as realtor`}/>
         </form>
     )
 }

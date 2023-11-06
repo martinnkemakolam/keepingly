@@ -9,7 +9,7 @@ import style from "@/style/auth.module.css"
 import { ErrorHook, VisibleChnage, callMailErr, callPassErr, errorExist, handleInput, validConfirmPass, validMail, validPassword} from "@/app/reusedFunctions";
 import { useRouter } from "next/navigation";
 import { api } from "@/app/keepinglyClientApi";
-export default function Register(params) {
+export default function Register({role}) {
     let [loadingState, setLoadingState] = useState(false)
     let [passwordConfirm, setPasswordConfirm] = useState({})
     let [user, setUser] = useState({})
@@ -19,15 +19,10 @@ export default function Register(params) {
     let router = useRouter()
     let [input1, setInput1, input2, setInput2] = VisibleChnage()
     let submit =async()=>{
+        console.log('called')
         setLoadingState(true)
-        // let error = errorExist(user, passwordConfirm)
-        // if (error) {
-        //     passChange('Incorect password format')
-        //     change('Email not valid')
-        //     return
-        // }
 
-        let error = !validMail(user) || !validConfirmPass(user, passwordConfirm) || validPassword(user)
+        let error = !validMail(user) || !validConfirmPass(user, passwordConfirm) || !validPassword(user)
         if (error) {
             !validMail(user) && change('Email not valid')
             !validConfirmPass(user, passwordConfirm) && conPassChange("Password doesn't match")
@@ -35,7 +30,6 @@ export default function Register(params) {
             return 
         }
         try {
-        let role = 'realtor'||'homeowner'
         let data = {
             "first_name": "test",
             "last_name": "test",
@@ -47,11 +41,12 @@ export default function Register(params) {
                 'Content-Type': 'application/json' 
             }
         })
-        apiData && setLoadingState(false)
         console.log('this is api', apiData)
-        apiData.status === 201 && router.push('./')
-        apiData.status === 409 && change('Mail already exists')
-        apiData.status === 400 && change(`mail doesn't exist`)
+        apiData && setLoadingState(false)
+        console.log(apiData.status)
+        if (apiData.status === 201) router.push('/')
+        if(apiData.status === 409)change('Mail already exists')
+        if (apiData.status === 400)change(`mail doesn't exist`)
         } catch (error) {
           console.error(error)  
         }
@@ -61,8 +56,8 @@ export default function Register(params) {
             e.preventDefault()
             submit()
         }}>
-        <TopText h1Text={`Register to get started`} pText={`Easily maintain and manage your home with Keepingly.`} />
-        <div className={style.form}>
+        <TopText h1Text={`Register as ${role}`} pText={`Easily maintain and manage your home with Keepingly.`} />
+        <div  className={style.form}>
             <AuthButton google={true} pText={`Register with Google`}/>
             <AuthButton google={false} pText={`Register with Apple`}/>
             <DivOr/>
