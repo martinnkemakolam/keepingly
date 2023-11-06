@@ -4,14 +4,13 @@ import { apiServer } from "@/app/keepinglyServerApi";
 
 
 export default async function Page(params) {
-    console.log(params)
     let property = await getProperties()
-    console.log(property)
     return(
         <Properties property={property}/>
     )
 }
 
+export const dynamic = "force-dynamic";
 async function getProperties(){
     let userToken = cookies().get('kpat')
     try {
@@ -24,7 +23,7 @@ async function getProperties(){
             throw prop.statusText
         }
         let propetiiesJson = prop.data
-        return propetiiesJson
+        return propetiiesJson || []
     } catch (error) {
         console.log('this your custom error ' + error)
     }
