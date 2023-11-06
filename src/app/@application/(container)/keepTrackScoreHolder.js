@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import ExpenseTitle from "./expenseTitle"
 import { ScoreHolder } from "./scoreHolder"
 import style from "@/style/keeptrack.module.css"

@@ -12,7 +12,7 @@ align-items: center;
 gap: 0.9rem;
 width: 8rem;
 height: 8rem;
-background-image: conic-gradient(#D28EA5 180deg, #D2D2D2 0deg);
+background-image: conic-gradient(#D28EA5 0deg, #D2D2D2 0deg);
 justify-content: center;
 border-radius: 50%;
 }

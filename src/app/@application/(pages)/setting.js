@@ -2,8 +2,10 @@
 import { useEffect, useState } from "react";
 import TopBar from "../(container)/Topbar";
 import FormProperties from "../(container)/form";
+import { api } from "@/app/keepinglyClientApi";
 
 export let Setting=()=>{
+    let [data, setData] = useState()
     let arrObj = [
         {
             h1: 'Profile settings'
@@ -17,16 +19,16 @@ export let Setting=()=>{
     ]
     let [file, setFile] = useState('')
     useEffect(()=>{
-        let db = indexedDB.open('keepinglyDB', 1.0)
-        db.onsuccess=()=>{
-            let result = db.result
-            let store = result.transaction('user', 'readonly').objectStore('user')
-            let userData = store.get(0)
-            userData.onsuccess=()=>{
-                console.log(userData.result)
-                setFile(userData.result.file)
-            }
-        }
+        (async ()=>{
+            let tkn = sessionStorage.getItem('kpuo')
+            let apiValue = await api.get('/api/v2/profile/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${tkn}`
+                }
+            })
+            setData(apiValue.data)
+        })()
     },[])
     return(
         <>

@@ -45,12 +45,66 @@ export let AddProperty=()=> {
                         type: 'select',
                         name: 'state',
                         opt: [
-                            'opt1', 'opt2', 'opt3'
+                            'Alaska',
+                            'Alabama',
+                            'Arkansas',
+                            'American Samoa',
+                            'Arizona',
+                            'California',
+                            'Colorado',
+                            'Connecticut',
+                            'District of Columbia',
+                            'Delaware',
+                            'Florida',
+                            'Georgia',
+                            'Guam',
+                            'Hawaii',
+                            'Iowa',
+                            'Idaho',
+                            'Illinois',
+                            'Indiana',
+                            'Kansas',
+                            'Kentucky',
+                            'Louisiana',
+                            'Massachusetts',
+                            'Maryland',
+                            'Maine',
+                            'Michigan',
+                            'Minnesota',
+                            'Missouri',
+                            'Mississippi',
+                            'Montana',
+                            'North Carolina',
+                            'North Dakota',
+                            'Nebraska',
+                            'New Hampshire',
+                            'New Jersey',
+                            'New Mexico',
+                            'Nevada',
+                            'New York',
+                            'Ohio',
+                            'Oklahoma',
+                            'Oregon',
+                            'Pennsylvania',
+                            'Puerto Rico',
+                            'Rhode Island',
+                            'South Carolina',
+                            'South Dakota',
+                            'Tennessee',
+                            'Texas',
+                            'Utah',
+                            'Virginia',
+                            'Virgin Islands',
+                            'Vermont',
+                            'Washington',
+                            'Wisconsin',
+                            'West Virginia',
+                            'Wyoming'
                         ]
                     },{
-                        length: 'small',
-                        label: 'Zip code',
-                        placeholder: 'Enter Zip code',
+                        length: 'meduim',
+                        label: 'Zip code: ex: "12345" or "12345-6789"',
+                        placeholder: 'Enter Zip code e.g "12345" or "12345-6789"',
                         type: 'text',
                         name: 'zipcode'
                     },{
@@ -172,6 +226,7 @@ export let AddProperty=()=> {
             ]
         }
     ]
+    
     let [userFormData, setUserFormData] = useState()
     let handleInput =(name, value)=>{
         setUserFormData(
@@ -186,6 +241,7 @@ export let AddProperty=()=> {
     }
     let submit = ()=>{
         let tkn = sessionStorage.getItem('kpuo')
+        // Recheck has all seasons
         let data = {
                 "id": crypto.randomUUID(),
                 "address_one": userFormData.address1,
@@ -193,12 +249,13 @@ export let AddProperty=()=> {
                 "city": userFormData.city,
                 "state": userFormData.state,
                 "zipcode": userFormData.zipcode,
+                "has_four_seasons": true
             }
-        console.log('This the user access tkn', tkn)
-        api.post('/api/v2/property', data, {headers: {
+        console.log('This the user access tkn', data)
+        api.post('/api/v2/property/', data, {headers: {
             "Authorization": `Bearer ${tkn}`,
             'Content-Type': "application/json"
-        }, "mode": "cors"})
+        }})
         .then((res)=> res.status === 200 && router.push('./'))
     }
     return (
@@ -208,4 +265,4 @@ export let AddProperty=()=> {
         <FormProperties arrOpt={arr} func={submit} handleInput={handleInput} refference={formRef} isProperty={true} isEdit={isEdit} />
         </>
     )
-}
+    }

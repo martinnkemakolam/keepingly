@@ -41,7 +41,7 @@ let Renovation=()=>{
             {
                 prop.map((ele)=>{
                     console.log(ele)
-                    return <><RenovationTable title={`Kitchen`} btn1={`View renovation`} btn2={`Add expense`} renovationId={ele.id} propId={ele.property_id.id} prop={ele.section + ' renovation'}/></>
+                    return <><RenovationTable title={ele.section} btn1={`View renovation`} btn2={`Add expense`} renovationId={ele.id} propId={ele.property_id.id} prop={ele.section + ' renovation'}/></>
                 })
             }
         </div>

@@ -6,6 +6,7 @@ import { apiServer } from "@/app/keepinglyServerApi";
 export default async function Page(params) {
     console.log(params)
     let property = await getProperties()
+    console.log(property)
     return(
         <Properties property={property}/>
     )
@@ -13,13 +14,12 @@ export default async function Page(params) {
 
 async function getProperties(){
     let userToken = cookies().get('kpat')
-    console.log('property at', cookies().get('kpat'))
     try {
         let prop = await apiServer.get(`/api/v2/get_property_user/`, {headers: {
             'Authorization': `Bearer ${userToken.value}`,
             "Content-Type": 'application/json'
         }})
-        console.log(prop.config.headers.Authorization)
+        console.log(prop)
         if (prop.status !== 200){
             throw prop.statusText
         }
