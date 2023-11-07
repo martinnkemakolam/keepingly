@@ -34,13 +34,12 @@ export default function SignIn({ setCookies }) {
   let submit = async () => {
     setLoadingState(true);
 
-    if (!validPassword(loginDetail)) {
-      console.log("yess");
-      setPassError("Invalid password");
-    }
-    if (!validMail(loginDetail)) {
-      setMailError("Email not valid");
-      return;
+    let error = !validMail(loginDetail) || !validPassword(loginDetail)
+    if (error){
+        !validPassword(loginDetail) && setPassError("Invalid password");
+        !validMail(loginDetail) && setMailError("Email not valid");
+        setLoadingState(false)
+        return
     }
     let sentData = {
       email: loginDetail.mail,
@@ -55,6 +54,7 @@ export default function SignIn({ setCookies }) {
 
     let data = loginData.data;
     if (loginData.status === 200) {
+        router.push('/Overview')
       console.log("This is success ", data);
       setUser(data);
       UserContext.setView(true);
