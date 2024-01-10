@@ -14,7 +14,7 @@ export default function ForgotPassword() {
     let [loadingState, setLoadingState] = useState(false)
     let submit = async()=>{
         setLoadingState(true)
-        let error = validMail(inputValue)
+        let error = !validMail(inputValue)
         if (error) {
             change(`Email not valid`)
         }
@@ -26,8 +26,9 @@ export default function ForgotPassword() {
                 'Content-Type': 'application/json'
             }
         })
-        apiData && setLoadingState(false)
-        apiData.status === 200 && router.push('/') 
+        if (apiData) setLoadingState(false)
+        console.log(apiData.status)
+        if (apiData.status === 201 ) router.push('/') 
     }
     return(
         <form className={style.modular} onSubmit={(e)=>{

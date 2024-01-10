@@ -5,11 +5,13 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { SearchInput } from '../(presentation)/search'
 import LayoutLi from '../(presentation)/layoutLi'
+import {UserContext} from "@/app/userContext"
 import { api } from '@/app/keepinglyClientApi'
 export default function Nav() {
     let currentParam = useSelectedLayoutSegment()
     let [hideNav, setHideNav] = useState(false)
     let [canClick, setCanClick] = useState(false)
+    UserContext.setCanClick = setCanClick
     let arrayIcon = [
         {
             name: 'Overview',
@@ -57,11 +59,15 @@ export default function Nav() {
             </g>
             <path d="M12.6667 9.33358C13.403 9.33358 14 8.73662 14 8.00024C14 7.26386 13.403 6.66691 12.6667 6.66691M12.6667 9.33358C11.9303 9.33358 11.3333 8.73662 11.3333 8.00024C11.3333 7.26386 11.9303 6.66691 12.6667 6.66691M12.6667 9.33358V13.3336M12.6667 6.66691V2.66691M8 10.6669C7.26362 10.6669 6.66667 11.2639 6.66667 12.0002C6.66667 12.7366 7.26362 13.3336 8 13.3336C8.73638 13.3336 9.33333 12.7366 9.33333 12.0002C9.33333 11.2639 8.73638 10.6669 8 10.6669ZM8 10.6669V2.66691M3.33333 5.33358C4.06971 5.33358 4.66667 4.73662 4.66667 4.00024C4.66667 3.26386 4.06971 2.66691 3.33333 2.66691C2.59695 2.66691 2 3.26386 2 4.00024C2 4.73662 2.59695 5.33358 3.33333 5.33358ZM3.33333 5.33358V13.3336" stroke="#A61D4A" stroke-width="1.5" stroke-linecap="round"/>
             </svg>            
+        },
+        {
+            name: 'Setting',
+            svg: <Image src={"/asset/icons/setting.png"} width={16} height={16}/>
         }
     ]
     let liMap = arrayIcon.map(({name, svg}, id)=>{
         return(
-            <LayoutLi canClick={canClick} hide={hideNav} isActive={name === currentParam} Text={name} icon={svg} linkHref={name === 'Overview' ? '/' : `/${name}`} key={id}/>
+            <LayoutLi canClick={canClick} hide={hideNav} isActive={name === currentParam} Text={name} icon={svg} linkHref={`/${name}`} key={id}/>
         )
     })
     useEffect(()=>{
@@ -73,13 +79,9 @@ export default function Nav() {
                     Authorization: `Bearer ${tkn}`
                 }
             })
-
-            console.log(Array.isArray(apiValue.data))
             setCanClick( Array.isArray(apiValue.data) ? apiValue.data[0]?.agency_address !== undefined : false)
-            console.log(apiValue)
             sessionStorage.setItem('kppk', Array.isArray(apiValue.data) ? apiValue.data[0].id : '')
         })()
-        console.log('ran')
     }, [])
     return(
         <nav className={`${style.sidebar} ${hideNav && style.left}`}>
